@@ -82,10 +82,10 @@ public class LaivanUpotus {
      */
     public static void luoTaulut(){
         for(String pelaaja : pelaajat){
-            String[][] taulu = new String[rivit][sarakkeet];
-            for(int i = 0; i < rivit; i++){
-                for(int j = 0; j < sarakkeet; j++){ 
-                    taulu[i][j] = merkit[0]; 
+            String[][] taulu = new String[Vakiot.rivit][Vakiot.sarakkeet];
+            for(int i = 0; i < Vakiot.rivit; i++){
+                for(int j = 0; j < Vakiot.sarakkeet; j++){ 
+                    taulu[i][j] = Vakiot.merkit[0]; 
                 }
             }
             pelaajienTaulut.put(pelaaja, taulu);
@@ -165,7 +165,7 @@ public class LaivanUpotus {
         for(int i = aloitusRivi; i <= lopetusRivi; i++){
             for(int j = aloitusSarake; j <= lopetusSarake; j++){
                 String[][] taulu = pelaajienTaulut.get(pelaaja);
-                taulu[i][j] = merkit[1];
+                taulu[i][j] = Vakiot.merkit[1];
             }
         }
     }
@@ -176,14 +176,14 @@ public class LaivanUpotus {
      * tarkistaa, että laivat lisätään taulukkoon sääntöjen mukaisesti.
      */
     public static void kysyLaivat(){
-        int laivaMaara = laivat.length;
+        int laivaMaara = Vakiot.laivat.length;
 
         for(String pelaaja : pelaajat){
             String[][] taulu = pelaajienTaulut.get(pelaaja);
 
             for(int i = 0; i < laivaMaara; i++){
-                String laiva = laivat[i];
-                int koko = laivaKoot[i];
+                String laiva = Vakiot.laivat[i];
+                int koko = Vakiot.laivaKoot[i];
                 tulostaTaulu(pelaaja);
 
                 while (true) {
@@ -203,12 +203,12 @@ public class LaivanUpotus {
 
                     // Rivi ja sarake, joista laivaa lähdetään rakentamaan.
                     int aloitusRivi = Integer.parseInt(koordinaatit[0].substring(1));
-                    int aloitusSarake = sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));
+                    int aloitusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));
 
                     
                     // Rivi ja sarake, johon laivan rakennus lopetetaan.
                     int lopetusRivi = Integer.parseInt(koordinaatit[1].substring(1));
-                    int lopetusSarake = sarakeKirjaimet.indexOf(koordinaatit[1].charAt(0));
+                    int lopetusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[1].charAt(0));
 
 
                     boolean laivaaVoiSijoittaa = true;
