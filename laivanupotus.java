@@ -2,27 +2,21 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.HashMap;
 
-public class laivanupotus {
+public class LaivanUpotus {
 
     /**
-     * Luodaan pelin kannalta 
-     * kriittiset muuttujat.
+     * Luodaan pelinkulun kannalta tärkeät muuttujat tänne.
+     * Vakio muuttujat löytyvät Vakiot- luokasta.
      */
     static final Scanner scanner = new Scanner(System.in);
-    static String sarakeKirjaimet = "ABCDEFGHIJ";
-    static int rivit = 10;
-    static int sarakkeet = 10;
-    static String[] laivat = {"Sukellusvene", "Hävittäjä", "Risteilijä", "Taistelulaiva", "Lentotukialus"};
-    static int[] laivaKoot = {1,2,3,4,5};
     static String pelimuoto = "";
     static boolean peliPaalla = false;
-    static String[] merkit = {"~", "O", "H", "M"};
     static String[] pelaajat = new String[2];
     static HashMap<String, String[][]> pelaajienTaulut = new HashMap<String, String[][]>();
     static String vuoro = "" ;
 
     /**
-     * Aloitetaan peli.
+     * Tällä metodilla alustetaan ja aloitetaan peli.
      */
     public static void main(String[] args){
         peliPaalla = true;
@@ -56,6 +50,11 @@ public class laivanupotus {
         }
     }
 
+
+    /**
+     * Jos pelataan kaverin kanssa, kysytään pelaajilta heidän nimet.
+     * Mikäli pelataan tietokonetta vastaan, asetetaan pelaajille valmiit nimet.
+     */
     public static void luoPelaajat(String pelimuoto){
         if(pelimuoto.equals("kaveri")){
             scanner.nextLine();
@@ -78,7 +77,8 @@ public class laivanupotus {
     }
 
     /**
-     * Luodaan pelaajien taulut.
+     * Luodaan kullekkin pelaajalle oma taulu ja asetetaan
+     * kyseinen taulu hashmappiin pelaajan nimi avaimen alle.
      */
     public static void luoTaulut(){
         for(String pelaaja : pelaajat){
@@ -158,8 +158,8 @@ public class laivanupotus {
     
     
     /**
-     * Asettaa uuden laivan pelaajan taulukolle sille annettujen
-     * aloitus ja lopetus parametrien mukaan.
+     * Asettaa uuden laivan pelaajan taulukkoon sille annettujen
+     * aloitus, lopetus ja pelaaja parametrien mukaan.
      */
     public static void asetaLaiva(int aloitusRivi, int aloitusSarake, int lopetusRivi, int lopetusSarake, String pelaaja){
         for(int i = aloitusRivi; i <= lopetusRivi; i++){
