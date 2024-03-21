@@ -1,12 +1,14 @@
 package LaivanUpotus;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Peli {
 
     /**
-        * Luodaan pelinkulun kannalta tärkeät muuttujat tänne.
-        * Vakio muuttujat löytyvät Vakiot- luokasta.
+        Luodaan pelinkulun kannalta tärkeät muuttujat tänne.
+        Vakio muuttujat löytyvät Vakiot- luokasta.
     **/
+    public static final Scanner scanner = new Scanner(System.in);
     public static String pelimuoto = "";
     public static boolean peliPaalla = false;
     public static String[] pelaajat = new String[2];
@@ -14,8 +16,9 @@ public class Peli {
     public static String vuoro = "" ;
 
     /**
-        * Suoritetaan tarvittavat alkutoimenpiteet ja aloitetaan peli.
-    */
+        Suoritetaan tarvittavat alkutoimenpiteet ja aloitetaan peli.
+     *
+    **/
     public static void main(String[] args){
         peliPaalla = true;
         Menu.NaytaMenu();
@@ -25,8 +28,8 @@ public class Peli {
     }
 
     /**
-     * Pelaaja aloittavat laivojen upotuksen.
-     */
+        Pelaaja aloittavat laivojen upotuksen.
+    **/
     public static void aloitaTaistelu(){
         vuoro = pelaajat[0];
         while(peliPaalla){
@@ -36,21 +39,22 @@ public class Peli {
     }
 
     /**
-        * Jos pelataan kaverin kanssa, kysytään pelaajilta alussa heidän nimet.
-        * Mikäli pelataan tietokonetta vastaan, asetetaan pelaajille valmiit nimet.
+        Jos pelataan kaverin kanssa, kysytään pelaajilta alussa heidän nimet.
+        Mikäli pelataan tietokonetta vastaan, asetetaan pelaajille valmiit nimet.
     **/
     public static void luoPelaajat(String pelimuoto){
         if(pelimuoto.equals("kaveri")){
-            for(int i = 0; i < 2; i++){
+            for(int i = 0; i < pelaajat.length; i++){
                 while(true){
                     System.out.print("\nPelaaja " + (i+1) + "\nAseta nimesi: \n=>");
-                    String syote = Vakiot.scanner.nextLine();
-                    if(syote.length() < 1){
+                    try{
+                        String syote = scanner.next();
+                        pelaajat[i] = syote;
+                        break;
+                    } catch(Exception e){
                         System.out.println("Yritä uudelleen...");
                         continue;
                     }
-                    pelaajat[i] = syote;
-                    break;
                 }
             }
         } else{

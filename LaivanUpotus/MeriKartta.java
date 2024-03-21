@@ -1,10 +1,10 @@
 package LaivanUpotus;
 
 public class MeriKartta {
-    
+
     /**
-        * Luodaan kullekkin pelaajalle oma taulu ja asetetaan
-        * kyseinen taulu hashmappiin pelaajan nimi avaimen alle.
+        Luodaan kullekkin pelaajalle oma taulu ja asetetaan
+        kyseinen taulu hashmappiin pelaajan nimi avaimen alle.
     **/
     public static void luoTaulut(){
         for(String pelaaja : Peli.pelaajat){
@@ -19,8 +19,8 @@ public class MeriKartta {
     }
 
     /**
-        * Tulostaa pelaajan taulun koko taulun.
-        * Lisää tulokseen myös osoittajia taulun riveistä ja sarakkeista.
+        Tulostaa pelaajan taulun koko taulun.
+        Lisää tulokseen myös osoittajia taulun riveistä ja sarakkeista.
     **/
     public static void tulostaKartta(String pelaaja) {
         String[][] kartta = Peli.pelaajienKartat.get(pelaaja);
@@ -57,7 +57,7 @@ public class MeriKartta {
     }
     
     /**
-        * Tulostaa yksittäisen rivin kartasta
+        Tulostaa yksittäisen rivin kartasta
     **/
     private static void tulostaRivi(String[] rivi) {
         for (int j = 0; j < rivi.length; j++) {
@@ -70,7 +70,7 @@ public class MeriKartta {
     }
     
     /**
-        * Tulostaa kartan kulmat.
+        Tulostaa kartan kulmat.
     **/
     private static void tulostaKartanKulma(int korkeus) {
         for (int i = 0; i < korkeus; i++) {

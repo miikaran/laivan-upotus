@@ -1,14 +1,12 @@
 package LaivanUpotus;
-import java.util.Scanner;
 
 public class Vakiot {
 
     /**
-        * Tämä luokka sisältää vakio (constant) muuttujia, eli muuttujia 
-        * joiden arvoja ei tarvitse pelin aikana muuttaa ollenkaan.
+        Tämä luokka sisältää vakio (constant) muuttujia, eli muuttujia 
+        joiden arvoja ei tarvitse pelin aikana muuttaa ollenkaan.
     **/
-    public static final Scanner scanner = new Scanner(System.in);
-    public static String sarakeKirjaimet = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+    public static String sarakeKirjaimet = "ABCDEFGHIJ";
     public static int rivit = 10;
     public static int sarakkeet = 10;
     public static String[] laivat = {"Sukellusvene", "Hävittäjä", "Risteilijä", "Taistelulaiva", "Lentotukialus"};

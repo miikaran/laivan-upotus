@@ -2,9 +2,9 @@ package LaivanUpotus;
 import java.util.Scanner;
 
 public class Menu {
-
+  public static final Scanner scanner = new Scanner(System.in);
     /**
-     * Näytetään menu, sekä asetetaan käyttäjän valitsema pelimuoto.
+        Näytetään menu, sekä asetetaan käyttäjän valitsema pelimuoto.
      */
     public static void NaytaMenu(){
 
@@ -15,7 +15,7 @@ public class Menu {
         System.out.println("\n=====================================");
         System.out.print("\n=> ");
 
-        int kayttajanSyote = Vakiot.scanner.nextInt();
+        int kayttajanSyote = scanner.nextInt();
 
         switch (kayttajanSyote){
 
