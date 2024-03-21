@@ -81,13 +81,13 @@ public class laivanupotus {
      * Luodaan pelaajien taulut.
      */
     public static void luoTaulut(){
-        String[][] taulu = new String[rivit][sarakkeet];
-        for(int i = 0; i < rivit; i++){
-            for(int j = 0; j < sarakkeet; j++){ 
-                taulu[i][j] = merkit[0]; 
-            }
-        }
         for(String pelaaja : pelaajat){
+            String[][] taulu = new String[rivit][sarakkeet];
+            for(int i = 0; i < rivit; i++){
+                for(int j = 0; j < sarakkeet; j++){ 
+                    taulu[i][j] = merkit[0]; 
+                }
+            }
             pelaajienTaulut.put(pelaaja, taulu);
         }
     }
@@ -109,7 +109,7 @@ public class laivanupotus {
         int korkeus = taulu.length;
         int leveys = taulu[0].length;
     
-        System.out.print("   ");
+        System.out.print("\n\n   ");
         for (int j = 0; j < leveys; j++) {
             System.out.print(" " + (char)('A' + j) + "  ");
         }
@@ -180,11 +180,12 @@ public class laivanupotus {
 
         for(String pelaaja : pelaajat){
             String[][] taulu = pelaajienTaulut.get(pelaaja);
+
             for(int i = 0; i < laivaMaara; i++){
                 String laiva = laivat[i];
                 int koko = laivaKoot[i];
                 tulostaTaulu(pelaaja);
-        
+                
                 while (true) {
                     System.out.println("\n" + pelaaja);
                     System.out.print("\nAseta oman laivan koordinaatit");
