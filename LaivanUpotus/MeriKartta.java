@@ -3,24 +3,24 @@ package LaivanUpotus;
 public class MeriKartta {
 
     /**
-        Luodaan kullekkin pelaajalle oma taulu ja asetetaan
-        kyseinen taulu hashmappiin pelaajan nimi avaimen alle.
+        Luodaan kullekkin pelaajalle oma kartta ja asetetaan
+        kyseinen kartta hashmappiin pelaajan nimi avaimen alle.
     **/
     public static void luoTaulut(){
         for(String pelaaja : Peli.pelaajat){
-            String[][] taulu = new String[Vakiot.rivit][Vakiot.sarakkeet];
+            String[][] kartta = new String[Vakiot.rivit][Vakiot.sarakkeet];
             for(int i = 0; i < Vakiot.rivit; i++){
                 for(int j = 0; j < Vakiot.sarakkeet; j++){ 
-                    taulu[i][j] = Vakiot.merkit[0]; 
+                    kartta[i][j] = Vakiot.merkit[0]; 
                 }
             }
-            Peli.pelaajienKartat.put(pelaaja, taulu);
+            Peli.pelaajienKartat.put(pelaaja, kartta);
         }
     }
 
     /**
-        Tulostaa pelaajan taulun koko taulun.
-        Lisää tulokseen myös osoittajia taulun riveistä ja sarakkeista.
+        Tulostaa pelaajan koko kartan.
+        Lisää tulokseen myös osoittajia kartan riveistä ja sarakkeista.
     **/
     public static void tulostaKartta(String pelaaja) {
         String[][] kartta = Peli.pelaajienKartat.get(pelaaja);
