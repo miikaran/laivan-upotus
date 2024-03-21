@@ -1,6 +1,7 @@
 package LaivanUpotus;
 
 public class MeriKartta {
+    
     /**
         * Luodaan kullekkin pelaajalle oma taulu ja asetetaan
         * kyseinen taulu hashmappiin pelaajan nimi avaimen alle.

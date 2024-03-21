@@ -1,5 +1,4 @@
 package LaivanUpotus;
-import java.util.Scanner;
 import java.util.HashMap;
 
 public class Peli {
@@ -8,7 +7,6 @@ public class Peli {
         * Luodaan pelinkulun kannalta tärkeät muuttujat tänne.
         * Vakio muuttujat löytyvät Vakiot- luokasta.
     **/
-    public static final Scanner scanner = new Scanner(System.in);
     public static String pelimuoto = "";
     public static boolean peliPaalla = false;
     public static String[] pelaajat = new String[2];
@@ -27,7 +25,18 @@ public class Peli {
     }
 
     /**
-        * Jos pelataan kaverin kanssa, kysytään pelaajilta heidän nimet.
+     * Pelaaja aloittavat laivojen upotuksen.
+     */
+    public static void aloitaTaistelu(){
+        vuoro = pelaajat[0];
+        while(peliPaalla){
+            System.out.println(vuoro + ":n" + " vuoro" );
+            MeriKartta.tulostaKartta(vuoro);
+        }
+    }
+
+    /**
+        * Jos pelataan kaverin kanssa, kysytään pelaajilta alussa heidän nimet.
         * Mikäli pelataan tietokonetta vastaan, asetetaan pelaajille valmiit nimet.
     **/
     public static void luoPelaajat(String pelimuoto){
@@ -35,7 +44,7 @@ public class Peli {
             for(int i = 0; i < 2; i++){
                 while(true){
                     System.out.print("\nPelaaja " + (i+1) + "\nAseta nimesi: \n=>");
-                    String syote = scanner.nextLine();
+                    String syote = Vakiot.scanner.nextLine();
                     if(syote.length() < 1){
                         System.out.println("Yritä uudelleen...");
                         continue;
@@ -47,14 +56,6 @@ public class Peli {
         } else{
             pelaajat[0] = "Pelaaja";
             pelaajat[1] = "Tietokone";
-        }
-    }
-
-    public static void aloitaTaistelu(){
-        vuoro = pelaajat[0];
-        while(peliPaalla){
-            System.out.println(vuoro + ":n" + " vuoro" );
-            MeriKartta.tulostaKartta(vuoro);
         }
     }
 }

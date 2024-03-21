@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class Menu {
 
-    static final Scanner scanner = new Scanner(System.in);
-
     /**
      * Näytetään menu, sekä asetetaan käyttäjän valitsema pelimuoto.
      */
@@ -17,7 +15,7 @@ public class Menu {
         System.out.println("\n=====================================");
         System.out.print("\n=> ");
 
-        int kayttajanSyote = scanner.nextInt();
+        int kayttajanSyote = Vakiot.scanner.nextInt();
 
         switch (kayttajanSyote){
 
