@@ -185,7 +185,7 @@ public class laivanupotus {
                 String laiva = laivat[i];
                 int koko = laivaKoot[i];
                 tulostaTaulu(pelaaja);
-                
+
                 while (true) {
                     System.out.println("\n" + pelaaja);
                     System.out.print("\nAseta oman laivan koordinaatit");
@@ -193,7 +193,7 @@ public class laivanupotus {
 
                     // Otetaan käyttäjän koordinaatit ja erotellaan ne.
                     String[] koordinaatit = new String[2];
-                    try{ // Otetaan koordinaatit muodossa => kirjain+sarake
+                    try{ // Otetaan koordinaatit muodossa => sarake+rivi
                         koordinaatit = scanner.nextLine().toUpperCase().split(" ");
                     } catch(Exception NumberFormatException){
                         System.out.println("Aseta koordinaatit muodossa: sarake+rivi");
