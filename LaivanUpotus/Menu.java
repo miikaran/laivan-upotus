@@ -32,4 +32,29 @@ public class Menu {
               System.exit(0);
         }
     }
+
+    /**
+        Jos pelataan kaverin kanssa, kysytään pelaajilta alussa heidän nimet.
+        Mikäli pelataan tietokonetta vastaan, asetetaan pelaajille valmiit nimet.
+    **/
+    public static void luoPelaajat(String pelimuoto){
+      if(pelimuoto.equals("kaveri")){
+          for(int i = 0; i < Peli.pelaajat.length; i++){
+              while(true){
+                  System.out.print("\nPelaaja " + (i+1) + "\nAseta nimesi: \n=>");
+                  try{
+                      String syote = scanner.next();
+                      Peli.pelaajat[i] = syote;
+                      break;
+                  } catch(Exception e){
+                      System.out.println("Yritä uudelleen...");
+                      continue;
+                  }
+              }
+          }
+      } else{
+          Peli.pelaajat[0] = "Pelaaja";
+          Peli.pelaajat[1] = "Tietokone";
+      }
+  }
 }

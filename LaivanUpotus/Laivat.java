@@ -52,7 +52,7 @@ public class Laivat {
 
     /**
      * Tarkastetaan pelaajan antamat koordinaatit ja ilmoitetaan
-     * mahdollisista virheistä tai epäsäännönmukaisuuksista niissä.
+     * mahdollisista virheistä tai säännön vastaisista arvoista.
      */
     private static boolean validoiKoordinaatit(String[] koordinaatit, String[][] taulu, int koko) {
         try {
@@ -107,10 +107,10 @@ public class Laivat {
     }
 
     /**
-     *  Asetetaan uusi laiva karttaan.
+     *  Rakennetaan uusi laiva kartalle
      */
     private static void asetaLaivaKoordinaatteihin(String[] koordinaatit, String pelaaja, String[][] taulu) {
-        //Lasketaan koordinaatit jonka mukaan laiva rakennetaan kartalle.
+        //Lasketaan koordinaatit joiden mukaan laiva rakennetaan kartalle.
         int aloitusRivi = Integer.parseInt(koordinaatit[0].substring(1));
         int aloitusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));
         int lopetusRivi = Integer.parseInt(koordinaatit[1].substring(1));

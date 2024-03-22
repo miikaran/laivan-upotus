@@ -22,7 +22,7 @@ public class Peli {
     public static void main(String[] args){
         peliPaalla = true;
         Menu.NaytaMenu();
-        luoPelaajat(pelimuoto);
+        Menu.luoPelaajat(pelimuoto);
         MeriKartta.luoKartat();
         Laivat.kysyLaivat();
         aloitaTaistelu();
@@ -40,31 +40,6 @@ public class Peli {
             pelaajaHyokkaa(vastustaja);
             tarkistaTilanne(pelaaja, vastustaja);
             scanner.nextLine();
-        }
-    }
-
-    /**
-        Jos pelataan kaverin kanssa, kysytään pelaajilta alussa heidän nimet.
-        Mikäli pelataan tietokonetta vastaan, asetetaan pelaajille valmiit nimet.
-    **/
-    public static void luoPelaajat(String pelimuoto){
-        if(pelimuoto.equals("kaveri")){
-            for(int i = 0; i < pelaajat.length; i++){
-                while(true){
-                    System.out.print("\nPelaaja " + (i+1) + "\nAseta nimesi: \n=>");
-                    try{
-                        String syote = scanner.next();
-                        pelaajat[i] = syote;
-                        break;
-                    } catch(Exception e){
-                        System.out.println("Yritä uudelleen...");
-                        continue;
-                    }
-                }
-            }
-        } else{
-            pelaajat[0] = "Pelaaja";
-            pelaajat[1] = "Tietokone";
         }
     }
 
