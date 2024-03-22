@@ -38,6 +38,7 @@ public class Peli {
             vuoro = (vuoro + 1) % 2;
             System.out.println("\n" +pelaaja + ":n" + " vuoro" );
             pelaajaHyokkaa(pelaaja, vastustaja);
+            scanner.nextLine();
         }
     }
 
@@ -67,20 +68,21 @@ public class Peli {
     }
 
     public static void pelaajaHyokkaa(String vuoroNyt, String vastustaja){
-        String koordinaatti = scanner.next();
-        int rivi = Integer.parseInt(koordinaatti.substring(1));
-        int sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
-    
-        String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
-        for(int i = 0 ; i < Vakiot.rivit; i++){
-            for(int j = 0; j < Vakiot.sarakkeet; j++){ 
-                if(i == rivi && j == sarake){
-                    if(vastustajanKartta[i][j].equals(Vakiot.merkit[1])){
-                        System.out.println("Räjähdyssss! Osuit Laivaan!");
-                        vastustajanKartta[i][j] = Vakiot.merkit[2];
-                    }
+        while(true){
+            try{
+                String koordinaatti = scanner.next();
+                int rivi = Integer.parseInt(koordinaatti.substring(1));
+                int sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
+            
+                String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
+                if(vastustajanKartta[rivi][sarake].equals(Vakiot.merkit[1])){
+                    System.out.println("Räjähdyssss! Osuit Laivaan!");
+                    vastustajanKartta[rivi][sarake] = Vakiot.merkit[2];
                 }
+                break;
+            } catch(Exception e){
+                System.out.println("Yritä uudelleen...");
             }
-        }
+        }   
     }
 }
