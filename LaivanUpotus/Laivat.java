@@ -13,9 +13,8 @@ public class Laivat {
     public static void kysyLaivat() {
         for (String pelaaja : Peli.pelaajat) {
             String[][] taulu = Peli.pelaajienKartat.get(pelaaja);
-            int laivaMaara = Vakiot.laivat.length;
 
-            for (int i = 0; i < laivaMaara; i++) {
+            for (int i = 0; i < Vakiot.laivaMaara; i++) {
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
                 MeriKartta.tulostaKartta(pelaaja);
@@ -47,7 +46,7 @@ public class Laivat {
     /**
      * kysytään laivan koordinaatit muodossa => sarake+rivi ja erotellaan ne.
      */
-    private static String[] pyydaKoordinaatteja() {
+    public static String[] pyydaKoordinaatteja() {
         return scanner.nextLine().toUpperCase().split(" ");
     }
 

@@ -13,7 +13,7 @@ public class Peli {
     public static boolean peliPaalla = false;
     public static String[] pelaajat = new String[2];
     public static HashMap<String, String[][]> pelaajienKartat = new HashMap<String, String[][]>();
-    public static String vuoro = "" ;
+    public static int vuoro = 0;
 
     /**
         Suoritetaan tarvittavat alkutoimenpiteet ja aloitetaan peli.
@@ -25,16 +25,19 @@ public class Peli {
         luoPelaajat(pelimuoto);
         MeriKartta.luoTaulut();
         Laivat.kysyLaivat();
+        aloitaTaistelu();
     }
 
     /**
         Pelaaja aloittavat laivojen upotuksen.
     **/
     public static void aloitaTaistelu(){
-        vuoro = pelaajat[0];
         while(peliPaalla){
-            System.out.println(vuoro + ":n" + " vuoro" );
-            MeriKartta.tulostaKartta(vuoro);
+            String pelaaja = pelaajat[vuoro];
+            String vastustaja = pelaajat[(vuoro + 1) % 2];
+            vuoro = (vuoro + 1) % 2;
+            System.out.println("\n" +pelaaja + ":n" + " vuoro" );
+            pelaajaHyokkaa(pelaaja, vastustaja);
         }
     }
 
@@ -60,6 +63,24 @@ public class Peli {
         } else{
             pelaajat[0] = "Pelaaja";
             pelaajat[1] = "Tietokone";
+        }
+    }
+
+    public static void pelaajaHyokkaa(String vuoroNyt, String vastustaja){
+        String koordinaatti = scanner.next();
+        int rivi = Integer.parseInt(koordinaatti.substring(1));
+        int sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
+    
+        String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
+        for(int i = 0 ; i < Vakiot.rivit; i++){
+            for(int j = 0; j < Vakiot.sarakkeet; j++){ 
+                if(i == rivi && j == sarake){
+                    if(vastustajanKartta[i][j].equals(Vakiot.merkit[1])){
+                        System.out.println("Räjähdyssss! Osuit Laivaan!");
+                        vastustajanKartta[i][j] = Vakiot.merkit[2];
+                    }
+                }
+            }
         }
     }
 }
