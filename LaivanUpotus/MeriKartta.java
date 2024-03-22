@@ -6,7 +6,7 @@ public class MeriKartta {
         Luodaan kullekkin pelaajalle oma kartta ja asetetaan
         kyseinen kartta hashmappiin pelaajan nimi avaimen alle.
     **/
-    public static void luoTaulut(){
+    public static void luoKartat(){
         for(String pelaaja : Peli.pelaajat){
             String[][] kartta = new String[Vakiot.rivit][Vakiot.sarakkeet];
             for(int i = 0; i < Vakiot.rivit; i++){

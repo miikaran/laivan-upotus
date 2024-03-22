@@ -107,8 +107,8 @@ public class Laivat {
     }
 
     /**
-        Asettaa uuden laivan pelaajan taulukkoon.
-    **/
+     *  Asetetaan uusi laiva karttaan.
+     */
     private static void asetaLaivaKoordinaatteihin(String[] koordinaatit, String pelaaja, String[][] taulu) {
         //Lasketaan koordinaatit jonka mukaan laiva rakennetaan kartalle.
         int aloitusRivi = Integer.parseInt(koordinaatit[0].substring(1));
@@ -116,8 +116,10 @@ public class Laivat {
         int lopetusRivi = Integer.parseInt(koordinaatit[1].substring(1));
         int lopetusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[1].charAt(0));
 
+        // Käydään kartta läpi lasketuista koordinaateista.
         for (int i = aloitusRivi; i <= lopetusRivi; i++) {
             for (int j = aloitusSarake; j <= lopetusSarake; j++) {
+                // Ja laitetaan laiva jokaiseen sarakkeeseen.
                 taulu[i][j] = Vakiot.merkit[1];
             }
         }
