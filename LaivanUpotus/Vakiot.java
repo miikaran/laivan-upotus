@@ -3,9 +3,9 @@ package LaivanUpotus;
 public class Vakiot {
 
     /**
-        Tämä luokka sisältää vakio (constant) muuttujia, eli muuttujia 
-        joiden arvoja ei tarvitse pelin aikana muuttaa ollenkaan.
-    **/
+     * Tämä luokka sisältää vakio (constant) muuttujia, eli muuttujia 
+     * joiden arvoja ei tarvitse pelin aikana muuttaa ollenkaan.
+    */
     public static String sarakeKirjaimet = "ABCDEFGHIJ";
     public static int rivit = 10;
     public static int sarakkeet = 10;

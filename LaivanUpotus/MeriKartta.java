@@ -3,9 +3,9 @@ package LaivanUpotus;
 public class MeriKartta {
 
     /**
-        Luodaan kullekkin pelaajalle oma kartta ja asetetaan
-        kyseinen kartta hashmappiin pelaajan nimi avaimen alle.
-    **/
+     * Luodaan kullekkin pelaajalle oma kartta ja asetetaan
+     * kyseinen kartta hashmappiin pelaajan nimi avaimen alle.
+    */
     public static void luoKartat(){
         for(String pelaaja : Peli.pelaajat){
             String[][] kartta = new String[Vakiot.rivit][Vakiot.sarakkeet];
@@ -19,9 +19,9 @@ public class MeriKartta {
     }
 
     /**
-        Tulostaa pelaajan koko kartan.
-        Lisää tulokseen myös osoittajia kartan riveistä ja sarakkeista.
-    **/
+     * Tulostaa pelaajan koko kartan.
+     * Lisää tulokseen myös osoittajia kartan riveistä ja sarakkeista.
+    */
     public static void tulostaKartta(String pelaaja) {
         String[][] kartta = Peli.pelaajienKartat.get(pelaaja);
         int korkeus = kartta.length;
@@ -57,8 +57,8 @@ public class MeriKartta {
     }
     
     /**
-        Tulostaa yksittäisen rivin kartasta
-    **/
+     * Tulostaa yksittäisen rivin kartasta
+    */
     private static void tulostaRivi(String[] rivi) {
         for (int j = 0; j < rivi.length; j++) {
             System.out.print(" " + rivi[j] + " ");
@@ -70,8 +70,8 @@ public class MeriKartta {
     }
     
     /**
-        Tulostaa kartan kulmat.
-    **/
+     * Tulostaa kartan kulmat.
+    */
     private static void tulostaKartanKulma(int korkeus) {
         for (int i = 0; i < korkeus; i++) {
             System.out.print("───");
