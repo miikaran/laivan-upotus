@@ -6,10 +6,10 @@ public class Laivat {
     public static final Scanner scanner = new Scanner(System.in);
 
     /**
-        Kysyy laivat pelaajilta ja validoi pelaajien antamat
-        syötteet taulukossa valmiiksi olevien laivojen mukaan sekä 
-        tarkistaa, että laivat lisätään taulukkoon sääntöjen mukaisesti.
-    **/
+     * Kysyy laivat pelaajilta ja validoi pelaajien antamat
+     * syötteet taulukossa valmiiksi olevien laivojen mukaan sekä 
+     * tarkistaa, että laivat lisätään taulukkoon sääntöjen mukaisesti.
+    */
     public static void kysyLaivat() {
 
         for (String pelaaja : Peli.pelaajat) {
@@ -35,7 +35,7 @@ public class Laivat {
                         continue;
                     } 
                     // Asetetaan laiva karttaan pelaajan antamiin koordinaatteihin.
-                    laivaKoordinaatit[i] = asetaLaivaKoordinaatteihin(koordinaatit, pelaaja, taulu, i);
+                    laivaKoordinaatit[i] = asetaLaivaKoordinaatteihin(koordinaatit, pelaaja, taulu);
                     break;
                 }
             }
@@ -113,7 +113,7 @@ public class Laivat {
     /**
      *  Rakennetaan uusi laiva kartalle annettujen koordinattien mukaan.
      */
-    private static int[] asetaLaivaKoordinaatteihin(String[] koordinaatit, String pelaaja, String[][] taulu, int laivaIndeksi) {
+    private static int[] asetaLaivaKoordinaatteihin(String[] koordinaatit, String pelaaja, String[][] taulu) {
 
         //Lasketaan koordinaatit joiden mukaan laiva rakennetaan kartalle.
         int aloitusRivi = Integer.parseInt(koordinaatit[0].substring(1));
@@ -130,6 +130,7 @@ public class Laivat {
         }
 
         int[] laivaKoordinaatit = {aloitusRivi, lopetusRivi, aloitusSarake, lopetusSarake};
+        System.out.println(Arrays.toString(laivaKoordinaatit));
         return laivaKoordinaatit;
 
     }

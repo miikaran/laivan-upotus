@@ -66,10 +66,36 @@ public class Peli {
                 
                 // Haetaan vastustajan kartta ja tarkistetaan osuko arvaus.
                 String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
+                int[][] vastaustajanLaivat = pelaajienLaivat.get(vastustaja);
                 if(vastustajanKartta[rivi][sarake].equals(Vakiot.merkit[1])){           
                     // Jos osui merkitään se vastustajan karttaan.
                     System.out.println("\nRäjähdyssss! Osuit Laivaan!");
                     vastustajanKartta[rivi][sarake] = Vakiot.merkit[2];
+                    int[] osuttuLaiva = new int[4];
+                    for(int[] laiva : vastaustajanLaivat){
+                        System.out.println(rivi);
+                        System.out.println(sarake);
+                        System.out.println(Arrays.toString(laiva));
+                        if(laiva[0] == rivi && laiva[3] == sarake){
+                            osuttuLaiva = laiva;
+                        }
+                    }
+                    boolean upposko = false;
+                    //System.out.println(Arrays.toString(osuttuLaiva));
+                    for(int i = osuttuLaiva[0]; i <= osuttuLaiva[1]; i++){
+                        for (int j = osuttuLaiva[2]; j <= osuttuLaiva[3]; j++){
+                            if(vastustajanKartta[i][j].equals(Vakiot.merkit[2])){
+                                upposko = true;
+                            } else{
+                                upposko = false;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if(upposko){
+                        System.out.println("Uppos!!!!!!!!!! BOOOOOOOOOOOM.");
+                    }
                 }
                 else{
                     System.out.println("\nOhi");
@@ -100,7 +126,7 @@ public class Peli {
                 }
             }
         }
-        if(voitto){ // Mikäli voittaja on selvillä peli loppuu.
+        if(voitto){ // Mikäli voittaja selvillä peli loppuu.
             System.out.println("\nPeli loppui.\n" + "Voittaja on: " + pelaaja);
             peliPaalla = false;
         }
