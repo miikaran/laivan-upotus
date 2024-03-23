@@ -1,4 +1,5 @@
 package LaivanUpotus;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -13,6 +14,7 @@ public class Peli {
     public static boolean peliPaalla = false;
     public static String[] pelaajat = new String[2];
     public static HashMap<String, String[][]> pelaajienKartat = new HashMap<String, String[][]>();
+    public static HashMap<String, int[][]> pelaajienLaivat = new HashMap<String, int[][]>();
     public static int vuoro = 0;
 
     /**
@@ -41,8 +43,8 @@ public class Peli {
 
             // Jokaisella vuorolla suoritettavat metodit.
             pelaajaHyokkaa(vastustaja);
-            tarkistaTilanne(pelaaja, vastustaja);
-            
+            tarkistaVoitto(pelaaja, vastustaja);
+            System.out.println(Arrays.deepToString(pelaajienLaivat.get(pelaaja)));
             scanner.nextLine();
             vuoro = (vuoro + 1) % 2; // Vaihdetaan vuoroa
         }
@@ -84,7 +86,7 @@ public class Peli {
        Tarkistetaan vastustajan kartan tilanne.
        Voittaja on selvillä jos kartassa ei yhtään laivaa.
     */
-    public static void tarkistaTilanne(String pelaaja, String vastustaja){
+    public static void tarkistaVoitto(String pelaaja, String vastustaja){
         String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
         boolean voitto = true;
 
