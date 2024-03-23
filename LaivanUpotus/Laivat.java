@@ -15,6 +15,7 @@ public class Laivat {
             String[][] taulu = Peli.pelaajienKartat.get(pelaaja);
 
             for (int i = 0; i < Vakiot.laivaMaara; i++) {
+
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
                 MeriKartta.tulostaKartta(pelaaja);
@@ -28,13 +29,10 @@ public class Laivat {
                     String[] koordinaatit = pyydaKoordinaatteja();
                     Arrays.sort(koordinaatit);
 
-                    System.out.println(Arrays.toString(koordinaatit));
-
                     // Tarkistetaan onko koordinaatit sopivia.
                     if (!validoiKoordinaatit(koordinaatit, taulu, koko)) {
                         continue;
-                    }
-
+                    } 
                     // Asetetaan laiva karttaan pelaajan antamiin koordinaatteihin.
                     asetaLaivaKoordinaatteihin(koordinaatit, pelaaja, taulu);
                     break;
@@ -55,61 +53,68 @@ public class Laivat {
      * mahdollisista virheistä tai säännön vastaisista arvoista.
      */
     private static boolean validoiKoordinaatit(String[] koordinaatit, String[][] taulu, int koko) {
-        try {
+        try{
             //Lasketaan koordinaatit jonka mukaan laiva rakennetaan kartalle.
             int aloitusRivi = Integer.parseInt(koordinaatit[0].substring(1));
             int aloitusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));
             int lopetusRivi = Integer.parseInt(koordinaatit[1].substring(1));
             int lopetusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[1].charAt(0));
+  
+            //Tarkistetaan onko koordinaattien lähellä jo laivaa.   
+            for (int j = aloitusRivi; j <= lopetusRivi; j++) {
+                for (int k = aloitusSarake; k <= lopetusSarake; k++) {
 
-            //Tarkistetaan onko koordinaattien lähellä jo laivaa. 
-            for (int j = aloitusRivi; j < lopetusRivi; j++) {
-                for (int k = aloitusSarake; k < lopetusSarake; k++) {
-                    if (taulu[j][k].equals("O")   ||    // Päällä
-                        taulu[j][k-1].equals("O") ||    // Vasemmalla
-                        taulu[j][k+1].equals("O") ||    // Oikealla
-                        taulu[j-1][k].equals("O") ||    // Ylhäällä
-                        taulu[j+1][k].equals("O")) {    // Alhaalla
-                        
-                        System.out.println("\nEt voi laittaa tähän kohtaan laivaa.");
-                        return false;
+                    try {
+
+                        if (taulu[j][k].equals("O")                                 ||  // Päällä
+                           (k > 0 && taulu[j][k - 1].equals("O"))                   ||  // Vasemmalla
+                           (k < taulu[0].length - 1 && taulu[j][k + 1].equals("O")) ||  // Oikealla
+                           (j > 0 && taulu[j - 1][k].equals("O"))                   ||  // Ylhäällä
+                           (j < taulu.length - 1 && taulu[j + 1][k].equals("O")))       // Alhaalla
+                        {
+                            System.out.println("\nEt voi laittaa tähän kohtaan laivaa.");
+                            return false;
+                        }
+
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println("Koordinaatit ovat rajojen ulkopuolella.");
                     }
                 }
             }
 
             /**
                 Alla muita olennaisia laivojen asettamiseen liityviä validointeja.
-                * Koordinaattien määrä
-                * Viistoossa olevat laivat
-                * Laivan koko.
-            **/
+                - Koordinaattien määrä
+                - Viistoossa olevat laivat
+                - Laivan koko.
+            */
             if (koordinaatit.length != 2) {
                 System.out.println("\nSyötä 2 koordinaattia!");
                 return false;
-            } else if (aloitusRivi != lopetusRivi && aloitusSarake != lopetusSarake) {
+            } 
+
+            else if (aloitusRivi != lopetusRivi && aloitusSarake != lopetusSarake) {
                 System.out.println("\nEt voi asettaa laivoja viistoon.");
                 return false;
-            } else if (lopetusRivi - aloitusRivi + 1 > koko || lopetusSarake - aloitusSarake + 1 > koko) {
+            } 
+
+            else if (lopetusRivi - aloitusRivi + 1 > koko || lopetusSarake - aloitusSarake + 1 > koko) {
                 System.out.println("\nLaivan koko on " + koko + ". Syötä koordinaatit uudelleen.");
                 return false;
-            }
+            }  
             return true;
-        
-        // Käsitellään myös muut mahdolliset poikkeustilanteet.
-        } catch (NumberFormatException e) {
+
+        } catch (Exception e) { // Käsitellään myös muut mahdolliset poikkeukset.
             System.out.println("\nVirheellinen koordinaatti. Yritä uudelleen.");
             return false;
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("\nKoordinaatit ylittävät taulukon rajat. Yritä uudelleen.");
-            return false;
         }
-
     }
 
     /**
-     *  Rakennetaan uusi laiva kartalle
+     *  Rakennetaan uusi laiva kartalle annettujen koordinattien mukaan.
      */
     private static void asetaLaivaKoordinaatteihin(String[] koordinaatit, String pelaaja, String[][] taulu) {
+
         //Lasketaan koordinaatit joiden mukaan laiva rakennetaan kartalle.
         int aloitusRivi = Integer.parseInt(koordinaatit[0].substring(1));
         int aloitusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));

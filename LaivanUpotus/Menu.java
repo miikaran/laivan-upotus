@@ -7,7 +7,6 @@ public class Menu {
         Näytetään menu, sekä asetetaan käyttäjän valitsema pelimuoto.
      */
     public static void NaytaMenu(){
-
         System.out.println("=====================================");
         System.out.println("\n Tervetuloa pelaamaan laivanupotusta! ");
         System.out.println("\n Valitse pelimuoto jota haluat pelata:");
@@ -39,22 +38,30 @@ public class Menu {
     **/
     public static void luoPelaajat(String pelimuoto){
       if(pelimuoto.equals("kaveri")){
+
           for(int i = 0; i < Peli.pelaajat.length; i++){
+          
               while(true){
                   System.out.print("\nPelaaja " + (i+1) + "\nAseta nimesi: \n=>");
+
                   try{
                       String syote = scanner.next();
                       Peli.pelaajat[i] = syote;
                       break;
+
                   } catch(Exception e){
+
                       System.out.println("Yritä uudelleen...");
                       continue;
                   }
               }
           }
+
       } else{
+
           Peli.pelaajat[0] = "Pelaaja";
           Peli.pelaajat[1] = "Tietokone";
+          
       }
   }
 }
