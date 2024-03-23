@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class Peli {
 
     /**
-        Luodaan pelinkulun kannalta tärkeät muuttujat tänne.
-        Vakio muuttujat löytyvät Vakiot- luokasta.
+     * Luodaan pelinkulun kannalta tärkeät muuttujat tänne.
+     * Vakio muuttujat löytyvät Vakiot- luokasta.
     */
     public static final Scanner scanner = new Scanner(System.in);
     public static String pelimuoto = "";
@@ -18,7 +18,7 @@ public class Peli {
     public static int vuoro = 0;
 
     /**
-        Suoritetaan tarvittavat alkutoimenpiteet ja aloitetaan peli.
+     * Suoritetaan tarvittavat alkutoimenpiteet ja aloitetaan peli.
     */
     public static void main(String[] args){
         peliPaalla = true;
@@ -30,7 +30,7 @@ public class Peli {
     }
 
     /**
-        Pelaaja aloittavat laivojen upotuksen.
+     * Pelaaja aloittavat laivojen upotuksen.
     */
     public static void aloitaTaistelu(){
         System.out.println("\n\n\n\nTaistelu alkaa!");
@@ -51,8 +51,9 @@ public class Peli {
     }
 
     /**
-       Pelaaja koittaa arvata vastustaja laivan sijainnin koordinaatilla.
-       Mikäli vastustaja arvaa oikein, merkitään se vastustajan tauluun.
+     * Pelaaja arvaa vastustajan laivan sijainteja koordinaateilla.
+     * Mikäli arvaus on oikein, merkitään se vastustajan tauluun ja
+     * ilmoitetaan pelaajalle osuiko/upposiko.
      */
     public static void pelaajaHyokkaa(String vastustaja){
         while(true){
@@ -64,29 +65,35 @@ public class Peli {
                 int rivi = Integer.parseInt(koordinaatti.substring(1));
                 int sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
                 
-                // Haetaan vastustajan kartta ja tarkistetaan osuko arvaus.
+                // Haetaan vastustajan kartta ja laivat.
                 String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
                 int[][] vastaustajanLaivat = pelaajienLaivat.get(vastustaja);
-                if(vastustajanKartta[rivi][sarake].equals(Vakiot.merkit[1])){           
+
+                //Tarkistetaan osusiko arvaus.
+                if(vastustajanKartta[rivi][sarake].equals(Vakiot.merkit[1])){   
+
                     // Jos osui merkitään se vastustajan karttaan.
                     System.out.println("\nRäjähdyssss! Osuit Laivaan!");
                     vastustajanKartta[rivi][sarake] = Vakiot.merkit[2];
                     int[] osuttuLaiva = new int[4];
+
+                    // Haetaan osuttu laiva vastustajan kartasta.
                     for(int[] laiva : vastaustajanLaivat){
-                        System.out.println(rivi);
-                        System.out.println(sarake);
-                        System.out.println(Arrays.toString(laiva));
+                        // Oikea laiva jos aloitusRivi ja lopetusSarake 
+                        // sama pelaajan arvaamien koordinattien kanssa.
                         if(laiva[0] == rivi && laiva[3] == sarake){
                             osuttuLaiva = laiva;
                         }
                     }
+                    
+                    // Tarkistetaan upposiko laiva arvauksella.
                     boolean upposko = false;
-                    //System.out.println(Arrays.toString(osuttuLaiva));
                     for(int i = osuttuLaiva[0]; i <= osuttuLaiva[1]; i++){
                         for (int j = osuttuLaiva[2]; j <= osuttuLaiva[3]; j++){
-                            if(vastustajanKartta[i][j].equals(Vakiot.merkit[2])){
+                            // Jos osutun laivan jokaisessa osassa on osuma: laiva uppoaa.
+                            if(vastustajanKartta[i][j].equals(Vakiot.merkit[1])){
                                 upposko = true;
-                            } else{
+                            } else{ // Jos mitä tahansa muuta: ei uppoa.
                                 upposko = false;
                                 break;
                             }
@@ -109,8 +116,8 @@ public class Peli {
     }
 
     /**
-       Tarkistetaan vastustajan kartan tilanne.
-       Voittaja on selvillä jos kartassa ei yhtään laivaa.
+     * Tarkistetaan vastustajan kartan tilanne.
+     * Voittaja on selvillä jos kartassa ei yhtään laivaa.
     */
     public static void tarkistaVoitto(String pelaaja, String vastustaja){
         String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
