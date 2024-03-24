@@ -2,6 +2,7 @@ package LaivanUpotus;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
+import javax.swing.*;
 
 public class Peli {
 
@@ -44,7 +45,6 @@ public class Peli {
             // Jokaisella vuorolla suoritettavat metodit.
             pelaajaHyokkaa(vastustaja);
             tarkistaVoitto(pelaaja, vastustaja);
-            System.out.println(Arrays.deepToString(pelaajienLaivat.get(pelaaja)));
             scanner.nextLine();
             vuoro = (vuoro + 1) % 2; // Vaihdetaan vuoroa
         }
@@ -57,7 +57,7 @@ public class Peli {
      */
     public static void pelaajaHyokkaa(String vastustaja){
         while(true){
-            try{ 
+      
                 // Otetaan käyttäjälta koordinaatti.
                 String koordinaatti = scanner.next();
 
@@ -76,30 +76,37 @@ public class Peli {
                     System.out.println("\nRäjähdyssss! Osuit Laivaan!");
                     vastustajanKartta[rivi][sarake] = Vakiot.merkit[2];
                     int[] osuttuLaiva = new int[4];
-
-                    // Haetaan osuttu laiva vastustajan kartasta.
+    
+                    outerLoop: // Haetaan osuttu laiva vastustajan kartasta.
                     for(int[] laiva : vastaustajanLaivat){
-                        // Oikea laiva jos aloitusRivi ja lopetusSarake 
-                        // sama pelaajan arvaamien koordinattien kanssa.
-                        if(laiva[0] == rivi && laiva[3] == sarake){
-                            osuttuLaiva = laiva;
-                        }
-                    }
-                    
-                    // Tarkistetaan upposiko laiva arvauksella.
-                    boolean upposko = false;
-                    for(int i = osuttuLaiva[0]; i <= osuttuLaiva[1]; i++){
-                        for (int j = osuttuLaiva[2]; j <= osuttuLaiva[3]; j++){
-                            // Jos osutun laivan jokaisessa osassa on osuma: laiva uppoaa.
-                            if(vastustajanKartta[i][j].equals(Vakiot.merkit[1])){
-                                upposko = true;
-                            } else{ // Jos mitä tahansa muuta: ei uppoa.
-                                upposko = false;
-                                break;
+                        // Oikea laiva jos laivan koordinaatit sama pelaajan arvaamien koordinattien kanssa.
+                        for (int i = laiva[0]; i <= laiva[1]; i++) {
+                            for (int j = laiva[2]; j <= laiva[3]; j++) {
+                                if(i == rivi && j == sarake){
+                                    osuttuLaiva = laiva;
+                                    break outerLoop;
+                                }
                             }
                         }
                     }
-                    
+                    /*System.out.println(Arrays.deepToString(vastaustajanLaivat));
+                    System.out.println(rivi);
+                    System.out.println(sarake);
+                    System.out.println(Arrays.toString(osuttuLaiva));*/
+                    boolean upposko = false;
+                    outerLoop: // Tarkistetaan upposiko laiva arvauksella.
+                    for(int i = osuttuLaiva[0]; i <= osuttuLaiva[1]; i++){
+                        for (int j = osuttuLaiva[2]; j <= osuttuLaiva[3]; j++){
+                            // Jos osutun laivan jokaisessa osassa on osuma: laiva uppoaa.
+                            if(vastustajanKartta[i][j].equals(Vakiot.merkit[2])){
+                                upposko = true;
+                            } else{ // Jos mitä tahansa muuta: ei uppoa.
+                                upposko = false;
+                                break outerLoop;
+                            }
+                        }
+                    }
+                    //MeriKartta.tulostaKartta(vastustaja);
                     if(upposko){
                         System.out.println("Uppos!!!!!!!!!! BOOOOOOOOOOOM.");
                     }
@@ -109,9 +116,7 @@ public class Peli {
                 }
                 break;
                 
-            } catch(Exception e){ // Käsitellään mahdolliset poikkeukset
-                System.out.println("Yritä uudelleen...");
-            }
+    
         }   
     }
 

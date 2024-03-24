@@ -130,7 +130,7 @@ public class Laivat {
         }
 
         int[] laivaKoordinaatit = {aloitusRivi, lopetusRivi, aloitusSarake, lopetusSarake};
-        System.out.println(Arrays.toString(laivaKoordinaatit));
+        //System.out.println(Arrays.toString(laivaKoordinaatit));
         return laivaKoordinaatit;
 
     }
