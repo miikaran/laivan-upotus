@@ -1,6 +1,6 @@
 package LaivanUpotus;
 
-public class MeriKartta {
+public class MeriKartta {    
     /**
      * Luodaan kullekkin pelaajalle oma kartta ja asetetaan
      * kyseinen kartta hashmappiin pelaajan nimi avaimen alle.

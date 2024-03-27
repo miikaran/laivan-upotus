@@ -9,8 +9,8 @@ public class Menu {
     public static void NaytaMenu(){
         System.out.println("=====================================");
         System.out.println("\n Tervetuloa pelaamaan laivanupotusta! ");
-        System.out.println("\n Valitse pelimuoto jota haluat pelata:");
-        System.out.println(" 1 => Tietokonetta vastaan\n 2 => Kaveria vastaan\n 3 => Lopeta peli");
+        System.out.println(" Valitse pelimuoto jota haluat pelata:");
+        System.out.println("\n 1 => Tietokone\n 2 => Kaveri\n 3 => Saannot\n 4 => Lopeta peli");
         System.out.println("\n=====================================");
         System.out.print("\n=> ");
 
@@ -18,12 +18,16 @@ public class Menu {
 
         switch (kayttajanSyote){
             case 1:
-              Peli.pelimuoto = "tietokone";
+              Peli.pelimuoto = Vakiot.pelimuodot[0];
+              Menu.luoPelaajat(Peli.pelimuoto);
               break;         
             case 2:
-              Peli.pelimuoto = "kaveri";
+              Peli.pelimuoto = Vakiot.pelimuodot[1];
+              Menu.luoPelaajat(Peli.pelimuoto);
               break;
             case 3:
+              System.out.println("Pelin säännöt: ");
+            case 4:
               System.out.println("Suljetaan ohjelma...");
               System.exit(0);
         }
@@ -36,16 +40,18 @@ public class Menu {
     public static void luoPelaajat(String pelimuoto){
       if(pelimuoto.equals("kaveri")){
           for(int i = 0; i < Peli.pelaajat.length; i++){
-
               while(true){
-                System.out.print("\nPelaaja " + (i+1) + "\nAseta nimesi: \n=>");
+
+                System.out.print("\nPelaaja " + (i+1) + "\nAseta nimesi: \n=> ");
+
                 try{
-                    String syote = scanner.next();
-                    Peli.pelaajat[i] = syote;
-                    break;
-                } catch(Exception e){
-                    System.out.println("Yritä uudelleen...");
-                    continue;
+                  String syote = scanner.next();
+                  Peli.pelaajat[i] = syote;
+                  break;
+                  
+                } catch(Exception e) {
+                  System.out.println("Yritä uudelleen...");
+                  continue;
                 }
             }
 

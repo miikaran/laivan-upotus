@@ -11,6 +11,7 @@ public class Vakiot {
     public static int sarakkeet = 10;
     public static String[] laivat = {"Sukellusvene", "Hävittäjä", "Risteilijä", "Taistelulaiva", "Lentotukialus"};
     public static int[] laivaKoot = {2,3,4,5};
-    public static int laivaMaara = 4;
+    public static int laivaMaara = 2;
     public static String[] merkit = {"~", "O", "X", "M"};
+    public static String[] pelimuodot = {"tietokone", "kaveri", "saannot", "lopeta"};
 }
