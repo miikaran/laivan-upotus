@@ -1,5 +1,7 @@
 package LaivanUpotus;
 
+import java.util.Arrays;
+
 public class MeriKartta {    
     /**
      * Luodaan kullekkin pelaajalle oma kartta ja asetetaan
@@ -13,8 +15,25 @@ public class MeriKartta {
                     kartta[i][j] = Vakiot.merkit[0]; 
                 }
             }
+            luoMuistiinpanot(pelaaja);
             Peli.pelaajienKartat.put(pelaaja, kartta);
         }
+    }
+
+
+    /**
+     * Luodaan pelaajille myös kartat josta näkyy heidän tekemät 
+     * arvaukset kartalla, ja siihen asti ilmenneet osumat ja hudit.
+    */
+    public static void luoMuistiinpanot(String pelaaja){
+        String[][] kartta = new String[Vakiot.rivit][Vakiot.sarakkeet];
+        for(int i = 0; i < Vakiot.rivit; i++){
+            for(int j = 0; j < Vakiot.sarakkeet; j++){ 
+                kartta[i][j] = Vakiot.merkit[0]; 
+            }
+        }
+        String muistiinpano = pelaaja + "-muistiinpano";
+        Peli.pelaajienKartat.put(muistiinpano, kartta);
     }
 
     /**
@@ -53,6 +72,8 @@ public class MeriKartta {
         System.out.print("  └");
         tulostaKartanKulma(leveys);
         System.out.println("┘");
+
+        System.out.println(Arrays.deepToString(Peli.pelaajienKartat.get(pelaaja+"-muistiinpano")));
     }
     
     /**

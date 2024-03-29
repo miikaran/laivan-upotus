@@ -42,8 +42,8 @@ public class Peli {
      
             // Jokaisella kierroksella suoritettavat metodit.
             pelaajaHyokkaa(vastustaja);
+            MeriKartta.tulostaKartta(pelaaja);
             tarkistaVoitto(pelaaja, vastustaja);
-            scanner.nextLine();
             vuoro = (vuoro + 1) % 2; // Vaihdetaan vuoroa
         }         
     }
@@ -57,7 +57,7 @@ public class Peli {
         while(true){
             try{
                 // Otetaan käyttäjälta koordinaatti.
-                String koordinaatti = scanner.next();
+                String koordinaatti = scanner.next().toUpperCase();
 
                 // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
                 int rivi = Integer.parseInt(koordinaatti.substring(1));
@@ -66,15 +66,10 @@ public class Peli {
                 // Haetaan vastustajan kartta ja laivat.
                 String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
                 int[][] vastustajanLaivat = pelaajienLaivat.get(vastustaja);
+                String[][] vastustajanMuistiinpanot = pelaajienKartat.get(vastustaja+"-muistiinpano");
 
                 // Haetaan osuttu laiva, mikäli osui.
-                int[] osuttuLaiva = tarkistaOsuma(vastustajanKartta, vastustajanLaivat, rivi, sarake);
-
-                /*System.out.println(Arrays.deepToString(vastaustajanLaivat));
-                System.out.println(rivi);
-                System.out.println(sarake);
-                System.out.println(Arrays.toString(osuttuLaiva));
-                MeriKartta.tulostaKartta(vastustaja);*/
+                int[] osuttuLaiva = tarkistaOsuma(vastustajanKartta, vastustajanLaivat, vastustajanMuistiinpanot, rivi, sarake);
 
                 //Tarkistetaan osusiko arvaus.
                 if(osuttuLaiva.length > 0){
@@ -87,6 +82,7 @@ public class Peli {
 
                 } else {
                     System.out.println("\nOhi");
+                    vastustajanMuistiinpanot[rivi][sarake] = Vakiot.merkit[3];
                 }
                 break;
 
@@ -100,12 +96,13 @@ public class Peli {
      * Tarkistetaan osusiko arvaus. Mikäli osui, merkitään se vastustajan 
      * karttaan ja palautetaan laiva johon osuttiin.
      */
-    public static int[] tarkistaOsuma(String[][] vastustajanKartta, int[][] vastustajanLaivat, int rivi, int sarake){
+    public static int[] tarkistaOsuma(String[][] vastustajanKartta, int[][] vastustajanLaivat, String[][] muistiinPanot, int rivi, int sarake){
         if(vastustajanKartta[rivi][sarake].equals(Vakiot.merkit[1])){
 
             // Jos osui merkitään se vastustajan karttaan.
             System.out.println("\nRäjähdyssss! Osuit Laivaan!");
             vastustajanKartta[rivi][sarake] = Vakiot.merkit[2];     
+            muistiinPanot[rivi][sarake] = Vakiot.merkit[2];
             
             int[] osuttuLaiva = new int[4];
             outerLoop: // Haetaan osuttu laiva vastustajan kartasta.

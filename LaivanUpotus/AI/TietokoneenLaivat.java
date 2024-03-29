@@ -8,6 +8,7 @@ public class TietokoneenLaivat {
 
     /**
      * Generoidaan tietokoneen omat laivat tietokone vs pelaaja pelimuodossa.
+     * Tietokoneen omien laivojen sijainnit generoidaan satunnaisesti.
      */
     public static String[] generoiTietokoneLaivat(String[][] kartta, int laivanKoko) {
         ArrayList<int[]> vapaatKoordinaatit = etsiVapaatKoordinaatit(kartta);

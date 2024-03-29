@@ -14,14 +14,13 @@ public class Laivat {
         for (String pelaaja : Peli.pelaajat) {
             int[][] laivaKoordinaatit = new int[Vakiot.laivaMaara][4];
             String[][] kartta = Peli.pelaajienKartat.get(pelaaja);
-        
+            
             for (int i = 0; i < Vakiot.laivaMaara; i++) {
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
 
-                while (true) {
-                    System.out.println("\n" + pelaaja);
-                    System.out.println("\nAseta oman laivan koordinaatit");
+                while (true) {            
+                    System.out.println("\n" + pelaaja + "\nAseta oman laivan koordinaatit");
                     System.out.print("Laiva: " + laiva + " -> Koko: " + koko + "\n=> ");
 
                     // Luodaan oma taulukko koordinaateille.
@@ -66,9 +65,6 @@ public class Laivat {
             int lopetusRivi = Integer.parseInt(koordinaatit[1].substring(1));
             int lopetusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[1].charAt(0));
 
-            System.out.println(lopetusRivi- aloitusRivi);
-            System.out.println(lopetusSarake- aloitusSarake);
-
             //Tarkistetaan onko koordinaattien lähellä jo laivaa.   
             for (int j = aloitusRivi; j <= lopetusRivi; j++) {
                 for (int k = aloitusSarake; k <= lopetusSarake; k++) {
@@ -88,6 +84,7 @@ public class Laivat {
                     // Käsitellään mahdolliset indeksi probleemat.
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Koordinaatit ovat rajojen ulkopuolella.");
+                        return false;
                     }
                 }
             }
