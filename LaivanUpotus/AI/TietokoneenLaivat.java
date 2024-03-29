@@ -6,6 +6,9 @@ public class TietokoneenLaivat {
 
     private static final Random random = new Random();
 
+    /**
+     * Generoidaan tietokoneen omat laivat tietokone vs pelaaja pelimuodossa.
+     */
     public static String[] generoiTietokoneLaivat(String[][] kartta, int laivanKoko) {
         ArrayList<int[]> vapaatKoordinaatit = etsiVapaatKoordinaatit(kartta);
 
@@ -28,6 +31,9 @@ public class TietokoneenLaivat {
         }
     }
 
+    /**
+     * Etsitään tietokoneen kartasta vapaat koordinaatit johon laivan voisi rakentaa.
+     */
     private static ArrayList<int[]> etsiVapaatKoordinaatit(String[][] kartta) {
         ArrayList<int[]> vapaatKoordinaatit = new ArrayList<>();
 
@@ -46,11 +52,18 @@ public class TietokoneenLaivat {
         return vapaatKoordinaatit;
     }
 
+    /**
+     * Arvotaan tietokoneen laivojen aloitus koordinaatti.
+     */
     private static int[] arvoAloitusKoordinaatti(ArrayList<int[]> vapaatKoordinaatit){
         int randomKoordinaatti = random.nextInt(vapaatKoordinaatit.size());
         return vapaatKoordinaatit.get(randomKoordinaatti);
     }
 
+    /**
+     * Arvotaan tietokoneen laivojen lopetus koordinaatti.
+     * Arvotaan myös samalla mihin suuntaan laivaa rakennetaan.
+     */
     private static int[] arvoLopetusKoordinaatti(int[] aloitusKoordinaatti, int laivanKoko) {
         int[] lopetusKoordinaatti = new int[2];
         
@@ -80,6 +93,10 @@ public class TietokoneenLaivat {
         return lopetusKoordinaatti;
     }
 
+    /**
+     * Palauttaa generoidun koordinaatin merkkijonona
+     * Esim: 23 => C3
+     */
     private static String koordinaattiMerkkijonoksi(int[] koordinaatti) {
         char kirjain = LaivanUpotus.Vakiot.sarakeKirjaimet.charAt(koordinaatti[0]);
         int numero = koordinaatti[1];
