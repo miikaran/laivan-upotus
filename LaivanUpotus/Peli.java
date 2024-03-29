@@ -2,12 +2,6 @@ package LaivanUpotus;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
-
-import javax.swing.*;
-
 public class Peli {
 
     /**
@@ -21,17 +15,8 @@ public class Peli {
     public static HashMap<String, String[][]> pelaajienKartat = new HashMap<String, String[][]>();
     public static HashMap<String, int[][]> pelaajienLaivat = new HashMap<String, int[][]>();
     public static int vuoro = 0;
-    public static int seuraava = vuoro + 1 % 2;
     public static String voittaja;
-
-    static int boardWidth = 600;
-    static int boardHeight = 650;
     
-    static JFrame frame = new JFrame("LaivanUpotus");
-    static JLabel textLabel = new JLabel();
-    static JPanel textPanel = new JPanel();
-    static JPanel boardPanel = new JPanel();
-
     /**
      * Suoritetaan tarvittavat alkutoimenpiteet ja aloitetaan peli.
     */
@@ -49,54 +34,16 @@ public class Peli {
     public static void aloitaTaistelu(){
         System.out.println("\n\n\n\nTaistelu alkaa!");
 
-        String pelaaja = pelaajat[vuoro];                                                       
-        String vastustaja = pelaajat[seuraava];
-        System.out.println("\n" +pelaaja + ":n arvaus" + " vuoro" );
-
-        frame.setVisible(true);
-        frame.setSize(boardWidth, boardHeight);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-
-        textLabel.setBackground(Color.darkGray);
-        textLabel.setForeground(Color.white);
-        textLabel.setFont(new Font("Arial", Font.BOLD, 50));
-        textLabel.setHorizontalAlignment(JLabel.CENTER);
-        textLabel.setOpaque(true);
-        textLabel.setText(pelaaja + "n vuoro");
-        textPanel.setLayout(new BorderLayout());
-        textPanel.add(textLabel);
-
-        frame.add(textPanel, BorderLayout.NORTH);
-
-        boardPanel.setLayout(new GridLayout(Vakiot.rivit, Vakiot.sarakkeet));
-        boardPanel.setBackground(Color.darkGray);
-        frame.add(boardPanel);
-
-        for (int r = 0; r < Vakiot.rivit; r++) {
-            for (int c = 0; c < Vakiot.sarakkeet; c++) {
-                try{
-                    JButton tile = new JButton(pelaajienKartat.get(pelaaja)[r][c]);
-                    boardPanel.add(tile);
-                    tile.setFont(new Font("Arial", Font.BOLD, 10));
-                    tile.setFocusable(false);
-                    // tile.setText(currentPlayer);
-                    final int rivi = r;
-                    final int sarake = c;
-                    tile.addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            pelaajaHyokkaa(vastustaja, rivi, sarake);
-                            tarkistaVoitto(pelaaja, vastustaja);
-                            vuoro = seuraava; // Vaihdetaan vuoroa
-                        }
-                    });
-                } catch (Exception e){
-                    System.out.println(e);
-                }
-            }
-        }
+        while(peliPaalla){
+            String pelaaja = pelaajat[vuoro];                                                       
+            String vastustaja = pelaajat[(vuoro + 1) % 2];
+            System.out.println("\n" +pelaaja + ":n arvaus" + " vuoro" );
+     
+            pelaajaHyokkaa(vastustaja);
+            tarkistaVoitto(pelaaja, vastustaja);
+            scanner.nextLine();
+            vuoro = (vuoro + 1) % 2; // Vaihdetaan vuoroa
+        }         
     }
 
     /**
@@ -104,15 +51,15 @@ public class Peli {
      * Mikäli arvaus on oikein, merkitään se vastustajan tauluun ja
      * ilmoitetaan pelaajalle osuiko/upposiko.
      */
-    public static void pelaajaHyokkaa(String vastustaja, int rivi, int sarake){
+    public static void pelaajaHyokkaa(String vastustaja){
         while(true){
             try{
                 // Otetaan käyttäjälta koordinaatti.
-                //String koordinaatti = scanner.next();
+                String koordinaatti = scanner.next();
 
                 // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
-                //int rivi = Integer.parseInt(koordinaatti.substring(1));
-                //int sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
+                int rivi = Integer.parseInt(koordinaatti.substring(1));
+                int sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
                 
                 // Haetaan vastustajan kartta ja laivat.
                 String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
@@ -139,7 +86,6 @@ public class Peli {
                 } else {
                     System.out.println("\nOhi");
                 }
-
                 break;
 
             } catch (Exception e){
@@ -154,7 +100,6 @@ public class Peli {
      */
     public static int[] tarkistaOsuma(String[][] vastustajanKartta, int[][] vastustajanLaivat, int rivi, int sarake){
         if(vastustajanKartta[rivi][sarake].equals(Vakiot.merkit[1])){
-            
             // Jos osui merkitään se vastustajan karttaan.
             System.out.println("\nRäjähdyssss! Osuit Laivaan!");
             vastustajanKartta[rivi][sarake] = Vakiot.merkit[2];     
