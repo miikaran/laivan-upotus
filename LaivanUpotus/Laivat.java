@@ -11,15 +11,18 @@ public class Laivat {
     */
     public static void kysyLaivat() {
 
+        // Haetaan jokaiselta pelaajalta kartta ja alustetaan laivakoordinaatit.
         for (String pelaaja : Peli.pelaajat) {
             int[][] laivaKoordinaatit = new int[Vakiot.laivaMaara][4];
             String[][] kartta = Peli.pelaajienKartat.get(pelaaja);
             
+            // Haetaan jokaiselle laivalle sen koko ja nimi
             for (int i = 0; i < Vakiot.laivaMaara; i++) {
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
 
-                while (true) {            
+                while (true) { // Pyydetään käyttäjiltä koordinaatit laivalle ja asetetaan karttaan.
+                              
                     System.out.println("\n" + pelaaja + "\nAseta oman laivan koordinaatit");
                     System.out.print("Laiva: " + laiva + " -> Koko: " + koko + "\n=> ");
 

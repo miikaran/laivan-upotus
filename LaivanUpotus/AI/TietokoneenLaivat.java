@@ -68,27 +68,23 @@ public class TietokoneenLaivat {
     private static int[] arvoLopetusKoordinaatti(int[] aloitusKoordinaatti, int laivanKoko) {
         int[] lopetusKoordinaatti = new int[2];
         
-        // Arvotaan random suunta johon laivaa rakennetaan.
+        // Arvotaan random suunta johon laivaa rakennetaan ja asetetaan lopetus koordinaatti se mukaan.
         int randomSuunta = random.nextInt(4);
         switch (randomSuunta) {
             case 0: // Oikealle
-                lopetusKoordinaatti[0] = aloitusKoordinaatti[0];
-                lopetusKoordinaatti[1] = aloitusKoordinaatti[1] + laivanKoko - 1;
+                lopetusKoordinaatti = new int[]{aloitusKoordinaatti[0], aloitusKoordinaatti[1] + laivanKoko - 1};
                 break;
-
+    
             case 1: // Vasemmalle
-                lopetusKoordinaatti[0] = aloitusKoordinaatti[0];
-                lopetusKoordinaatti[1] = aloitusKoordinaatti[1] - laivanKoko + 1;
+                lopetusKoordinaatti = new int[]{aloitusKoordinaatti[0], aloitusKoordinaatti[1] - laivanKoko + 1};
                 break;
-
+    
             case 2: // Ylös
-                lopetusKoordinaatti[0] = aloitusKoordinaatti[0] - laivanKoko + 1;
-                lopetusKoordinaatti[1] = aloitusKoordinaatti[1];
+                lopetusKoordinaatti = new int[]{aloitusKoordinaatti[0] - laivanKoko + 1, aloitusKoordinaatti[1]};
                 break;
-
+    
             case 3: // Alas
-                lopetusKoordinaatti[0] = aloitusKoordinaatti[0] + laivanKoko - 1;
-                lopetusKoordinaatti[1] = aloitusKoordinaatti[1];
+                lopetusKoordinaatti = new int[]{aloitusKoordinaatti[0] + laivanKoko - 1, aloitusKoordinaatti[1]};
                 break;
         }
         return lopetusKoordinaatti;
