@@ -18,7 +18,7 @@ public class MeriKartta {
     }
 
     /**
-     * Tulostaa pelaajan koko kartan.
+     * Tulostaa pelaajan koko kartan hienosti consoleen.
      * Lisää tulokseen myös osoittajia kartan riveistä ja sarakkeista.
     */
     public static void tulostaKartta(String pelaaja) {

@@ -24,8 +24,8 @@ public class TietokoneenLaivat {
 
                 return new String[]{aloitusKoordinaattiString, lopetusKoordinaattiString};
 
+            // Mikäli tietokoneen generoimat koordinaatit menevät yli kartan rajojen: continue
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(e);
                 continue;
             }
         }
@@ -67,7 +67,7 @@ public class TietokoneenLaivat {
     private static int[] arvoLopetusKoordinaatti(int[] aloitusKoordinaatti, int laivanKoko) {
         int[] lopetusKoordinaatti = new int[2];
         
-        // Valitaan random suunta johon laivaa rakennetaan.
+        // Arvotaan random suunta johon laivaa rakennetaan.
         int randomSuunta = random.nextInt(4);
         switch (randomSuunta) {
             case 0: // Oikealle

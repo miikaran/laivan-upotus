@@ -18,7 +18,6 @@ public class Laivat {
             for (int i = 0; i < Vakiot.laivaMaara; i++) {
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
-                MeriKartta.tulostaKartta(pelaaja);
 
                 while (true) {
                     System.out.println("\n" + pelaaja);
@@ -40,6 +39,7 @@ public class Laivat {
             }
             // Asetetaan pelaajan laivojen koordinaatit sille luotuun hashmappiin
             Peli.pelaajienLaivat.put(pelaaja, laivaKoordinaatit);
+            MeriKartta.tulostaKartta(pelaaja);
         }
     }
 
@@ -65,7 +65,10 @@ public class Laivat {
             int aloitusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));
             int lopetusRivi = Integer.parseInt(koordinaatit[1].substring(1));
             int lopetusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[1].charAt(0));
-            
+
+            System.out.println(lopetusRivi- aloitusRivi);
+            System.out.println(lopetusSarake- aloitusSarake);
+
             //Tarkistetaan onko koordinaattien lähellä jo laivaa.   
             for (int j = aloitusRivi; j <= lopetusRivi; j++) {
                 for (int k = aloitusSarake; k <= lopetusSarake; k++) {
@@ -94,15 +97,24 @@ public class Laivat {
             if (koordinaatit.length != 2) {
                 System.out.println("\nSyötä 2 koordinaattia!");
                 return false;
-            } // Laiva yritetään asettaa viistoon.
+            } 
+            // Laiva yritetään asettaa viistoon.
             else if (aloitusRivi != lopetusRivi && aloitusSarake != lopetusSarake) {
                 System.out.println("\nEt voi asettaa laivoja viistoon.");
                 return false;
-            }  // Laivan koko on liian suuri
-            else if (lopetusRivi - aloitusRivi + 1 > koko || lopetusSarake - aloitusSarake + 1 > koko) {
-                System.out.println("\nLaivan koko on " + koko + ". Syötä koordinaatit uudelleen.");
-                return false;
             }  
+            // Laivan koko liian suuri.
+            else if (lopetusRivi - aloitusRivi + 1 > koko || lopetusSarake - aloitusSarake + 1 > koko) {
+                System.out.println("\nLaivan koko on liian suuri...");
+                System.out.println("Laivan koko on " + koko + ". Syötä koordinaatit uudelleen.");
+                return false;
+            } 
+            //Laivan koko liian pieni
+            else if(lopetusRivi - aloitusRivi + 1 < koko && lopetusSarake - aloitusSarake + 1 < koko){
+                System.out.println("\nLaivan koko on liian pieni...");
+                System.out.println("Laivan koko on " + koko + ". Syötä koordinaatit uudelleen.");
+                return false;
+            }
             return true;
 
         } catch (Exception e) { // Käsitellään myös muut mahdolliset poikkeukset.
