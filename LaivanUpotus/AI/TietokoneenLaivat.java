@@ -15,7 +15,7 @@ public class TietokoneenLaivat {
                 int[] aloitusKoordinaatti = arvoAloitusKoordinaatti(vapaatKoordinaatit);
                 int[] lopetusKoordinaatti = arvoLopetusKoordinaatti(aloitusKoordinaatti, laivanKoko);
 
-                // Muutetaan
+                // Muutetaan laivat sarakekirjain + rivi muotoon samanlailla kuin oikeilla pelaajilla.
                 String aloitusKoordinaattiString = koordinaattiMerkkijonoksi(aloitusKoordinaatti);
                 String lopetusKoordinaattiString = koordinaattiMerkkijonoksi(lopetusKoordinaatti);
 
