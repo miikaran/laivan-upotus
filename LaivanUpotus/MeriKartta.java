@@ -1,11 +1,11 @@
 package LaivanUpotus;
 
-import java.util.Arrays;
+public class MeriKartta {  
 
-public class MeriKartta {    
     /**
-     * Luodaan kullekkin pelaajalle oma kartta ja asetetaan
-     * kyseinen kartta hashmappiin pelaajan nimi avaimen alle.
+     * Luodaan kullekkin pelaajalle oma kartta johon laivat asetetaan.
+     * Luodaan myös muistiinpanokartat jokaiselle pelaajalle, johon
+     * pelaajan arvaamat osumat ja hudit näkyviin.
     */
     public static void luoKartat(){
         for(String pelaaja : Peli.pelaajat){
@@ -15,26 +15,11 @@ public class MeriKartta {
                     kartta[i][j] = Vakiot.merkit[0]; 
                 }
             }
-            luoMuistiinpanot(pelaaja);
+            Peli.pelaajienKartat.put(pelaaja+"-muistiinpano", kartta);
             Peli.pelaajienKartat.put(pelaaja, kartta);
         }
     }
 
-
-    /**
-     * Luodaan pelaajille myös kartat josta näkyy heidän tekemät 
-     * arvaukset kartalla, ja siihen asti ilmenneet osumat ja hudit.
-    */
-    public static void luoMuistiinpanot(String pelaaja){
-        String[][] kartta = new String[Vakiot.rivit][Vakiot.sarakkeet];
-        for(int i = 0; i < Vakiot.rivit; i++){
-            for(int j = 0; j < Vakiot.sarakkeet; j++){ 
-                kartta[i][j] = Vakiot.merkit[0]; 
-            }
-        }
-        String muistiinpano = pelaaja + "-muistiinpano";
-        Peli.pelaajienKartat.put(muistiinpano, kartta);
-    }
 
     /**
      * Tulostaa pelaajan koko kartan hienosti consoleen.
@@ -72,8 +57,6 @@ public class MeriKartta {
         System.out.print("  └");
         tulostaKartanKulma(leveys);
         System.out.println("┘");
-
-        System.out.println(Arrays.deepToString(Peli.pelaajienKartat.get(pelaaja+"-muistiinpano")));
     }
     
     /**
