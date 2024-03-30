@@ -31,56 +31,30 @@ public class MeriKartta {
         int leveys = kartta[0].length;
 
         System.out.print("\n\n   ");
-
         for (int j = 0; j < leveys; j++) {
-            System.out.print(" " + (char)('A' + j) + "  ");
+            System.out.printf(" %c  ", 'A' + j);
         }
+        System.out.println("\n  ┌" + "───".repeat(13) + "┐");
 
-        System.out.println();
-        System.out.print("  ┌");
-        tulostaKartanKulma(leveys);
-        System.out.println("┐");
-    
-        // Tulostetaan rivit
         for (int i = 0; i < korkeus; i++) {
-            System.out.print(" " + (i) + "│");
+            System.out.printf(" %d│", i);
             tulostaRivi(kartta[i]);
+            System.out.println("│");
             if (i < korkeus - 1) {
-                System.out.println("│");
-                System.out.print("  ├");
-                tulostaKartanKulma(leveys);
-                System.out.println("┤");
+                System.out.println("  ├" + "───".repeat(13) + "┤");
             }
         }
-
-        System.out.println("│");
-        System.out.print("  └");
-        tulostaKartanKulma(leveys);
-        System.out.println("┘");
+        System.out.println("  └" + "───".repeat(13) + "┘");
     }
-    
+
     /**
-     * Tulostaa yksittäisen rivin kartasta
-    */
+     * Tulostaa yksittäisen rivin karttaan
+     */
     private static void tulostaRivi(String[] rivi) {
         for (int j = 0; j < rivi.length; j++) {
-            System.out.print(" " + rivi[j] + " ");
-
+            System.out.printf(" %s ", rivi[j]);
             if (j < rivi.length - 1) {
                 System.out.print("│");
-            }
-        }
-    }
-    
-    /**
-     * Tulostaa kartan kulmat.
-    */
-    private static void tulostaKartanKulma(int korkeus) {
-        for (int i = 0; i < korkeus; i++) {
-            System.out.print("───");
-
-            if (i < korkeus - 1) {
-                System.out.print("┬");
             }
         }
     }
