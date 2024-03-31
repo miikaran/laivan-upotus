@@ -22,7 +22,7 @@ public class Laivat {
                 int koko = Vakiot.laivaKoot[i];
 
                 while (true) { // Pyydetään käyttäjiltä koordinaatit laivalle ja asetetaan karttaan.
-                              
+                         
                     System.out.println("\n" + pelaaja + "\nAseta oman laivan koordinaatit");
                     System.out.print("Laiva: " + laiva + " -> Koko: " + koko + "\n=> ");
 
@@ -41,7 +41,6 @@ public class Laivat {
             }
             // Asetetaan pelaajan laivojen koordinaatit sille luotuun hashmappiin
             Peli.pelaajienLaivat.put(pelaaja, laivaKoordinaatit);
-            MeriKartta.tulostaKartta(pelaaja);
         }
     }
 

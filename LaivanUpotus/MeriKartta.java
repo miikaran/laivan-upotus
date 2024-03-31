@@ -15,18 +15,28 @@ public class MeriKartta {
                     kartta[i][j] = Vakiot.merkit[0]; 
                 }
             }
-            Peli.pelaajienKartat.put(pelaaja+"-muistiinpano", kartta);
             Peli.pelaajienKartat.put(pelaaja, kartta);
+            
+            /**
+             * Kloonataan kokonaan uusi array muistiinpanoille, koska jos asetetaan muuttuja kartta
+             * suoraan pelaajien muistiinpano kartaksi, niin muutokset joita pelaajan oikeaan karttaan
+             * tehdään muokkaantuu myös muistiinpano karttaan ja sama toistepäin.
+            */
+            String[][] muistiinpanoKartta = new String[Vakiot.rivit][Vakiot.sarakkeet];
+            for(int i = 0; i < Vakiot.rivit; i++) {
+                muistiinpanoKartta[i] = kartta[i].clone();
+            }
+            Peli.pelaajienKartat.put(pelaaja + "-muistiinpano", muistiinpanoKartta);
         }
     }
-
 
     /**
      * Tulostaa pelaajan koko kartan hienosti consoleen.
      * Lisää tulokseen myös osoittajia kartan riveistä ja sarakkeista.
     */
-    public static void tulostaKartta(String pelaaja) {
+    public static void tulostaKartta(String pelaaja) {                     
         String[][] kartta = Peli.pelaajienKartat.get(pelaaja);
+
         int korkeus = kartta.length;
         int leveys = kartta[0].length;
 

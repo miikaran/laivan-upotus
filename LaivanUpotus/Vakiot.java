@@ -14,4 +14,10 @@ public class Vakiot {
     public static int laivaMaara = 2;
     public static String[] merkit = {"~", "O", "X", "M"};
     public static String[] pelimuodot = {"tietokone", "kaveri", "saannot", "lopeta"};
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_BOLD = "\033[0;1m";
 }

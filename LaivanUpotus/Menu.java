@@ -7,13 +7,19 @@ public class Menu {
     /**
      * Näytetään menu, sekä asetetaan käyttäjän valitsema pelimuoto.
     */
-    public static void NaytaMenu(){
-        System.out.println("=====================================");
-        System.out.println("\n Tervetuloa pelaamaan laivanupotusta! ☒");
-        System.out.println(" Valitse pelimuoto jota haluat pelata:");
-        System.out.println("\n 1 => Tietokone\n 2 => Kaveri\n 3 => Saannot\n 4 => Lopeta peli");
-        System.out.println("\n=====================================");
-        System.out.print("\n=> ");
+
+
+    public static void naytaMenu(){
+      
+        System.out.println("");
+        System.out.println("\n" + Vakiot.ANSI_YELLOW + " Tervetuloa laivanupotukseen!" + Vakiot.ANSI_RESET);
+        System.out.println(Vakiot.ANSI_BOLD + " Valitse pelimuoto:" + Vakiot.ANSI_RESET);
+        System.out.println(Vakiot.ANSI_PURPLE + "\n 1 => Yksinpeli");
+        System.out.println(" 2 => Moninpeli");
+        System.out.println(" 3 => Säännöt");
+        System.out.println(" 4 => Poistu" + Vakiot.ANSI_RESET);
+        System.out.println("\n" + Vakiot.ANSI_BOLD + "_______________________" + Vakiot.ANSI_RESET);
+        System.out.print(Vakiot.ANSI_BOLD + "\n=> " + Vakiot.ANSI_RESET);
 
         int kayttajanSyote = scanner.nextInt();
 
@@ -43,7 +49,7 @@ public class Menu {
           for(int i = 0; i < Peli.pelaajat.length; i++){
               while(true){
 
-                System.out.print("\nPelaaja " + (i+1) + "\nAseta nimesi: \n=> ");
+                System.out.print(Vakiot.ANSI_BOLD + "\nPelaaja " + (i+1) + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "\nAseta nimesi: \n=> " + Vakiot.ANSI_RESET);
 
                 try{
                   String syote = scanner.next();
