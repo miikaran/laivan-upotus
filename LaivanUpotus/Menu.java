@@ -3,12 +3,9 @@ import java.util.Scanner;
 
 public class Menu {
   public static final Scanner scanner = new Scanner(System.in);
-  public static final String ANSI_BLACK = "\u001B[30m";
     /**
      * Näytetään menu, sekä asetetaan käyttäjän valitsema pelimuoto.
     */
-
-
     public static void naytaMenu(){
       
         System.out.println("");
