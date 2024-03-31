@@ -12,3 +12,4 @@
 - turhien toistuvuuksie poistaminen. Voisi korvata turhat for luupit esim arrays.stream metodeilla.
 - Custom validointien luominen
 - Tietokone logiikan rakentaminen
+- menun inputin validointi
