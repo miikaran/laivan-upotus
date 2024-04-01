@@ -55,14 +55,24 @@ public class Peli {
      */
     public static void pelaajaHyokkaa(String vastustaja, String pelaaja){
         while(true){
-            try{
-                // Otetaan käyttäjälta koordinaatti.
-                String koordinaatti = scanner.next().toUpperCase();
+        
+                int rivi = 0;
+                int sarake = 0;
 
-                // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
-                int rivi = Integer.parseInt(koordinaatti.substring(1));
-                int sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
-                
+                if(!pelaaja.equals("Tietokone")){
+                    // Otetaan käyttäjälta koordinaatti.
+                    String koordinaatti = scanner.next().toUpperCase();
+
+                    // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
+                    rivi = Integer.parseInt(koordinaatti.substring(1));
+                    sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
+                    
+                } else {
+                    int[] koordinaatit = LaivanUpotus.AI.Tietokone.laskeParasArvaus(pelaajienKartat.get(pelaaja+"-muistiinpano"), pelaaja, vastustaja);
+                    rivi = koordinaatit[0];
+                    sarake = koordinaatit[1];
+                }
+
                 // Haetaan vastustajan kartta ja laivat.
                 String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
                 int[][] vastustajanLaivat = pelaajienLaivat.get(vastustaja);
@@ -73,7 +83,7 @@ public class Peli {
 
                 //Tarkistetaan osusiko arvaus.
                 if(osuttuLaiva.length > 0){
-
+                    LaivanUpotus.AI.Tietokone.osututArvaukset.add(0, new int[]{rivi, sarake});
                     // Tarkistetaan upposiko osumalla.
                     boolean upposko = upposko(osuttuLaiva, vastustajanKartta);
                     if(upposko){
@@ -86,9 +96,7 @@ public class Peli {
                 }
                 break;
 
-            } catch (Exception e){
-                System.out.println("Yritä uudelleen...");
-            } 
+       
         }  
     }
 

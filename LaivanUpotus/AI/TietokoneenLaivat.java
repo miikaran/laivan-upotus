@@ -47,7 +47,6 @@ public class TietokoneenLaivat {
                     // Lisätään koordinaatti arraylistaan.
                     vapaatKoordinaatit.add(koordinaatti);
                 }
-
             }
         }
         return vapaatKoordinaatit;

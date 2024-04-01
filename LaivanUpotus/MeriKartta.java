@@ -18,7 +18,7 @@ public class MeriKartta {
             Peli.pelaajienKartat.put(pelaaja, kartta);
             
             /**
-             * Kloonataan kokonaan uusi array muistiinpanoille, koska jos asetetaan muuttuja kartta
+             * Kopioidaan kokonaan uusi array muistiinpanoille, koska jos asetetaan muuttuja kartta
              * suoraan pelaajien muistiinpano kartaksi, niin muutokset joita pelaajan oikeaan karttaan
              * tehdään muokkaantuu myös muistiinpano karttaan ja sama toistepäin.
             */

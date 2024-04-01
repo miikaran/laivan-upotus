@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Laivat {
+
     public static final Scanner scanner = new Scanner(System.in);
 
     /**
@@ -142,7 +143,6 @@ public class Laivat {
         }
 
         int[] laivaKoordinaatit = {aloitusRivi, lopetusRivi, aloitusSarake, lopetusSarake};
-        //System.out.println(Arrays.toString(laivaKoordinaatit));
         return laivaKoordinaatit;
 
     }

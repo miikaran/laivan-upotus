@@ -2,7 +2,9 @@ package LaivanUpotus;
 import java.util.Scanner;
 
 public class Menu {
-  public static final Scanner scanner = new Scanner(System.in);
+
+    public static final Scanner scanner = new Scanner(System.in);
+
     /**
      * Näytetään menu, sekä asetetaan käyttäjän valitsema pelimuoto.
     */
@@ -21,19 +23,19 @@ public class Menu {
         int kayttajanSyote = scanner.nextInt();
 
         switch (kayttajanSyote){
-            case 1:
-              Peli.pelimuoto = Vakiot.pelimuodot[0];
-              Menu.luoPelaajat(Peli.pelimuoto);
-              break;         
-            case 2:
-              Peli.pelimuoto = Vakiot.pelimuodot[1];
-              Menu.luoPelaajat(Peli.pelimuoto);
-              break;
-            case 3:
-              System.out.println("Pelin säännöt: ");
-            case 4:
-              System.out.println("Suljetaan ohjelma...");
-              System.exit(0);
+          case 1:
+            Peli.pelimuoto = Vakiot.pelimuodot[0];
+            Menu.luoPelaajat(Peli.pelimuoto);
+            break;         
+          case 2:
+            Peli.pelimuoto = Vakiot.pelimuodot[1];
+            Menu.luoPelaajat(Peli.pelimuoto);
+            break;
+          case 3:
+            System.out.println("Pelin säännöt: ");
+          case 4:
+            System.out.println("Suljetaan ohjelma...");
+            System.exit(0);
         }
     }
 
