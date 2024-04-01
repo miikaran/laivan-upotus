@@ -21,7 +21,15 @@ public class Tietokone {
 
         if(arvaukset > 0){
             aikaisempiArvaus = tehdytArvaukset.get(arvaukset-1);
-            osukoAikaisempiArvaus = osututArvaukset.contains(aikaisempiArvaus);
+            for (int[] a : osututArvaukset) {
+                if (Arrays.equals(a, aikaisempiArvaus)) {
+                    osukoAikaisempiArvaus = true;
+                    break;
+                }
+            }
+            System.out.println(Arrays.toString(aikaisempiArvaus));
+            System.out.println(Arrays.deepToString(osututArvaukset.toArray()));
+
         } 
 
         for(int i = 0; i < kartta.length; i++){
@@ -31,6 +39,8 @@ public class Tietokone {
                 }
             }
         }
+        System.out.println(osukoAikaisempiArvaus);
+        System.out.println(Arrays.deepToString(tehdytArvaukset.toArray()));
         System.out.println(Arrays.deepToString(osututArvaukset.toArray()));
         System.out.println(Arrays.toString(aikaisempiArvaus));
         
