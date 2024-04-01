@@ -1,4 +1,5 @@
 package LaivanUpotus;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -56,47 +57,52 @@ public class Peli {
     public static void pelaajaHyokkaa(String vastustaja, String pelaaja){
         while(true){
         
-                int rivi = 0;
-                int sarake = 0;
+            int rivi = 0;
+            int sarake = 0;
 
-                if(!pelaaja.equals("Tietokone")){
-                    // Otetaan käyttäjälta koordinaatti.
-                    String koordinaatti = scanner.next().toUpperCase();
+            if(!pelaaja.equals("Tietokone")){
+                // Otetaan käyttäjälta koordinaatti.
+                String koordinaatti = scanner.next().toUpperCase();
 
-                    // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
-                    rivi = Integer.parseInt(koordinaatti.substring(1));
-                    sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
-                    
-                } else {
-                    int[] koordinaatit = LaivanUpotus.AI.Tietokone.laskeParasArvaus(pelaajienKartat.get(pelaaja+"-muistiinpano"), pelaaja, vastustaja);
-                    rivi = koordinaatit[0];
-                    sarake = koordinaatit[1];
+                // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
+                rivi = Integer.parseInt(koordinaatti.substring(1));
+                sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
+                
+            } else {
+                int[] koordinaatit = LaivanUpotus.AI.Tietokone.laskeParasArvaus(pelaajienKartat.get(pelaaja+"-muistiinpano"), pelaaja, vastustaja);
+                rivi = koordinaatit[0];
+                sarake = koordinaatit[1];
+            }
+
+            // Haetaan vastustajan kartta ja laivat.
+            String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
+            int[][] vastustajanLaivat = pelaajienLaivat.get(vastustaja);
+            String[][] pelaajanMuistiinpanot = pelaajienKartat.get(pelaaja+"-muistiinpano");
+
+            // Haetaan osuttu laiva, mikäli osui.
+            int[] osuttuLaiva = tarkistaOsuma(vastustajanKartta, vastustajanLaivat, pelaajanMuistiinpanot, rivi, sarake);
+
+            //Tarkistetaan osusiko arvaus.
+            if(osuttuLaiva.length > 0){
+                LaivanUpotus.AI.Tietokone.osututArvaukset.add(0, new int[]{rivi, sarake});
+                LaivanUpotus.AI.Tietokone.hunt = true;
+
+                // Tarkistetaan upposiko osumalla.
+                boolean upposko = upposko(osuttuLaiva, vastustajanKartta);
+                if(upposko){
+                    LaivanUpotus.AI.Tietokone.upotetutLaivat.add(new int[]{rivi, sarake});
+                    LaivanUpotus.AI.Tietokone.hunt = false;
+                    LaivanUpotus.AI.Tietokone.kohdeKoordinaatit.clear();
+                    System.out.println("Uppos!!!!!!!!!! BOOOOOOOOOOOM.");
                 }
 
-                // Haetaan vastustajan kartta ja laivat.
-                String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
-                int[][] vastustajanLaivat = pelaajienLaivat.get(vastustaja);
-                String[][] pelaajanMuistiinpanot = pelaajienKartat.get(pelaaja+"-muistiinpano");
-
-                // Haetaan osuttu laiva, mikäli osui.
-                int[] osuttuLaiva = tarkistaOsuma(vastustajanKartta, vastustajanLaivat, pelaajanMuistiinpanot, rivi, sarake);
-
-                //Tarkistetaan osusiko arvaus.
-                if(osuttuLaiva.length > 0){
-                    LaivanUpotus.AI.Tietokone.osututArvaukset.add(0, new int[]{rivi, sarake});
-                    // Tarkistetaan upposiko osumalla.
-                    boolean upposko = upposko(osuttuLaiva, vastustajanKartta);
-                    if(upposko){
-                        System.out.println("Uppos!!!!!!!!!! BOOOOOOOOOOOM.");
-                    }
-
-                } else {
-                    System.out.println("\nOhi");
-                    pelaajanMuistiinpanot[rivi][sarake] = Vakiot.merkit[3];
-                }
-                break;
-
-       
+            } else {
+                System.out.println("\nOhi");
+                int[] koordinaatit = {rivi, sarake};
+                LaivanUpotus.AI.Tietokone.kohdeKoordinaatit.removeIf(arr -> Arrays.equals(arr, koordinaatit));
+                pelaajanMuistiinpanot[rivi][sarake] = Vakiot.merkit[3];
+            }
+            break;  
         }  
     }
 
