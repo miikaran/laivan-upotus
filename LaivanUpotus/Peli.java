@@ -85,13 +85,15 @@ public class Peli {
             //Tarkistetaan osusiko arvaus.
             if(osuttuLaiva.length > 0){
                 LaivanUpotus.AI.Tietokone.osututArvaukset.add(0, new int[]{rivi, sarake});
-                LaivanUpotus.AI.Tietokone.hunt = true;
+                LaivanUpotus.AI.Tietokone.jahtaa = true;
+                LaivanUpotus.AI.Tietokone.jahtaamisArvaukset++;
 
                 // Tarkistetaan upposiko osumalla.
                 boolean upposko = upposko(osuttuLaiva, vastustajanKartta);
                 if(upposko){
                     LaivanUpotus.AI.Tietokone.upotetutLaivat.add(new int[]{rivi, sarake});
-                    LaivanUpotus.AI.Tietokone.hunt = false;
+                    LaivanUpotus.AI.Tietokone.jahtaa = false;
+                    LaivanUpotus.AI.Tietokone.jahtaamisArvaukset = 0;
                     LaivanUpotus.AI.Tietokone.kohdeKoordinaatit.clear();
                     System.out.println("Uppos!!!!!!!!!! BOOOOOOOOOOOM.");
                 }
