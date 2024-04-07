@@ -2,6 +2,7 @@ package LaivanUpotus.AI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Tietokone {
@@ -41,14 +42,15 @@ public class Tietokone {
                 }
                 System.out.println("Kohde koordinaattien koko: " + kohdeKoordinaatit.size());
                 if(jahtaamisArvaukset > 1 && edellinenArvausOsui){
-                    int tiedettySuunta = jahtaamisOikeaSuunta;
-                    arvaus = kohdeKoordinaatit.get(tiedettySuunta);
+                    System.out.println("Jahtaa" + jahtaamisOikeaSuunta);
+                    arvaus = kohdeKoordinaatit.get(jahtaamisOikeaSuunta);
                 } 
                 else if(jahtaamisArvaukset > 1 && !edellinenArvausOsui){
-                    int jahtaamisAloitusKierros = arvaukset-jahtaamisArvaukset;
+                    int jahtaamisAloitusKierros = arvaukset-jahtaamisArvaukset-1;
+                    int aloitusjalkeen = arvaukset-jahtaamisArvaukset;
                     int[] alkuArvaus = tehdytArvaukset.get(jahtaamisAloitusKierros);
                     haeKohdeKoordinaatit(alkuArvaus);
-                    arvaus = arvoRandomSuunta();
+                    arvaus = palautaVasta(kohdeKoordinaatit, tehdytArvaukset.get(aloitusjalkeen)); 
                 } 
                 else {
                     // Asetetaan arvaukseksi random suunta kohdekoordinaateista.
@@ -143,5 +145,23 @@ public class Tietokone {
             }
         }
         return arvaus;
+    }
+
+    public static int[] palautaVasta(List<int[]> directions, int[] direction){
+        
+        if (Arrays.equals(direction, directions.get(0))) {
+            jahtaamisOikeaSuunta = 1;
+            return directions.get(1);
+        } else if (Arrays.equals(direction, directions.get(1))) {
+            jahtaamisOikeaSuunta = 0;
+            return directions.get(0);
+        } else if (Arrays.equals(direction, directions.get(2))) {
+            jahtaamisOikeaSuunta = 2;
+            return directions.get(3);
+        } else if (Arrays.equals(direction, directions.get(3))) {
+            jahtaamisOikeaSuunta = 3;
+            return directions.get(2);
+        }      
+        return null; 
     }
 }
