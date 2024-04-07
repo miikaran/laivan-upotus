@@ -26,9 +26,7 @@ public class Laivat {
                     String[] koordinaatit = pyydaKoordinaatteja(kartta, koko, pelaaja);
                     Arrays.sort(koordinaatit);
                     // Tarkistetaan onko koordinaatit sopivia.
-                    if (!validoiKoordinaatit(koordinaatit, kartta, koko)) {
-                        continue;
-                    } 
+                    if (!validoiKoordinaatit(koordinaatit, kartta, koko)) { continue; } 
                     // Asetetaan laiva karttaan pelaajan antamiin koordinaatteihin.
                     laivaKoordinaatit[i] = asetaLaivaKoordinaatteihin(koordinaatit, pelaaja, kartta);
                     break;
