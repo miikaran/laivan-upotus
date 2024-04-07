@@ -1,5 +1,4 @@
 package LaivanUpotus;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -44,7 +43,7 @@ public class Peli {
             // Jokaisella kierroksella suoritettavat metodit.
             pelaajaHyokkaa(vastustaja, pelaaja);
             tarkistaVoitto(pelaaja, vastustaja);
-            MeriKartta.tulostaKartta(pelaaja);
+            MeriKartta.tulostaKartta(pelaaja, "muistiinpano");
             vuoro = (vuoro + 1) % 2; // Vaihdetaan vuoroa
         }         
     }
@@ -57,21 +56,27 @@ public class Peli {
     public static void pelaajaHyokkaa(String vastustaja, String pelaaja){
         while(true){
  
-            int rivi = 0;
-            int sarake = 0;
+            int rivi = 0;   // Arvaus rivi
+            int sarake = 0; // Arvaus sarake
 
-            if(!pelaaja.equals("Tietokone")){
-                // Otetaan käyttäjälta koordinaatti.
-                String koordinaatti = scanner.next().toUpperCase();
-                // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
-                rivi = Integer.parseInt(koordinaatti.substring(1));
-                sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));             
-            } else {
-                int[] koordinaatit = LaivanUpotus.AI.Tietokone.laskeParasArvaus(pelaajienKartat.get(pelaaja+"-muistiinpano"), pelaaja, vastustaja);
-                rivi = koordinaatit[0];
-                sarake = koordinaatit[1];
+            try{
+                if(!pelaaja.equals("Tietokone")){
+                    // Otetaan käyttäjälta koordinaatti.
+                    String koordinaatti = scanner.next().toUpperCase();
+                    // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
+                    rivi = Integer.parseInt(koordinaatti.substring(1));
+                    sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));             
+                } else {
+                    int[] koordinaatit = LaivanUpotus.AI.Tietokone.laskeParasArvaus(pelaajienKartat.get(pelaaja+"-muistiinpano"), pelaaja, vastustaja);
+                    rivi = koordinaatit[0];
+                    sarake = koordinaatit[1];
+                }
+            } catch(Exception e){
+                System.out.println("Ongelma koordinaatin syötteessä..");
             }
 
+            System.out.println(rivi);
+            System.out.println(sarake);
             // Haetaan vastustajan kartta ja laivat.
             String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
             int[][] vastustajanLaivat = pelaajienLaivat.get(vastustaja);
@@ -99,7 +104,13 @@ public class Peli {
                 }
             } else {
                 System.out.println("\nOhi");
-                pelaajanMuistiinpanot[rivi][sarake] = Vakiot.merkit[3];
+                try{
+                    if(!pelaajanMuistiinpanot[rivi][sarake].equals(Vakiot.merkit[3]) && !pelaajanMuistiinpanot[rivi][sarake].equals(Vakiot.merkit[2]) ){
+                        pelaajanMuistiinpanot[rivi][sarake] = Vakiot.merkit[3];
+                    }
+                } catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println("Et voi muokata yli rajojen meneviä alkioita...");
+                }
             }
             break;  
         }  
@@ -133,7 +144,7 @@ public class Peli {
                 return osuttuLaiva;
             }
         } catch (Exception e){
-            System.out.println("Jotain meni pieleen...");
+            System.out.println("\nJotain meni pieleen...");
         }
         return new int[0];
     }

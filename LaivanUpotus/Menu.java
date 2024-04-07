@@ -91,7 +91,7 @@ public class Menu {
       System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
       System.out.println();
       System.out.print(Vakiot.ANSI_BOLD + "Ohjeet => " + Vakiot.ANSI_RESET);
-      System.out.println(Vakiot.ANSI_CYAN + "\nLaivanupotus on 2 pelaajan peli, jossa tavoitteena on upottaa vastustajan kaikki laivat arvaamalla vuorotellen vastustajan 10x10 kartalta sijainteja. Laivoja kummatkin pelaaja asettaa omille kartoilleen 5  kappaletta. Voittaja on se, joka upottaa vastustajan kaikki laivat ensimmäisenä.\n");
+      System.out.println(Vakiot.ANSI_CYAN + "\nLaivanupotus on 2 pelaajan peli, jossa tavoitteena on upottaa vastustajan kaikki laivat arvaamalla vuorotellen vastustajan 10x10 kartalta sijainteja. \nLaivoja kummatkin pelaaja asettaa omille kartoilleen 5  kappaletta. Voittaja on se, joka upottaa vastustajan kaikki laivat ensimmäisenä.\n");
       System.out.print(Vakiot.ANSI_BOLD + "Pelinkulku => " + Vakiot.ANSI_RESET);
       System.out.println(Vakiot.ANSI_CYAN + "\nPelaajat aloittavat asettamalla laivansa kartalle. Kummallakin pelaajalla on tietty määrä laivoja, ja laivat voivat olla eri kokoisia.");
       System.out.println("Laivojen tulee sijaita pysty- tai vaakasuunnassa ja ne eivät saa koskettaa toisiaan, eikä niiden saa mennä ruudukon ulkopuolelle.");

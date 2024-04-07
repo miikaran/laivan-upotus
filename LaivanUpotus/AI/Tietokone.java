@@ -69,7 +69,6 @@ public class Tietokone {
 
     }
 
-
     /**
      * Tarkistetaan osuiko tietokoneen edellisellä vuorolla tekemä arvaus.
      */
@@ -84,7 +83,6 @@ public class Tietokone {
         } return false;
     }
     
-
     /**
      * Haetaan tietokoneen muistiinpanokartasta kaikki mahdolliset arvaukset
      */
@@ -93,13 +91,12 @@ public class Tietokone {
             for(int j = 0; j < kartta.length; j++){
                 // Jos kartan alkio sisältää merkin "~" => 
                 // lisätään mahdollisiin arvauksiin.
-                if(kartta[i][j].equals("~")){
-                    mahdollisetArvaukset.add(new int[]{i, j});
+                if(kartta[i][j].equals("~")){     
+                    mahdollisetArvaukset.add(new int[]{i, j});    
                 }
             }
         }
     }
-
 
     /**
      * Haetaan arvauksen ympäriltä kohde koordinaatit, jossa osutun laivan
@@ -118,7 +115,11 @@ public class Tietokone {
             if((koordinaatti[0] > 9 || koordinaatti[0] < 0) || (koordinaatti[1] > 9 || koordinaatti[1] < 0)){
                 // Jos koordinaatin rivi yli rajojen => poista taulukosta
                 kohdeKoordinaatit.remove(i);
+                i--;
             }
+        }
+        for(int[] k : kohdeKoordinaatit){
+            System.out.println(Arrays.toString(k));
         }
     }
 

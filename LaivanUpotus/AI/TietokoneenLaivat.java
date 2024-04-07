@@ -35,8 +35,8 @@ public class TietokoneenLaivat {
     private static ArrayList<int[]> etsiVapaatKoordinaatit(String[][] kartta) {
         ArrayList<int[]> vapaatKoordinaatit = new ArrayList<>();
         // Käydään kartta läpi ja etsitään vapaat koordinaatit
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < LaivanUpotus.Vakiot.rivit; i++) {
+            for (int j = 0; j < LaivanUpotus.Vakiot.sarakkeet; j++) {
                 // Jos koordinaatissa "~" merkki: vapaa.
                 if (kartta[i][j].equals(LaivanUpotus.Vakiot.merkit[0])) {
                     int[] koordinaatti = {i, j};

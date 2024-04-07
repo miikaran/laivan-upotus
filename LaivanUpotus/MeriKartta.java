@@ -33,11 +33,16 @@ public class MeriKartta {
      * Tulostaa pelaajan koko kartan hienosti consoleen.
      * Lisää tulokseen myös osoittajia kartan riveistä ja sarakkeista.
     */
-    public static void tulostaKartta(String pelaaja) {                     
-        String[][] kartta = Peli.pelaajienKartat.get(pelaaja);
+    public static void tulostaKartta(String pelaaja, String tyyppi) {
+        String[][] kartta;
+        if(tyyppi.equals("muistiinpano")){
+            kartta = Peli.pelaajienKartat.get(pelaaja + "-muistiinpano");
+        } else {
+            kartta = Peli.pelaajienKartat.get(pelaaja);
+        }                     
         int korkeus = kartta.length;
         int leveys = kartta[0].length;
-        
+
         System.out.print("\n\n   ");
         for (int j = 0; j < leveys; j++) {
             System.out.printf(" %c  ", 'A' + j);
