@@ -50,7 +50,7 @@ public class Laivat {
      */
     public static String[] pyydaKoordinaatteja(String[][] kartta, int laivanKoko, String pelaaja) {
         // Jos pelimuoto on tietokone vs pelaaja: generoidaan tietokoneelle omat laivat.
-        if(pelaaja.equals("Tietokone") && Peli.pelimuoto.equals("tietokone")){
+        if(pelaaja.equals("Tietokone") && Peli.peliMuoto.equals("tietokone")){
             return LaivanUpotus.AI.TietokoneenLaivat.generoiTietokoneLaivat(kartta, laivanKoko);
         } // Muuten palautetaan käyttäjän input.
         return scanner.nextLine().toUpperCase().split(" ");

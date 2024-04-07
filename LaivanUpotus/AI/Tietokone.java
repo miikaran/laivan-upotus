@@ -43,9 +43,6 @@ public class Tietokone {
                 System.out.println("Kohde koordinaattien koko: " + kohdeKoordinaatit.size());
                 if(jahtaamisArvaukset > 1 && edellinenArvausOsui){
                     int tiedettySuunta = jahtaamisOikeaSuunta;
-                    for(int[] alkio : kohdeKoordinaatit){
-                        System.out.println(Arrays.toString(alkio));
-                    }
                     arvaus = kohdeKoordinaatit.get(tiedettySuunta);
                 } 
                 else if(jahtaamisArvaukset > 1 && !edellinenArvausOsui){
@@ -61,16 +58,8 @@ public class Tietokone {
     
             } else {        
                 // Jos tietokone ei ole osunut laivaan, haetaan satunnaisesti arvaus.
-                arvaus = mahdollisetArvaukset.get(mahdollisetArvaukset.size()/2);
+                arvaus = mahdollisetArvaukset.get(random.nextInt(mahdollisetArvaukset.size()-1));
             }
-    
-            System.out.println(jahtaamisArvaukset);
-            System.out.println(edellinenArvausOsui);
-            System.out.println(Arrays.deepToString(upotetutLaivat.toArray()));
-            System.out.println(Arrays.toString(edellinenArvaus));
-            System.out.println(jahtaa);
-            System.out.println(Arrays.deepToString(kohdeKoordinaatit.toArray()));
-            System.out.println(Arrays.toString(arvaus));
     
             if(tehdytArvaukset.contains(arvaus)){
                 continue;
