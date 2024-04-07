@@ -43,17 +43,17 @@ public class Tietokone {
                 System.out.println("Kohde koordinaattien koko: " + kohdeKoordinaatit.size());
                 if(jahtaamisArvaukset > 1 && edellinenArvausOsui){
                     int tiedettySuunta = jahtaamisOikeaSuunta;
-                    System.out.println(tiedettySuunta);
                     for(int[] alkio : kohdeKoordinaatit){
                         System.out.println(Arrays.toString(alkio));
                     }
                     arvaus = kohdeKoordinaatit.get(tiedettySuunta);
                 } 
-                /*else if(jahtaamisArvaukset > 1 && !edellinenArvausOsui){
+                else if(jahtaamisArvaukset > 1 && !edellinenArvausOsui){
                     int jahtaamisAloitusKierros = arvaukset-jahtaamisArvaukset;
                     int[] alkuArvaus = tehdytArvaukset.get(jahtaamisAloitusKierros);
                     haeKohdeKoordinaatit(alkuArvaus);
-                } */
+                    arvaus = arvoRandomSuunta();
+                } 
                 else {
                     // Asetetaan arvaukseksi random suunta kohdekoordinaateista.
                     arvaus = arvoRandomSuunta();
