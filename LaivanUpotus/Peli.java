@@ -100,8 +100,6 @@ public class Peli {
 
             } else {
                 System.out.println("\nOhi");
-                int[] koordinaatit = {rivi, sarake};
-                LaivanUpotus.AI.Tietokone.kohdeKoordinaatit.removeIf(arr -> Arrays.equals(arr, koordinaatit));
                 pelaajanMuistiinpanot[rivi][sarake] = Vakiot.merkit[3];
             }
             break;  
