@@ -15,22 +15,18 @@ public class Laivat {
         // Haetaan jokaiselta pelaajalta kartta ja alustetaan laivakoordinaatit.
         for (String pelaaja : Peli.pelaajat) {
             int[][] laivaKoordinaatit = new int[Vakiot.laivaMaara][4];
-            String[][] kartta = Peli.pelaajienKartat.get(pelaaja);
-            
+            String[][] kartta = Peli.pelaajienKartat.get(pelaaja);      
             // Haetaan jokaiselle laivalle sen koko ja nimi
             for (int i = 0; i < Vakiot.laivaMaara; i++) {
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
 
-                while (true) { // Pyydetään käyttäjiltä koordinaatit laivalle ja asetetaan karttaan.
-                         
+                while (true) { // Pyydetään käyttäjiltä koordinaatit laivalle ja asetetaan karttaan.     
                     System.out.println("\n" + pelaaja + "\nAseta oman laivan koordinaatit");
                     System.out.print("Laiva: " + laiva + " -> Koko: " + koko + "\n=> ");
-
                     // Luodaan oma taulukko koordinaateille.
                     String[] koordinaatit = pyydaKoordinaatteja(kartta, koko, pelaaja);
                     Arrays.sort(koordinaatit);
-
                     // Tarkistetaan onko koordinaatit sopivia.
                     if (!validoiKoordinaatit(koordinaatit, kartta, koko)) {
                         continue;
@@ -71,7 +67,6 @@ public class Laivat {
             //Tarkistetaan onko koordinaattien lähellä jo laivaa.   
             for (int j = aloitusRivi; j <= lopetusRivi; j++) {
                 for (int k = aloitusSarake; k <= lopetusSarake; k++) {
-
                     try { 
                         // Jos lähellä jo laiva: palautetaan false.
                         if (taulu[j][k].equals("O")                                 ||  // Päällä
@@ -82,8 +77,7 @@ public class Laivat {
                         {
                             System.out.println("\nEt voi laittaa tähän kohtaan laivaa.");
                             return false;
-                        }
-                    
+                        }              
                     // Käsitellään mahdolliset indeksi probleemat.
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Koordinaatit ovat rajojen ulkopuolella.");
@@ -127,13 +121,11 @@ public class Laivat {
      *  Rakennetaan uusi laiva kartalle annettujen koordinattien mukaan.
      */
     private static int[] asetaLaivaKoordinaatteihin(String[] koordinaatit, String pelaaja, String[][] taulu) {
-
         // Haetaan koordinaatit joiden välille laiva rakennetaan.
         int aloitusRivi = Integer.parseInt(koordinaatit[0].substring(1));
         int aloitusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));
         int lopetusRivi = Integer.parseInt(koordinaatit[1].substring(1));
         int lopetusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[1].charAt(0));
-
         // Käydään kartta läpi lasketuista koordinaateista.
         for (int i = aloitusRivi; i <= lopetusRivi; i++) {
             for (int j = aloitusSarake; j <= lopetusSarake; j++) {

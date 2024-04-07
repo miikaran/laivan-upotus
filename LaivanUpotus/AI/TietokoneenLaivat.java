@@ -12,19 +12,16 @@ public class TietokoneenLaivat {
      */
     public static String[] generoiTietokoneLaivat(String[][] kartta, int laivanKoko) {
         ArrayList<int[]> vapaatKoordinaatit = etsiVapaatKoordinaatit(kartta);
-
         while (true) {
             try {
                 // Arvotaan laivan aloitus ja lopetus- koordinaatit.
                 int[] aloitusKoordinaatti = arvoAloitusKoordinaatti(vapaatKoordinaatit);
                 int[] lopetusKoordinaatti = arvoLopetusKoordinaatti(aloitusKoordinaatti, laivanKoko);
-
                 // Muutetaan laivat sarakekirjain + rivi muotoon samanlailla kuin oikeilla pelaajilla.
                 String aloitusKoordinaattiString = koordinaattiMerkkijonoksi(aloitusKoordinaatti);
                 String lopetusKoordinaattiString = koordinaattiMerkkijonoksi(lopetusKoordinaatti);
 
                 return new String[]{aloitusKoordinaattiString, lopetusKoordinaattiString};
-
             // Mikäli tietokoneen generoimat koordinaatit menevät yli kartan rajojen: continue
             } catch (IndexOutOfBoundsException e) {
                 continue;
@@ -37,7 +34,6 @@ public class TietokoneenLaivat {
      */
     private static ArrayList<int[]> etsiVapaatKoordinaatit(String[][] kartta) {
         ArrayList<int[]> vapaatKoordinaatit = new ArrayList<>();
-
         // Käydään kartta läpi ja etsitään vapaat koordinaatit
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {

@@ -27,10 +27,9 @@ public class Tietokone {
         while(true){
             int[] arvaus = new int[2];              // Alustetaan tietokoneen arvaus
             boolean edellinenArvausOsui = false;    // Osuiko edellisen kierroksen arvaus
-    
+
             // Jos ei ole ensimmäinen arvaus, niin tarkistetaan osuiko aikaisempi arvaus. 
             edellinenArvausOsui = arvaukset > 0 ? osukoEdellinen(kartta) : false;
-    
             // Haetaan mahdolliset arvaukset kartalta.
             haeMahdollisetArvaukset(kartta);
     
@@ -54,13 +53,11 @@ public class Tietokone {
                 else {
                     // Asetetaan arvaukseksi random suunta kohdekoordinaateista.
                     arvaus = arvoRandomSuunta();
-                }
-    
+                } 
             } else {        
                 // Jos tietokone ei ole osunut laivaan, haetaan satunnaisesti arvaus.
                 arvaus = mahdollisetArvaukset.get(random.nextInt(mahdollisetArvaukset.size()-1));
-            }
-    
+            }  
             if(tehdytArvaukset.contains(arvaus)){
                 continue;
             } else {

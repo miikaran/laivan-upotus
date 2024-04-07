@@ -56,30 +56,26 @@ public class Peli {
      */
     public static void pelaajaHyokkaa(String vastustaja, String pelaaja){
         while(true){
-        
+ 
             int rivi = 0;
             int sarake = 0;
 
             if(!pelaaja.equals("Tietokone")){
                 // Otetaan käyttäjälta koordinaatti.
                 String koordinaatti = scanner.next().toUpperCase();
-
                 // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
                 rivi = Integer.parseInt(koordinaatti.substring(1));
-                sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));
-                
+                sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0));             
             } else {
                 int[] koordinaatit = LaivanUpotus.AI.Tietokone.laskeParasArvaus(pelaajienKartat.get(pelaaja+"-muistiinpano"), pelaaja, vastustaja);
                 rivi = koordinaatit[0];
                 sarake = koordinaatit[1];
             }
-            System.out.println(rivi);
-            System.out.println(sarake);
+
             // Haetaan vastustajan kartta ja laivat.
             String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
             int[][] vastustajanLaivat = pelaajienLaivat.get(vastustaja);
             String[][] pelaajanMuistiinpanot = pelaajienKartat.get(pelaaja+"-muistiinpano");
-
             // Haetaan osuttu laiva, mikäli osui.
             int[] osuttuLaiva = tarkistaOsuma(vastustajanKartta, vastustajanLaivat, pelaajanMuistiinpanot, rivi, sarake);
 
@@ -116,7 +112,6 @@ public class Peli {
     public static int[] tarkistaOsuma(String[][] vastustajanKartta, int[][] vastustajanLaivat, String[][] muistiinPanot, int rivi, int sarake){
         try{
             if(vastustajanKartta[rivi][sarake].equals(Vakiot.merkit[1])){
-
                 // Jos osui merkitään se vastustajan karttaan.
                 System.out.println("\nRäjähdyssss! Osuit Laivaan!");
                 vastustajanKartta[rivi][sarake] = Vakiot.merkit[2];     
@@ -149,7 +144,6 @@ public class Peli {
      */
     public static boolean upposko(int[] osuttuLaiva, String[][] vastustajanKartta){
         boolean upposko = false;
-
         outerLoop: // Tarkistetaan upposiko laiva arvauksella.
         for(int i = osuttuLaiva[0]; i <= osuttuLaiva[1]; i++){
             for (int j = osuttuLaiva[2]; j <= osuttuLaiva[3]; j++){

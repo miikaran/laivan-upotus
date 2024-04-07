@@ -20,45 +20,40 @@ public class Menu {
       System.out.println("║" + Vakiot.ANSI_PURPLE + "            4 => Poistu" + Vakiot.ANSI_CYAN + "                 ║");
       System.out.println(Vakiot.ANSI_RESET + Vakiot.ANSI_BOLD + "╚════════════════════════════════════════╝" + Vakiot.ANSI_RESET);
       System.out.println("");
-      
-      
-      
-      
 
-        while(true){
-          try{
+      while(true){
+        try{
+          System.out.print(Vakiot.ANSI_BOLD + "\n=> " + Vakiot.ANSI_RESET);
+          int kayttajanSyote = scanner.nextInt();
+          scanner.nextLine();
 
-            System.out.print(Vakiot.ANSI_BOLD + "\n=> " + Vakiot.ANSI_RESET);
-            int kayttajanSyote = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (kayttajanSyote){
-              case 1:
-                Peli.peliMuoto = Vakiot.pelimuodot[0];
-                Menu.luoPelaajat(Peli.peliMuoto);
-                break;         
-              case 2:
-                Peli.peliMuoto = Vakiot.pelimuodot[1];
-                Menu.luoPelaajat(Peli.peliMuoto);
-                break;
-              case 3:
-                naytaSaannot();
-                break;
-              case 4:
-                System.out.println("Suljetaan ohjelma...");
-                System.exit(0);
-            }
-            if(kayttajanSyote > 4){
-              System.out.println("Valitse yllä olevista vaihtoehdoista...");
-              continue;
-            }
-          } catch(Exception e){
-            System.out.println("Yritä uudelleen...");
-            scanner.nextLine();
+          switch (kayttajanSyote){
+            case 1:
+              Peli.peliMuoto = Vakiot.pelimuodot[0];
+              Menu.luoPelaajat(Peli.peliMuoto);
+              break;         
+            case 2:
+              Peli.peliMuoto = Vakiot.pelimuodot[1];
+              Menu.luoPelaajat(Peli.peliMuoto);
+              break;
+            case 3:
+              naytaSaannot();
+              break;
+            case 4:
+              System.out.println("Suljetaan ohjelma...");
+              System.exit(0);
+          }
+          if(kayttajanSyote > 4){
+            System.out.println("Valitse yllä olevista vaihtoehdoista...");
             continue;
           }
-          break;
+        } catch(Exception e){
+          System.out.println("Yritä uudelleen...");
+          scanner.nextLine();
+          continue;
         }
+        break;
+      }
     }
 
     /**
@@ -69,9 +64,7 @@ public class Menu {
       if(pelimuoto.equals("kaveri")){
           for(int i = 0; i < Peli.pelaajat.length; i++){
               while(true){
-
                 System.out.print(Vakiot.ANSI_BOLD + "\nPelaaja " + (i+1) + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "\nAseta nimesi: \n=> " + Vakiot.ANSI_RESET);
-
                 try{
                   String syote = scanner.next();
                   Peli.pelaajat[i] = syote;
@@ -82,9 +75,7 @@ public class Menu {
                   continue;
                 }
             }
-
         }
-
       } else{
           Peli.pelaajat[0] = "Pelaaja";
           Peli.pelaajat[1] = "Tietokone";

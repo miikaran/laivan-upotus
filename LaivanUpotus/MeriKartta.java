@@ -15,8 +15,7 @@ public class MeriKartta {
                     kartta[i][j] = Vakiot.merkit[0]; 
                 }
             }
-            Peli.pelaajienKartat.put(pelaaja, kartta);
-            
+            Peli.pelaajienKartat.put(pelaaja, kartta);    
             /**
              * Kopioidaan kokonaan uusi array muistiinpanoille, koska jos asetetaan muuttuja kartta
              * suoraan pelaajien muistiinpano kartaksi, niin muutokset joita pelaajan oikeaan karttaan
@@ -36,10 +35,9 @@ public class MeriKartta {
     */
     public static void tulostaKartta(String pelaaja) {                     
         String[][] kartta = Peli.pelaajienKartat.get(pelaaja);
-
         int korkeus = kartta.length;
         int leveys = kartta[0].length;
-
+        
         System.out.print("\n\n   ");
         for (int j = 0; j < leveys; j++) {
             System.out.printf(" %c  ", 'A' + j);
