@@ -10,14 +10,20 @@ public class Menu {
     */
     public static void naytaMenu(){
       
-        System.out.println("");
-        System.out.println("\n" + Vakiot.ANSI_YELLOW + " Tervetuloa laivanupotukseen!" + Vakiot.ANSI_RESET);
-        System.out.println(Vakiot.ANSI_BOLD + " Valitse pelimuoto:" + Vakiot.ANSI_RESET);
-        System.out.println(Vakiot.ANSI_PURPLE + "\n 1 => Yksinpeli");
-        System.out.println(" 2 => Moninpeli");
-        System.out.println(" 3 => Säännöt");
-        System.out.println(" 4 => Poistu" + Vakiot.ANSI_RESET);
-        System.out.println("\n" + Vakiot.ANSI_BOLD + "_______________________" + Vakiot.ANSI_RESET);
+      System.out.println("");
+      System.out.println(Vakiot.ANSI_CYAN + "╔════════════════════════════════════════╗"); 
+      System.out.println("║" + Vakiot.ANSI_RESET + Vakiot.ANSI_YELLOW + "      TERVETULOA LAIVANUPOTUKSEEN!      " + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "║");
+      System.out.println("║" + Vakiot.ANSI_RESET + Vakiot.ANSI_BOLD + "           VALITSE PELIMUOTO            " + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            1 => Yksinpeli" + Vakiot.ANSI_CYAN + "              ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            2 => Moninpeli" + Vakiot.ANSI_CYAN + "              ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            3 => Säännöt" + Vakiot.ANSI_CYAN + "                ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            4 => Poistu" + Vakiot.ANSI_CYAN + "                 ║");
+      System.out.println(Vakiot.ANSI_RESET + Vakiot.ANSI_BOLD + "╚════════════════════════════════════════╝" + Vakiot.ANSI_RESET);
+      System.out.println("");
+      
+      
+      
+      
 
         while(true){
           try{
