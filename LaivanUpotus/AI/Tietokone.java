@@ -25,51 +25,46 @@ public class Tietokone {
      * arvaustaan esim. hakemalla laivan sijainnin vastustajan kartasta, koska se olisi ns "huijausta".
      */
     public static int[] laskeParasArvaus(String[][] kartta, String pelaaja, String vastustaja){
-        while(true){
-            int[] arvaus = new int[2];              // Alustetaan tietokoneen arvaus
-            boolean edellinenArvausOsui = false;    // Osuiko edellisen kierroksen arvaus
+        int[] arvaus = new int[2];              // Alustetaan tietokoneen arvaus
+        boolean edellinenArvausOsui = false;    // Osuiko edellisen kierroksen arvaus
 
-            // Jos ei ole ensimmäinen arvaus, niin tarkistetaan osuiko aikaisempi arvaus. 
-            edellinenArvausOsui = arvaukset > 0 ? osukoEdellinen(kartta) : false;
-            // Haetaan mahdolliset arvaukset kartalta.
-            haeMahdollisetArvaukset(kartta);
-    
-            if(jahtaa){
-                 // Jos tietokone on osunut laivaan ja aikaisempi arvaus osui,   
-                 // haetaan koordinaatit joissa loppuosa laivasta voisi olla.      
-                if(edellinenArvausOsui){
-                    haeKohdeKoordinaatit(edellinenArvaus);
-                }
-                System.out.println("Kohde koordinaattien koko: " + kohdeKoordinaatit.size());
-                if(jahtaamisArvaukset > 1 && edellinenArvausOsui){
-                    System.out.println("Jahtaa" + jahtaamisOikeaSuunta);
-                    arvaus = kohdeKoordinaatit.get(jahtaamisOikeaSuunta);
-                } 
-                else if(jahtaamisArvaukset > 1 && !edellinenArvausOsui){
-                    int jahtaamisAloitusKierros = arvaukset-jahtaamisArvaukset-1;
-                    int aloitusjalkeen = arvaukset-jahtaamisArvaukset;
-                    int[] alkuArvaus = tehdytArvaukset.get(jahtaamisAloitusKierros);
-                    haeKohdeKoordinaatit(alkuArvaus);
-                    arvaus = palautaVasta(kohdeKoordinaatit, tehdytArvaukset.get(aloitusjalkeen)); 
-                } 
-                else {
-                    // Asetetaan arvaukseksi random suunta kohdekoordinaateista.
-                    arvaus = arvoRandomSuunta();
-                } 
-            } else {        
-                // Jos tietokone ei ole osunut laivaan, haetaan satunnaisesti arvaus.
-                arvaus = mahdollisetArvaukset.get(random.nextInt(mahdollisetArvaukset.size()-1));
-            }  
-            if(tehdytArvaukset.contains(arvaus)){
-                continue;
-            } else {
-                arvaukset++;
-                tehdytArvaukset.add(arvaus);
-                return arvaus;  
-            }   
-        }
+        // Jos ei ole ensimmäinen arvaus, niin tarkistetaan osuiko aikaisempi arvaus. 
+        edellinenArvausOsui = arvaukset > 0 ? osukoEdellinen(kartta) : false;
+        // Haetaan mahdolliset arvaukset kartalta.
+        haeMahdollisetArvaukset(kartta);
 
+        if(jahtaa){
+            // Jos tietokone on osunut laivaan ja aikaisempi arvaus osui,   
+            // haetaan koordinaatit joissa loppuosa laivasta voisi olla.      
+            if(edellinenArvausOsui){
+                haeKohdeKoordinaatit(edellinenArvaus);
+            }
+            // Jos jahtaamisen aikana tehtyjä arvauksia yli 1, niin haetaan loputkin samasta suunnasta
+            if(jahtaamisArvaukset > 1 && edellinenArvausOsui){
+                arvaus = kohdeKoordinaatit.get(jahtaamisOikeaSuunta);
+            } 
+            // Mikäli samasta suunnasta ei löydy enää laivan osia, otetaan jahtaamis 
+            // kierroksen alkupäästä vastapäisestä suunnasta loput laivan osat.
+            else if(jahtaamisArvaukset > 1 && !edellinenArvausOsui){
+                int jahtaamisAloitusKierros = arvaukset-jahtaamisArvaukset-1;
+                int jahtaamisToinenKierros = arvaukset-jahtaamisArvaukset;
+                int[] jahtaamisAlkuArvaus = tehdytArvaukset.get(jahtaamisAloitusKierros);
+                haeKohdeKoordinaatit(jahtaamisAlkuArvaus);
+                arvaus = palautaVastapainenSuunta(kohdeKoordinaatit, tehdytArvaukset.get(jahtaamisToinenKierros)); 
+            } 
+            else {
+                // Asetetaan arvaukseksi random suunta kohdekoordinaateista.
+                arvaus = arvoRandomSuunta();
+            } 
+        } else {        
+            // Jos tietokone ei ole osunut laivaan, haetaan satunnaisesti arvaus.
+            arvaus = mahdollisetArvaukset.get(random.nextInt(mahdollisetArvaukset.size()-1));
+        }     
+        arvaukset++;
+        tehdytArvaukset.add(arvaus);
+        return arvaus;   
     }
+
 
     /**
      * Tarkistetaan osuiko tietokoneen edellisellä vuorolla tekemä arvaus.
@@ -110,19 +105,6 @@ public class Tietokone {
         kohdeKoordinaatit.add(new int[]{arvaus[0]-1, arvaus[1]});   // Ylös
         kohdeKoordinaatit.add(new int[]{arvaus[0],   arvaus[1]+1}); // Oikea
         kohdeKoordinaatit.add(new int[]{arvaus[0],   arvaus[1]-1}); // Vasen
-
-        // Käydään kohde koordinaatit läpi
-        for(int i = 0; i < kohdeKoordinaatit.size(); i++){
-            int[] koordinaatti = kohdeKoordinaatit.get(i);
-            if((koordinaatti[0] > 9 || koordinaatti[0] < 0) || (koordinaatti[1] > 9 || koordinaatti[1] < 0)){
-                // Jos koordinaatin rivi yli rajojen => poista taulukosta
-                kohdeKoordinaatit.remove(i);
-                i--;
-            }
-        }
-        for(int[] k : kohdeKoordinaatit){
-            System.out.println(Arrays.toString(k));
-        }
     }
 
     /** 
@@ -138,7 +120,6 @@ public class Tietokone {
                     continue;
                 }   
                 jahtaamisOikeaSuunta = randomArvausSuunta;
-                System.out.println("Jahtaamissuunta" + jahtaamisOikeaSuunta);
                 break;
             } catch(IllegalArgumentException iae){
                 continue;
@@ -147,21 +128,35 @@ public class Tietokone {
         return arvaus;
     }
 
-    public static int[] palautaVasta(List<int[]> directions, int[] direction){
+    /**
+     * Tällä metodilla palautetaan jahtaamisen alkupään vastapäinen suunta, kun samasta sunnasta
+     * ei enää löydy laivoja ja laiva ei ole vielä uponnut.
+     */
+    public static int[] palautaVastapainenSuunta(List<int[]> koordinaatit, int[] koordinaatti){
         
-        if (Arrays.equals(direction, directions.get(0))) {
+        int[] vastaKoordinaatit = {};
+
+        // Jos suunta alhaalla => ylös
+        if (Arrays.equals(koordinaatti, koordinaatit.get(0))) {
             jahtaamisOikeaSuunta = 1;
-            return directions.get(1);
-        } else if (Arrays.equals(direction, directions.get(1))) {
+            vastaKoordinaatit =  koordinaatit.get(1);
+
+        // Jos suunta ylhäällä => alas     
+        } else if (Arrays.equals(koordinaatti, koordinaatit.get(1))) {
             jahtaamisOikeaSuunta = 0;
-            return directions.get(0);
-        } else if (Arrays.equals(direction, directions.get(2))) {
+            vastaKoordinaatit =  koordinaatit.get(0);
+
+        // Jos suunta oikea => vasen
+        } else if (Arrays.equals(koordinaatti, koordinaatit.get(2))) {
             jahtaamisOikeaSuunta = 2;
-            return directions.get(3);
-        } else if (Arrays.equals(direction, directions.get(3))) {
+            vastaKoordinaatit =  koordinaatit.get(3);
+        
+        // Jos suunta vasen => oikea
+        } else if (Arrays.equals(koordinaatti, koordinaatit.get(3))) {
             jahtaamisOikeaSuunta = 3;
-            return directions.get(2);
-        }      
-        return null; 
+            vastaKoordinaatit =  koordinaatit.get(2);
+        }
+        // Jos mikään ei matchaa => {}
+        return vastaKoordinaatit; 
     }
 }

@@ -42,8 +42,8 @@ public class Peli {
 
             // Jokaisella kierroksella suoritettavat metodit.
             pelaajaHyokkaa(vastustaja, pelaaja);
-            tarkistaVoitto(pelaaja, vastustaja);
-            MeriKartta.tulostaKartta(pelaaja, "muistiinpano");
+            tarkistaVoitto(pelaaja, vastustaja);     
+            MeriKartta.tulostaKartta(pelaaja, "muistiinpano");     
             vuoro = (vuoro + 1) % 2; // Vaihdetaan vuoroa
         }         
     }
@@ -72,11 +72,11 @@ public class Peli {
                     sarake = koordinaatit[1];
                 }
             } catch(Exception e){
-                System.out.println("Ongelma koordinaatin syötteessä..");
+                if(!pelaaja.equals("Tietokone")){
+                    System.out.println("Ongelma koordinaatin syötteessä..");
+                }
             }
 
-            System.out.println(rivi);
-            System.out.println(sarake);
             // Haetaan vastustajan kartta ja laivat.
             String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
             int[][] vastustajanLaivat = pelaajienLaivat.get(vastustaja);
@@ -109,7 +109,9 @@ public class Peli {
                         pelaajanMuistiinpanot[rivi][sarake] = Vakiot.merkit[3];
                     }
                 } catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Et voi muokata yli rajojen meneviä alkioita...");
+                    if(!pelaaja.equals("Tietokone")){
+                        System.out.println("Et voi muokata yli rajojen meneviä alkioita...");
+                    }
                 }
             }
             break;  
@@ -144,7 +146,9 @@ public class Peli {
                 return osuttuLaiva;
             }
         } catch (Exception e){
-            System.out.println("\nJotain meni pieleen...");
+            if(!pelaajat[vuoro].equals("Tietokone")){
+                System.out.println("\nJotain meni pieleen...");
+            }
         }
         return new int[0];
     }
