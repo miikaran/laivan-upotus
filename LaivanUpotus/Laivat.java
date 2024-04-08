@@ -13,6 +13,7 @@ public class Laivat {
     public static void kysyLaivat() {
         // Haetaan jokaiselta pelaajalta kartta ja alustetaan laivakoordinaatit.
         for (String pelaaja : Peli.pelaajat) {
+            System.out.println("\n\n");
             int[][] laivaKoordinaatit = new int[Vakiot.laivaMaara][4];
             String[][] kartta = Peli.pelaajienKartat.get(pelaaja);      
             // Haetaan jokaiselle laivalle sen koko ja nimi
