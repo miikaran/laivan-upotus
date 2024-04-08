@@ -21,8 +21,8 @@ public class Laivat {
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
                 while (true) { // Pyydetään käyttäjiltä koordinaatit laivalle ja asetetaan karttaan.     
-                    System.out.println("\n" + pelaaja + "\nAseta oman laivan koordinaatit");
-                    System.out.print("Laiva: " + laiva + " -> Koko: " + koko + "\n=> ");
+                    System.out.println("\n" + Vakiot.ANSI_BOLD + pelaaja + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "\nAseta oman laivan koordinaatit" + Vakiot.ANSI_RESET);
+                    System.out.print(Vakiot.ANSI_BOLD + "Laiva: " + Vakiot.ANSI_RESET + laiva + Vakiot.ANSI_BOLD + " -> Koko: " + Vakiot.ANSI_RESET + koko + "\n=> ");
                     // Luodaan oma taulukko koordinaateille.
                     String[] koordinaatit = pyydaKoordinaatteja(kartta, koko, pelaaja);
                     Arrays.sort(koordinaatit);
@@ -70,11 +70,11 @@ public class Laivat {
                            (j > 0 && taulu[j - 1][k].equals("O"))                   ||  // Ylhäällä
                            (j < taulu.length - 1 && taulu[j + 1][k].equals("O")))       // Alhaalla
                         {
-                            System.out.println("\nEt voi laittaa tähän kohtaan laivaa.");
+                            System.out.println(Vakiot.ANSI_RED +"\nEt voi laittaa tähän kohtaan laivaa." + Vakiot.ANSI_RESET);
                             return false;
                         }              
                     } catch (IndexOutOfBoundsException e) { // Käsitellään mahdolliset indeksi probleemat.
-                        System.out.println("Koordinaatit ovat rajojen ulkopuolella.");
+                        System.out.println(Vakiot.ANSI_RED + "Koordinaatit ovat rajojen ulkopuolella." + Vakiot.ANSI_RESET);
                         return false;
                     }
                 }
@@ -82,32 +82,33 @@ public class Laivat {
             // Muita oleellisia koordinaatti validointeja.
             // Vaara määrä koordinaatteja.
             if (koordinaatit.length != 2) {
-                System.out.println("\nSyötä 2 koordinaattia!");
+                System.out.println(Vakiot.ANSI_RED + "\nSyötä 2 koordinaattia!" + Vakiot.ANSI_RESET);
                 return false;
             } 
             // Laiva yritetään asettaa viistoon.
             else if (aloitusRivi != lopetusRivi && aloitusSarake != lopetusSarake) {
-                System.out.println("\nEt voi asettaa laivoja viistoon.");
+                System.out.println(Vakiot.ANSI_RED + "\nEt voi asettaa laivoja viistoon." + Vakiot.ANSI_RESET);
                 return false;
             }  
             // Laivan koko liian suuri.
             else if (lopetusRivi - aloitusRivi + 1 > koko || lopetusSarake - aloitusSarake + 1 > koko) {
-                System.out.println("\nLaivan koko on liian suuri...");
-                System.out.println("Laivan koko on " + koko + ". Syötä koordinaatit uudelleen.");
+                System.out.println(Vakiot.ANSI_RED + "\nLaivan koko on liian suuri...");
+                System.out.println("Laivan koko on " + koko + ". Syötä koordinaatit uudelleen." + Vakiot.ANSI_RESET);
                 return false;
             } 
             //Laivan koko liian pieni
             else if(lopetusRivi - aloitusRivi + 1 < koko && lopetusSarake - aloitusSarake + 1 < koko){
-                System.out.println("\nLaivan koko on liian pieni...");
-                System.out.println("Laivan koko on " + koko + ". Syötä koordinaatit uudelleen.");
+                System.out.println(Vakiot.ANSI_RED + "\nLaivan koko on liian pieni...");
+                System.out.println("Laivan koko on " + koko + ". Syötä koordinaatit uudelleen." + Vakiot.ANSI_RESET);
                 return false;
             }
             return true;
 
         } catch (Exception e) { // Käsitellään myös muut mahdolliset poikkeukset.
-            System.out.println("\nVirheellinen koordinaatti. Yritä uudelleen.");
+            System.out.println(Vakiot.ANSI_RED + "\nVirheellinen koordinaatti. Yritä uudelleen." + Vakiot.ANSI_RESET);
             return false;
         }
+        
     }
 
     /**

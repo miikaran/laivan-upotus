@@ -45,12 +45,16 @@ public class MeriKartta {
 
         System.out.print("\n\n   ");
         for (int j = 0; j < leveys; j++) {
+            System.out.print(Vakiot.ANSI_BOLD + Vakiot.ANSI_CYAN);
             System.out.printf(" %c  ", 'A' + j);
+            System.out.print(Vakiot.ANSI_RESET);
         }
         System.out.println("\n  ┌" + "───".repeat(13) + "┐");
 
         for (int i = 0; i < korkeus; i++) {
+            System.out.print(Vakiot.ANSI_BOLD);
             System.out.printf(" %d│", i);
+            System.out.print(Vakiot.ANSI_RESET);
             tulostaRivi(kartta[i]);
             System.out.println("│");
             if (i < korkeus - 1) {

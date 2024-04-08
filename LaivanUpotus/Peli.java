@@ -32,14 +32,12 @@ public class Peli {
      * Pelaaja aloittavat laivojen upotuksen.
     */
     public static void aloitaTaistelu(){
-        System.out.println("\n\n\n\nTaistelu alkaa!");
-
+        System.out.println(Vakiot.ANSI_BOLD + "\n\n\n\nTAISTELU ALKAA!" + Vakiot.ANSI_RESET);
         while(peliPaalla){ // Niin kauan kun peliPaalla: true => pyöritetään taistelusilmukkaa.
-
             String pelaaja = pelaajat[vuoro];                                                       
             String vastustaja = pelaajat[(vuoro + 1) % 2];
-            System.out.println("\n" +pelaaja + ":n arvaus" + " vuoro" );
-
+            System.out.println("\n" + Vakiot.ANSI_PURPLE + Vakiot.ANSI_BOLD + pelaaja + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + " arvaus vuoro" + Vakiot.ANSI_RESET);
+            
             // Jokaisella kierroksella suoritettavat metodit.
             pelaajaHyokkaa(vastustaja, pelaaja);
             tarkistaVoitto(pelaaja, vastustaja);     
@@ -55,11 +53,9 @@ public class Peli {
      */
     public static void pelaajaHyokkaa(String vastustaja, String pelaaja){
         while(true){
- 
             int rivi = 0;   // Arvaus rivi
             int sarake = 0; // Arvaus sarake
-
-            try{
+            try{ // Otetaan pelaajilta vuoroltaan arvaus koordinaatit.
                 if(!pelaaja.equals("Tietokone")){
                     // Otetaan käyttäjälta koordinaatti.
                     String koordinaatti = scanner.next().toUpperCase();
@@ -100,10 +96,10 @@ public class Peli {
                         LaivanUpotus.AI.Tietokone.jahtaamisArvaukset = 0;
                         LaivanUpotus.AI.Tietokone.kohdeKoordinaatit.clear();
                     }
-                    System.out.println("Uppos!!!!!!!!!! BOOOOOOOOOOOM.");
+                    System.out.println(Vakiot.ANSI_BOLD + Vakiot.ANSI_CYAN + pelaaja + Vakiot.ANSI_RESET + " UPOTTI VASTUSTAJAN LAIVAN");
                 }
             } else {
-                System.out.println("\nOhi");
+                System.out.println(Vakiot.ANSI_BOLD + Vakiot.ANSI_RED + "\nHUTI" + Vakiot.ANSI_RESET);
                 try{
                     if(!pelaajanMuistiinpanot[rivi][sarake].equals(Vakiot.merkit[3]) && !pelaajanMuistiinpanot[rivi][sarake].equals(Vakiot.merkit[2]) ){
                         pelaajanMuistiinpanot[rivi][sarake] = Vakiot.merkit[3];
@@ -126,7 +122,7 @@ public class Peli {
         try{
             if(vastustajanKartta[rivi][sarake].equals(Vakiot.merkit[1])){
                 // Jos osui merkitään se vastustajan karttaan.
-                System.out.println("\nRäjähdyssss! Osuit Laivaan!");
+                System.out.println(Vakiot.ANSI_BOLD + Vakiot.ANSI_CYAN + "\nRÄJÄHDYSS!!!" + Vakiot.ANSI_RESET + " OSUIT LAIVAAN");
                 vastustajanKartta[rivi][sarake] = Vakiot.merkit[2];     
                 muistiinPanot[rivi][sarake] = Vakiot.merkit[2];     
 
@@ -192,7 +188,7 @@ public class Peli {
             }
         }
         if(voitto){ // Mikäli voittaja selvillä peli loppuu.
-            System.out.println("\nPeli loppui.\n" + "Voittaja on: " + pelaaja);
+            System.out.println(Vakiot.ANSI_BOLD + "\nPeli loppui.\n" + Vakiot.ANSI_RESET + Vakiot.ANSI_GREEN +  "Voittaja on: " + Vakiot.ANSI_BOLD + pelaaja + Vakiot.ANSI_RESET);
             voittaja = pelaaja;
             peliPaalla = false;
         }

@@ -7,9 +7,9 @@ import java.util.Random;
 
 public class Tietokone {
 
-    public static Random random = new Random();
-    public static int arvaukset = 0;                        
-    public static boolean jahtaa = false;
+    public static Random random = new Random();                      
+    public static int arvaukset = 0;   
+    public static boolean jahtaa = false;                                   
     public static int jahtaamisArvaukset = 0;    
     public static int[] edellinenArvaus = new int[2];
     public static int jahtaamisOikeaSuunta; 
@@ -31,8 +31,8 @@ public class Tietokone {
         // Jos ei ole ensimmäinen arvaus, niin tarkistetaan osuiko aikaisempi arvaus. 
         edellinenArvausOsui = arvaukset > 0 ? osukoEdellinen(kartta) : false;
         // Haetaan mahdolliset arvaukset kartalta.
-        haeMahdollisetArvaukset(kartta);
-
+        haeJarkevatArvaukset(kartta);
+      
         if(jahtaa){
             // Jos tietokone on osunut laivaan ja aikaisempi arvaus osui,   
             // haetaan koordinaatit joissa loppuosa laivasta voisi olla.      
@@ -59,10 +59,10 @@ public class Tietokone {
         } else {        
             // Jos tietokone ei ole osunut laivaan, haetaan satunnaisesti arvaus.
             arvaus = mahdollisetArvaukset.get(random.nextInt(mahdollisetArvaukset.size()-1));
-        }     
+        }
         arvaukset++;
         tehdytArvaukset.add(arvaus);
-        return arvaus;   
+        return arvaus;  
     }
 
 
@@ -83,21 +83,20 @@ public class Tietokone {
     /**
      * Haetaan tietokoneen muistiinpanokartasta kaikki mahdolliset arvaukset
      */
-    private static void haeMahdollisetArvaukset(String[][] kartta){
+    private static void haeJarkevatArvaukset(String[][] kartta){
+        mahdollisetArvaukset.clear();
         for(int i = 0; i < kartta.length; i++){
             for(int j = 0; j < kartta.length; j++){
-                // Jos kartan alkio sisältää merkin "~" => 
-                // lisätään mahdollisiin arvauksiin.
+                // Jos kartan alkio sisältää merkin "~" => lisätään mahdollisiin arvauksiin.
                 if(kartta[i][j].equals("~")){     
-                    mahdollisetArvaukset.add(new int[]{i, j});    
+                    mahdollisetArvaukset.add(new int[]{i, j});      
                 }
             }
         }
     }
 
     /**
-     * Haetaan arvauksen ympäriltä kohde koordinaatit, jossa osutun laivan
-     * loppuosa voisi olla, ja poistetaan yli rajojen menevät koordinaatit.
+     * Haetaan arvauksen ympäriltä kohde koordinaatit, jossa osutun laivan loppuosa voisi olla.
      */
     private static void haeKohdeKoordinaatit(int[] arvaus){
         kohdeKoordinaatit.clear();
@@ -108,12 +107,12 @@ public class Tietokone {
     }
 
     /** 
-     * Arvotaan random suunta kohdekoordinaateista josta lähdetään arvailemaan.
+     * Arvotaan random suunta kohdekoordinaateista, josta lähdetään arvailemaan.
      */
     private static int[] arvoRandomSuunta(){
         int[] arvaus = new int[2];
         while(true){
-            try{
+            try{ // Suunta arvotaan kohdekoordinaattien koon mukaan (4).
                 int randomArvausSuunta = random.nextInt(kohdeKoordinaatit.size());     
                 arvaus = kohdeKoordinaatit.get(randomArvausSuunta);
                 if(arvaus.length == 0){
