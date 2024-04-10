@@ -148,19 +148,14 @@ public class Tietokone {
 
         // Jos suunta oikea => vasen
         } else if (Arrays.equals(koordinaatti, koordinaatit.get(2))) {
-            jahtaamisOikeaSuunta = 2;
+            jahtaamisOikeaSuunta = 3;
             vastaKoordinaatit =  koordinaatit.get(3);
         
         // Jos suunta vasen => oikea
         } else if (Arrays.equals(koordinaatti, koordinaatit.get(3))) {
-            jahtaamisOikeaSuunta = 3;
+            jahtaamisOikeaSuunta = 2;
             vastaKoordinaatit =  koordinaatit.get(2);
         }
-        System.out.println("Koordinaatti" + Arrays.toString(koordinaatti));
-        for(int[] k : koordinaatit){
-            System.out.println(Arrays.toString(k));
-        }
-        System.out.println(Arrays.toString(vastaKoordinaatit));
         // Jos mikään ei matchaa => {}
         return vastaKoordinaatit; 
     }
