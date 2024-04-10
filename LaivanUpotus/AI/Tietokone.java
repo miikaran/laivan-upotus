@@ -113,11 +113,13 @@ public class Tietokone {
         int[] arvaus = new int[2];
         while(true){
             try{ // Suunta arvotaan kohdekoordinaattien koon mukaan (4).
-                int randomArvausSuunta = random.nextInt(kohdeKoordinaatit.size());     
+                int randomArvausSuunta = random.nextInt(kohdeKoordinaatit.size());   
                 arvaus = kohdeKoordinaatit.get(randomArvausSuunta);
-                if(arvaus.length == 0){
+                boolean onYliRajojen = arvaus[0] > 9 || arvaus[0] < 0 || arvaus[1] > 9 || arvaus[1] < 0;
+                boolean onArvattuJo = tehdytArvaukset.contains(arvaus);
+                if(arvaus.length == 0 || onYliRajojen || onArvattuJo){
                     continue;
-                }   
+                }
                 jahtaamisOikeaSuunta = randomArvausSuunta;
                 break;
             } catch(IllegalArgumentException iae){
@@ -132,7 +134,6 @@ public class Tietokone {
      * ei enää löydy laivoja ja laiva ei ole vielä uponnut.
      */
     public static int[] palautaVastapainenSuunta(List<int[]> koordinaatit, int[] koordinaatti){
-        
         int[] vastaKoordinaatit = {};
 
         // Jos suunta alhaalla => ylös
@@ -155,6 +156,11 @@ public class Tietokone {
             jahtaamisOikeaSuunta = 3;
             vastaKoordinaatit =  koordinaatit.get(2);
         }
+        System.out.println("Koordinaatti" + Arrays.toString(koordinaatti));
+        for(int[] k : koordinaatit){
+            System.out.println(Arrays.toString(k));
+        }
+        System.out.println(Arrays.toString(vastaKoordinaatit));
         // Jos mikään ei matchaa => {}
         return vastaKoordinaatit; 
     }

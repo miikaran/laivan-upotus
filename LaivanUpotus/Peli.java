@@ -72,7 +72,6 @@ public class Peli {
                     System.out.println("Ongelma koordinaatin syötteessä..");
                 }
             }
-
             // Haetaan vastustajan kartta ja laivat.
             String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
             int[][] vastustajanLaivat = pelaajienLaivat.get(vastustaja);
