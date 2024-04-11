@@ -6,6 +6,7 @@
 
 
 # TODO
+- Kun peli loppuu, mahdollisuus aloittaa peli uudelleen.
 - Poista erilliset scannnerit tiedostoista ja hae jokaiseen yhdestä tiedostosta.
 - for luuppien indeksi arvojen muuttaminen esim rivi ja sarake
 - try catchien lisääminen ja custom poikkeuksien luominen
