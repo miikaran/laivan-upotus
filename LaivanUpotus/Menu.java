@@ -9,15 +9,20 @@ public class Menu {
      * Näytetään menu, sekä asetetaan käyttäjän valitsema pelimuoto.
     */
     public static void naytaMenu(){
-      
-      System.out.println("");
+
+      System.out.println("\n\n\n\n");
+      System.out.println(Vakiot.ANSI_BOLD + Vakiot.ANSI_BLUE + "                     __/___");
+      System.out.println("              _____/______|");
+      System.out.println("      _______/______\\_______\\_____");
+      System.out.println("      \\              < < <       |");
+      System.out.println(" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + Vakiot.ANSI_RESET);
       System.out.println(Vakiot.ANSI_CYAN + "╔════════════════════════════════════════╗"); 
       System.out.println("║" + Vakiot.ANSI_RESET + Vakiot.ANSI_YELLOW + "      TERVETULOA LAIVANUPOTUKSEEN!      " + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "║");
       System.out.println("║" + Vakiot.ANSI_RESET + Vakiot.ANSI_BOLD + "           VALITSE PELIMUOTO            " + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "║");
-      System.out.println("║" + Vakiot.ANSI_PURPLE + "            1 => Yksinpeli" + Vakiot.ANSI_CYAN + "              ║");
-      System.out.println("║" + Vakiot.ANSI_PURPLE + "            2 => Moninpeli" + Vakiot.ANSI_CYAN + "              ║");
-      System.out.println("║" + Vakiot.ANSI_PURPLE + "            3 => Säännöt" + Vakiot.ANSI_CYAN + "                ║");
-      System.out.println("║" + Vakiot.ANSI_PURPLE + "            4 => Poistu" + Vakiot.ANSI_CYAN + "                 ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "1 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Yksinpeli" + Vakiot.ANSI_CYAN + "              ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "2 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Moninpeli" + Vakiot.ANSI_CYAN + "              ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "3 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Säännöt" + Vakiot.ANSI_CYAN + "                ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "4 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Poistu" + Vakiot.ANSI_CYAN + "                 ║");
       System.out.println(Vakiot.ANSI_RESET + Vakiot.ANSI_BOLD + "╚════════════════════════════════════════╝" + Vakiot.ANSI_RESET);
       System.out.println("");
 
