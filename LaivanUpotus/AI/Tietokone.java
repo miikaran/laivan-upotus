@@ -65,7 +65,6 @@ public class Tietokone {
         return arvaus;  
     }
 
-
     /**
      * Tarkistetaan osuiko tietokoneen edellisellä vuorolla tekemä arvaus.
      */
@@ -88,8 +87,9 @@ public class Tietokone {
         for(int i = 0; i < kartta.length; i++){
             for(int j = 0; j < kartta.length; j++){
                 // Jos kartan alkio sisältää merkin "~" => lisätään mahdollisiin arvauksiin.
-                if(kartta[i][j].equals("~")){     
-                    mahdollisetArvaukset.add(new int[]{i, j});      
+                if(kartta[i][j].equals("~")){
+                    mahdollisetArvaukset.add(new int[]{i, j});
+                
                 }
             }
         }

@@ -15,6 +15,7 @@ public class Peli {
     public static HashMap<String, String[][]> pelaajienKartat = new HashMap<String, String[][]>();
     public static HashMap<String, int[][]> pelaajienLaivat = new HashMap<String, int[][]>();
     public static int vuoro = 0;
+    public static int arvaukset = 0;
     public static String voittaja;
     
     /**
@@ -43,7 +44,16 @@ public class Peli {
             tarkistaVoitto(pelaaja, vastustaja);     
             MeriKartta.tulostaKartta(pelaaja, "muistiinpano");     
             vuoro = (vuoro + 1) % 2; // Vaihdetaan vuoroa
-        }         
+            arvaukset++;
+
+            // Mikäli tällä kierroksella peli loppuu, niin tallennetaan pelin tiedot tiedostoon
+            // ja tulostetaan ne näkyviin komentoriville.
+            if(!peliPaalla){
+                TulosTallennus.tallennaTulos(pelaajat, arvaukset, voittaja);
+                TulosTallennus.haeTulokset();
+                
+            }
+        }       
     }
 
     /**
