@@ -7,8 +7,8 @@ public class Vakiot {
      * joiden arvoja ei tarvitse pelin aikana muuttaa ollenkaan.
     */
     public static String sarakeKirjaimet = "ABCDEFGHIJ";
-    public static int rivit = 5;
-    public static int sarakkeet = 5;
+    public static int rivit = 7;
+    public static int sarakkeet = 7;
     public static String[] laivat = {"Sukellusvene", "Hävittäjä", "Risteilijä", "Taistelulaiva", "Lentotukialus"};
     public static int[] laivaKoot = {2,3,4};
     public static int laivaMaara = 3;

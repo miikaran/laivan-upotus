@@ -1,4 +1,5 @@
 package LaivanUpotus;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -33,7 +34,6 @@ public class Peli {
      * Pelaaja aloittavat laivojen upotuksen.
      */
     public static void aloitaTaistelu(){
-
         System.out.println(Vakiot.ANSI_BOLD + "\n\n\n\nTAISTELU ALKAA!" + Vakiot.ANSI_RESET);
 
         while(peliPaalla){ // Niin kauan kun peliPaalla: true => pyöritetään taistelusilmukkaa.
@@ -48,12 +48,12 @@ public class Peli {
             arvaukset++;  
             vuoro = (vuoro + 1) % 2; // Vaihdetaan vuoroa
 
-            // Jos tällä kierroksi peli loppu => tallennetaan pelin tiedot 
-            // tiedostoon ja tulostetaan ne näkyviin komentoriville.
             if(!peliPaalla){
-
+                // Jos tällä kierroksi peli loppu => tallennetaan pelin tiedot 
+                // tiedostoon ja tulostetaan ne näkyviin komentoriville.
                 TulosTallennus.tallennaTulos(pelaajat, arvaukset, voittaja);
                 TulosTallennus.naytaTulokset();
+                pelataankoUusiksi();
                 
             }
         }       
@@ -202,7 +202,7 @@ public class Peli {
      */
     public static boolean upposko(int[] osuttuLaiva, String[][] vastustajanKartta){
         boolean upposko = false;
-        
+
         outerLoop: // Tarkistetaan upposiko laiva arvauksella.
         for(int i = osuttuLaiva[0]; i <= osuttuLaiva[1]; i++){
             for (int j = osuttuLaiva[2]; j <= osuttuLaiva[3]; j++){
@@ -224,7 +224,7 @@ public class Peli {
     /**
      * Tarkistetaan vastustajan kartan tilanne.
      * Voittaja on selvillä jos kartassa ei yhtään laivaa.
-    */
+     */
     public static void tarkistaVoitto(String pelaaja, String vastustaja){
         String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);
         boolean voitto = true;
@@ -248,5 +248,50 @@ public class Peli {
             peliPaalla = false;
 
         }
+    }
+
+    public static void pelataankoUusiksi(){
+        System.out.println(Vakiot.ANSI_BOLD + "\nPelataanko uudelleen vai lopetaanko peli?");
+        System.out.println(Vakiot.ANSI_CYAN + "1 = Uudelleen | 2 = Lopeta" + Vakiot.ANSI_RESET);
+        System.out.print("=> ");
+
+        int kayttajanSyote = scanner.nextInt();
+
+        switch(kayttajanSyote) {
+
+            case 1:
+                alustaPeliMuuttujatUudelleen();
+                main(null);
+                break;
+
+            case 2:
+                System.exit(0);
+
+        }
+    }
+
+    /**
+     * Mikäli pelaaja haluaa pelata uudelleen => asetetaan globaalit muuttujat defaulteiksi.
+     */
+    public static void alustaPeliMuuttujatUudelleen(){                                 
+        peliMuoto = "";                                                         
+        peliPaalla = false;
+        pelaajat = new String[2];
+        pelaajienKartat = new HashMap<String, String[][]>();
+        pelaajienLaivat = new HashMap<String, int[][]>();
+        vuoro = 0;
+        arvaukset = 0;
+        voittaja = "";
+        LaivanUpotus.AI.Tietokone.arvaukset = 0;   
+        LaivanUpotus.AI.Tietokone.jahtaa = false;                                   
+        LaivanUpotus.AI.Tietokone.jahtaamisArvaukset = 0;    
+        LaivanUpotus.AI.Tietokone.edellinenArvaus = new int[2];
+        LaivanUpotus.AI.Tietokone.jahtaamisOikeaSuunta = 0;
+        LaivanUpotus.AI.Tietokone.tehdytArvaukset = new ArrayList<>(); 
+        LaivanUpotus.AI.Tietokone.mahdollisetArvaukset = new ArrayList<>();
+        LaivanUpotus.AI.Tietokone.osututArvaukset = new ArrayList<>();
+        LaivanUpotus.AI.Tietokone.kohdeKoordinaatit = new ArrayList<>();
+        LaivanUpotus.AI.Tietokone.upotetutLaivat = new ArrayList<>();
+
     }
 }

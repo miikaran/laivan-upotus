@@ -132,7 +132,7 @@ public class Tietokone {
                 if(arvaus.length == 0 || onYliRajojen || onArvattuJo){
                     continue;
                 }
-                
+
                 jahtaamisOikeaSuunta = randomArvausSuunta;
                 break;
 
