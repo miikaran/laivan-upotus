@@ -10,11 +10,13 @@ public class MeriKartta {
     public static void luoKartat(){
         for(String pelaaja : Peli.pelaajat){
             String[][] kartta = new String[Vakiot.rivit][Vakiot.sarakkeet];
+
             for(int i = 0; i < Vakiot.rivit; i++){
                 for(int j = 0; j < Vakiot.sarakkeet; j++){ 
                     kartta[i][j] = Vakiot.merkit[0]; 
                 }
             }
+            
             Peli.pelaajienKartat.put(pelaaja, kartta);    
             /**
              * Kopioidaan kokonaan uusi array muistiinpanoille, koska jos asetetaan muuttuja kartta
@@ -39,27 +41,37 @@ public class MeriKartta {
             kartta = Peli.pelaajienKartat.get(pelaaja + "-muistiinpano");
         } else {
             kartta = Peli.pelaajienKartat.get(pelaaja);
-        }                     
+        }    
+
         int korkeus = kartta.length;
         int leveys = kartta[0].length;
 
         System.out.print("\n\n   ");
+
         for (int j = 0; j < leveys; j++) {
+
             System.out.print(Vakiot.ANSI_BOLD + Vakiot.ANSI_CYAN);
             System.out.printf(" %c  ", 'A' + j);
             System.out.print(Vakiot.ANSI_RESET);
+
         }
+
         System.out.println("\n  ┌" + "───".repeat(13) + "┐");
 
         for (int i = 0; i < korkeus; i++) {
+
             System.out.print(Vakiot.ANSI_BOLD);
             System.out.printf(" %d│", i);
             System.out.print(Vakiot.ANSI_RESET);
+
             tulostaRivi(kartta[i]);
+
             System.out.println("│");
+
             if (i < korkeus - 1) {
                 System.out.println("  ├" + "───".repeat(13) + "┤");
             }
+            
         }
         System.out.println("  └" + "───".repeat(13) + "┘");
     }
@@ -69,10 +81,13 @@ public class MeriKartta {
      */
     private static void tulostaRivi(String[] rivi) {
         for (int j = 0; j < rivi.length; j++) {
+
             System.out.printf(" %s ", rivi[j]);
+
             if (j < rivi.length - 1) {
                 System.out.print("│");
             }
+            
         }
     }
 }

@@ -12,22 +12,30 @@ public class Laivat {
     */
     public static void kysyLaivat() {
         // Haetaan jokaiselta pelaajalta kartta ja alustetaan laivakoordinaatit.
-        for (String pelaaja : Peli.pelaajat) {
+        for (String pelaaja : Peli.pelaajat) { 
+            
             System.out.println("\n\n");
+            MeriKartta.tulostaKartta(pelaaja, "kartta");
             int[][] laivaKoordinaatit = new int[Vakiot.laivaMaara][4];
-            String[][] kartta = Peli.pelaajienKartat.get(pelaaja);      
+            String[][] kartta = Peli.pelaajienKartat.get(pelaaja);  
+
             // Haetaan jokaiselle laivalle sen koko ja nimi
             for (int i = 0; i < Vakiot.laivaMaara; i++) {
+
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
+                
                 while (true) { // Pyydetään käyttäjiltä koordinaatit laivalle ja asetetaan karttaan.     
                     System.out.println("\n" + Vakiot.ANSI_BOLD + pelaaja + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "\nAseta oman laivan koordinaatit" + Vakiot.ANSI_RESET);
                     System.out.print(Vakiot.ANSI_BOLD + "Laiva: " + Vakiot.ANSI_RESET + laiva + Vakiot.ANSI_BOLD + " -> Koko: " + Vakiot.ANSI_RESET + koko + "\n=> ");
+                    
                     // Luodaan oma taulukko koordinaateille.
                     String[] koordinaatit = pyydaKoordinaatteja(kartta, koko, pelaaja);
                     Arrays.sort(koordinaatit);
+
                     // Tarkistetaan onko koordinaatit sopivia.
                     if (!validoiKoordinaatit(koordinaatit, kartta, koko, pelaaja)) { continue; } 
+                    
                     // Asetetaan laiva karttaan pelaajan antamiin koordinaatteihin.
                     laivaKoordinaatit[i] = asetaLaivaKoordinaatteihin(koordinaatit, pelaaja, kartta);
                     break;
@@ -55,15 +63,19 @@ public class Laivat {
      */
     private static boolean validoiKoordinaatit(String[] koordinaatit, String[][] taulu, int koko, String pelaaja) {
         try{
+
             // Haetaan koordinaatit joiden välille laiva rakennetaan.
             int aloitusRivi = Integer.parseInt(koordinaatit[0].substring(1));
             int aloitusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));
             int lopetusRivi = Integer.parseInt(koordinaatit[1].substring(1));
             int lopetusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[1].charAt(0));
+
             //Tarkistetaan onko koordinaattien lähellä jo laivaa.   
             for (int j = aloitusRivi; j <= lopetusRivi; j++) {
                 for (int k = aloitusSarake; k <= lopetusSarake; k++) {
+
                     try { // Jos lähellä jo laiva: palautetaan false.
+
                         if (taulu[j][k].equals("O")                                 ||  // Päällä
                            (k > 0 && taulu[j][k - 1].equals("O"))                   ||  // Vasemmalla
                            (k < taulu[0].length - 1 && taulu[j][k + 1].equals("O")) ||  // Oikealla
@@ -72,10 +84,13 @@ public class Laivat {
                         {
                             System.out.println(Vakiot.ANSI_RED +"\nEt voi laittaa tähän kohtaan laivaa." + Vakiot.ANSI_RESET);
                             return false;
-                        }              
+                        }   
+
                     } catch (IndexOutOfBoundsException e) { // Käsitellään mahdolliset indeksi probleemat.
+
                         System.out.println(Vakiot.ANSI_RED + "Koordinaatit ovat rajojen ulkopuolella." + Vakiot.ANSI_RESET);
                         return false;
+                        
                     }
                 }
             }
@@ -120,11 +135,14 @@ public class Laivat {
         int aloitusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));
         int lopetusRivi = Integer.parseInt(koordinaatit[1].substring(1));
         int lopetusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[1].charAt(0));
+
         // Käydään kartta läpi lasketuista koordinaateista.
         for (int i = aloitusRivi; i <= lopetusRivi; i++) {
             for (int j = aloitusSarake; j <= lopetusSarake; j++) {
+
                 // Ja laitetaan laiva jokaiseen koordinaattiin
                 taulu[i][j] = Vakiot.merkit[1];
+                
             }
         }
         int[] laivaKoordinaatit = {aloitusRivi, lopetusRivi, aloitusSarake, lopetusSarake};

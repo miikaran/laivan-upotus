@@ -7,10 +7,10 @@ public class Vakiot {
      * joiden arvoja ei tarvitse pelin aikana muuttaa ollenkaan.
     */
     public static String sarakeKirjaimet = "ABCDEFGHIJ";
-    public static int rivit = 10;
-    public static int sarakkeet = 10;
+    public static int rivit = 5;
+    public static int sarakkeet = 5;
     public static String[] laivat = {"Sukellusvene", "Hävittäjä", "Risteilijä", "Taistelulaiva", "Lentotukialus"};
-    public static int[] laivaKoot = {1,2,3};
+    public static int[] laivaKoot = {2,3,4};
     public static int laivaMaara = 3;
     public static String[] merkit = {"~", "O", "X", "M"};
     public static String[] pelimuodot = {"tietokone", "kaveri", "saannot", "lopeta"};
@@ -22,4 +22,5 @@ public class Vakiot {
     public static final String ANSI_BOLD = "\033[0;1m";
     public static final String ANSI_RED	 = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_BLUE = "\u001B[34m";
 }

@@ -10,7 +10,7 @@ public class Menu {
     */
     public static void naytaMenu(){
 
-      System.out.println("\n\n\n\n");
+      System.out.println("\n\n");
       System.out.println(Vakiot.ANSI_BOLD + Vakiot.ANSI_BLUE + "                     __/___");
       System.out.println("              _____/______|");
       System.out.println("      _______/______\\_______\\_____");
@@ -28,35 +28,46 @@ public class Menu {
 
       while(true){
         try{
+
           System.out.print(Vakiot.ANSI_BOLD + "\n=> " + Vakiot.ANSI_RESET);
           int kayttajanSyote = scanner.nextInt();
           scanner.nextLine();
 
           switch (kayttajanSyote){
-            case 1:
+
+            case 1: // Yksinpeli
               Peli.peliMuoto = Vakiot.pelimuodot[0];
               Menu.luoPelaajat(Peli.peliMuoto);
-              break;         
-            case 2:
+              break;     
+
+            case 2: // Moninpeli
               Peli.peliMuoto = Vakiot.pelimuodot[1];
               Menu.luoPelaajat(Peli.peliMuoto);
               break;
-            case 3:
+
+            case 3: // Säännöt
               naytaSaannot();
               break;
-            case 4:
+
+            case 4: // Lopeta
               System.out.println("Suljetaan ohjelma...");
               System.exit(0);
+
           }
+
           if(kayttajanSyote > 4){
             System.out.println("Valitse yllä olevista vaihtoehdoista...");
             continue;
           }
+          
         } catch(Exception e){
+
           System.out.println("Yritä uudelleen...");
           scanner.nextLine();
           continue;
+
         }
+
         break;
       }
     }
@@ -67,17 +78,23 @@ public class Menu {
      */
     public static void luoPelaajat(String pelimuoto){
       if(pelimuoto.equals("kaveri")){
+
           for(int i = 0; i < Peli.pelaajat.length; i++){
               while(true){
+
                 System.out.print(Vakiot.ANSI_BOLD + "\nPelaaja " + (i+1) + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "\nAseta nimesi: \n=> " + Vakiot.ANSI_RESET);
+                
                 try{
+
                   String syote = scanner.next();
                   Peli.pelaajat[i] = syote;
                   break;
                   
                 } catch(Exception e) {
+
                   System.out.println("Yritä uudelleen...");
                   continue;
+                  
                 }
             }
         }
