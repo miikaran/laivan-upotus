@@ -105,6 +105,7 @@ public class Peli {
 
             //Tarkistetaan osusiko arvaus.
             if(osuttuLaiva.length > 0){
+
                 if(peliMuoto.equals("tietokone") && pelaaja.equals("Tietokone")){
 
                     LaivanUpotus.AI.Tietokone.osututArvaukset.add(0, new int[]{rivi, sarake});
@@ -166,8 +167,10 @@ public class Peli {
                 muistiinPanot[rivi][sarake] = Vakiot.merkit[2];     
 
                 int[] osuttuLaiva = new int[4];
+
                 outerLoop: // Haetaan osuttu laiva vastustajan kartasta.
                 for(int[] laiva : vastustajanLaivat){
+
                     for (int i = laiva[0]; i <= laiva[1]; i++) {  
                         for (int j = laiva[2]; j <= laiva[3]; j++) {   
                              
@@ -199,6 +202,7 @@ public class Peli {
      */
     public static boolean upposko(int[] osuttuLaiva, String[][] vastustajanKartta){
         boolean upposko = false;
+        
         outerLoop: // Tarkistetaan upposiko laiva arvauksella.
         for(int i = osuttuLaiva[0]; i <= osuttuLaiva[1]; i++){
             for (int j = osuttuLaiva[2]; j <= osuttuLaiva[3]; j++){
@@ -242,7 +246,7 @@ public class Peli {
             System.out.println(Vakiot.ANSI_BOLD + "\nPeli loppui.\n" + Vakiot.ANSI_RESET + Vakiot.ANSI_GREEN +  "Voittaja on: " + Vakiot.ANSI_BOLD + pelaaja + Vakiot.ANSI_RESET);
             voittaja = pelaaja;
             peliPaalla = false;
-            
+
         }
     }
 }

@@ -14,6 +14,7 @@ public class TietokoneenLaivat {
         ArrayList<int[]> vapaatKoordinaatit = etsiVapaatKoordinaatit(kartta);
         while (true) {
             try {
+
                 // Arvotaan laivan aloitus ja lopetus- koordinaatit.
                 int[] aloitusKoordinaatti = arvoAloitusKoordinaatti(vapaatKoordinaatit);
                 int[] lopetusKoordinaatti = arvoLopetusKoordinaatti(aloitusKoordinaatti, laivanKoko);
@@ -22,10 +23,9 @@ public class TietokoneenLaivat {
                 String lopetusKoordinaattiString = koordinaattiMerkkijonoksi(lopetusKoordinaatti);
 
                 return new String[]{aloitusKoordinaattiString, lopetusKoordinaattiString};
+                
             // Mikäli tietokoneen generoimat koordinaatit menevät yli kartan rajojen: continue
-            } catch (IndexOutOfBoundsException e) {
-                continue;
-            }
+            } catch (IndexOutOfBoundsException e) { continue; }
         }
     }
 
@@ -34,15 +34,20 @@ public class TietokoneenLaivat {
      */
     private static ArrayList<int[]> etsiVapaatKoordinaatit(String[][] kartta) {
         ArrayList<int[]> vapaatKoordinaatit = new ArrayList<>();
+        
         // Käydään kartta läpi ja etsitään vapaat koordinaatit
         for (int i = 0; i < LaivanUpotus.Vakiot.rivit; i++) {
             for (int j = 0; j < LaivanUpotus.Vakiot.sarakkeet; j++) {
-                // Jos koordinaatissa "~" merkki: vapaa.
+
+                // Jos koordinaatissa "~" merkki => vapaa.
                 if (kartta[i][j].equals(LaivanUpotus.Vakiot.merkit[0])) {
+
                     int[] koordinaatti = {i, j};
                     // Lisätään koordinaatti arraylistaan.
                     vapaatKoordinaatit.add(koordinaatti);
+
                 }
+
             }
         }
         return vapaatKoordinaatit;
@@ -65,7 +70,9 @@ public class TietokoneenLaivat {
         
         // Arvotaan random suunta johon laivaa rakennetaan ja asetetaan lopetus koordinaatti se mukaan.
         int randomSuunta = random.nextInt(4);
+
         switch (randomSuunta) {
+
             case 0: // Oikealle
                 lopetusKoordinaatti = new int[]{aloitusKoordinaatti[0], aloitusKoordinaatti[1] + laivanKoko - 1};
                 break;
@@ -81,6 +88,7 @@ public class TietokoneenLaivat {
             case 3: // Alas
                 lopetusKoordinaatti = new int[]{aloitusKoordinaatti[0] + laivanKoko - 1, aloitusKoordinaatti[1]};
                 break;
+                
         }
         return lopetusKoordinaatti;
     }
