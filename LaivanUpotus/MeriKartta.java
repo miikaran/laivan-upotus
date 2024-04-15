@@ -56,7 +56,7 @@ public class MeriKartta {
 
         }
 
-        System.out.println("\n  ┌" + "───".repeat(13) + "┐");
+        System.out.println("\n  ┌" + "───".repeat(Vakiot.rivit+2) + "┐");
 
         for (int i = 0; i < korkeus; i++) {
 
@@ -69,11 +69,11 @@ public class MeriKartta {
             System.out.println("│");
 
             if (i < korkeus - 1) {
-                System.out.println("  ├" + "───".repeat(13) + "┤");
+                System.out.println("  ├" + "───".repeat(Vakiot.rivit+2) + "┤");
             }
             
         }
-        System.out.println("  └" + "───".repeat(13) + "┘");
+        System.out.println("  └" + "───".repeat(Vakiot.rivit+2) + "┘");
     }
 
     /**

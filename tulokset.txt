@@ -16,3 +16,6 @@
 :p:15-04-2024T16:55 :w:Tietokone :n:Pelaaja :n:Tietokone :a:92
 :p:15-04-2024T16:56 :w:Tietokone :n:Pelaaja :n:Tietokone :a:94
 :p:15-04-2024T16:57 :w:Tietokone :n:Pelaaja :n:Tietokone :a:52
+:p:15-04-2024T17:10 :w:Tietokone :n:Pelaaja :n:Tietokone :a:24
+:p:15-04-2024T17:14 :w:Miika :n:Miika :n:Juuso :a:21
+:p:15-04-2024T17:25 :w:Pelaaja :n:Pelaaja :n:Tietokone :a:67

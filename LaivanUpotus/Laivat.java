@@ -16,16 +16,16 @@ public class Laivat {
         for (String pelaaja : Peli.pelaajat) {       
             System.out.println("\n\n");
 
-            if(!pelaaja.equals("Tietokone")){
-                MeriKartta.tulostaKartta(pelaaja, "kartta");
-            }
-
             int[][] laivaKoordinaatit = new int[Vakiot.laivaMaara][4];
             String[][] kartta = Peli.pelaajienKartat.get(pelaaja);  
 
             // Haetaan jokaiselle laivalle sen koko ja nimi
             for (int i = 0; i < Vakiot.laivaMaara; i++) {
 
+                if(!pelaaja.equals("Tietokone")){
+                    MeriKartta.tulostaKartta(pelaaja, "kartta");
+                }
+    
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
 

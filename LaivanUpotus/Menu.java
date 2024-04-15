@@ -129,7 +129,7 @@ public class Menu {
       System.out.println("Pelaajan vuoro päättyy, ja vuoro siirtyy vastustajalle.");
       System.out.println("Peli merkitsee pelaajan muistiinpanokartalle, mihin ruutuun he ovat arvanneet, jotta he eivät ampuisi samaan ruutuun uudelleen.");
       System.out.println("Peli jatkuu, kunnes jompikumpi pelaajista onnistuu upottamaan kaikki vastustajan laivat. Tällöin toinen pelaaja julistetaan voittajaksi.");
-      System.out.println(Vakiot.ANSI_BOLD +"\n Pelimerkit: X => OSUNUT, M => OHI, ~ => EI ARVATTU" + Vakiot.ANSI_RESET);
+      System.out.println(Vakiot.ANSI_BOLD +"\n Pelimerkit: X => OSUNUT, M => OHI, ~ => EI ARVATTU, O => OMA LAIVA" + Vakiot.ANSI_RESET);
       naytaMenu();
   }
   
