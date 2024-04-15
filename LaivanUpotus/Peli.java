@@ -49,10 +49,10 @@ public class Peli {
             vuoro = (vuoro + 1) % 2; // Vaihdetaan vuoroa
 
             if(!peliPaalla){
-                // Jos tällä kierroksi peli loppu => tallennetaan pelin tiedot 
-                // tiedostoon ja tulostetaan ne näkyviin komentoriville.
+                // Jos tällä kierroksella peli loppu => tallennetaan pelin tiedot 
+                // tiedostoon, tulostetaan näytölle ja kysytään pelataanko uudelleen.
                 TulosTallennus.tallennaTulos(pelaajat, arvaukset, voittaja);
-                TulosTallennus.naytaTulokset();
+                TulosTallennus.naytaTulokset("kierros");
                 pelataankoUusiksi();
                 
             }
@@ -250,20 +250,19 @@ public class Peli {
         }
     }
 
+    /**
+     * Kysytään haluaako käyttäjä pelin jälkeen pelata uudelleen.
+     */
     public static void pelataankoUusiksi(){
         System.out.println(Vakiot.ANSI_BOLD + "\nPelataanko uudelleen vai lopetaanko peli?");
         System.out.println(Vakiot.ANSI_CYAN + "1 = Uudelleen | 2 = Lopeta" + Vakiot.ANSI_RESET);
         System.out.print("=> ");
-
         int kayttajanSyote = scanner.nextInt();
-
         switch(kayttajanSyote) {
-
             case 1:
                 alustaPeliMuuttujatUudelleen();
                 main(null);
                 break;
-
             case 2:
                 System.exit(0);
 

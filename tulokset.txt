@@ -1,31 +1,8 @@
-:w:Pelaaja :n:Pelaaja :n:Tietokone :a:25
-:w:Pelaaja :n:Pelaaja :n:Tietokone :a:71
-:w:Pelaaja :n:Pelaaja :n:Tietokone :a:42
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:39
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:56
-:w:Miika :n:Miika :n:Juuso :a:0
-:w:m :n:m :n:r :a:0
-:w:Miika :n:Miika :n:Roope :a:0
-:w:miika :n:miika :n:roope :a:11
-:w:miika :n:miika :n:roope :a:11
-:w:miika :n:miika :n:roope :a:11
-:w:Miika :n:Miika :n:Roope :a:11
-:w:Miika :n:Miika :n:Roope :a:11
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:154
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:50
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:46
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:66
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:84
-:w:Miika :n:Miika :n:Juso :a:23
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:100
-:w:Pelaaja :n:Pelaaja :n:Tietokone :a:29
-:w:Pelaaja :n:Pelaaja :n:Tietokone :a:33
-:w:Pelaaja :n:Pelaaja :n:Tietokone :a:21
-:w:Pelaaja :n:Pelaaja :n:Tietokone :a:21
-:w:Pelaaja :n:Pelaaja :n:Tietokone :a:29
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:46
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:68
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:40
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:120
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:164
-:w:Tietokone :n:Pelaaja :n:Tietokone :a:72
+
+:p:15-04-2024T15:02 :w:Tietokone :n:Pelaaja :n:Tietokone :a:24
+:p:15-04-2024T15:03 :w:Tietokone :n:Pelaaja :n:Tietokone :a:42
+:p:15-04-2024T15:04 :w:Tietokone :n:Pelaaja :n:Tietokone :a:58
+:p:15-04-2024T15:06 :w:Tietokone :n:Pelaaja :n:Tietokone :a:62
+:p:15-04-2024T15:08 :w:Tietokone :n:Pelaaja :n:Tietokone :a:64
+:p:15-04-2024T15:09 :w:Tietokone :n:Pelaaja :n:Tietokone :a:54
+:p:15-04-2024T15:11 :w:Tietokone :n:Pelaaja :n:Tietokone :a:76
