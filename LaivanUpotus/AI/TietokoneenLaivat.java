@@ -14,7 +14,6 @@ public class TietokoneenLaivat {
         ArrayList<int[]> vapaatKoordinaatit = etsiVapaatKoordinaatit(kartta);
         while (true) {
             try {
-
                 // Arvotaan laivan aloitus ja lopetus- koordinaatit.
                 int[] aloitusKoordinaatti = arvoAloitusKoordinaatti(vapaatKoordinaatit);
                 int[] lopetusKoordinaatti = arvoLopetusKoordinaatti(aloitusKoordinaatti, laivanKoko);

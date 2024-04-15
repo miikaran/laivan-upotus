@@ -6,3 +6,7 @@
 :p:15-04-2024T15:09 :w:Tietokone :n:Pelaaja :n:Tietokone :a:54
 :p:15-04-2024T15:11 :w:Tietokone :n:Pelaaja :n:Tietokone :a:76
 :p:15-04-2024T15:33 :w:Tietokone :n:Pelaaja :n:Tietokone :a:36
+:p:15-04-2024T16:33 :w:Tietokone :n:Pelaaja :n:Tietokone :a:92
+:p:15-04-2024T16:42 :w:Tietokone :n:Pelaaja :n:Tietokone :a:48
+:p:15-04-2024T16:43 :w:Tietokone :n:Pelaaja :n:Tietokone :a:62
+:p:15-04-2024T16:44 :w:Miika :n:Miika :n:Roope :a:19

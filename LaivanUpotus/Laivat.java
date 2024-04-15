@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Laivat {
 
     public static final Scanner scanner = new Scanner(System.in);
+    public static boolean tietokoneGeneroiLaivoja = false;
 
     /**
      * Kysyy laivat pelaajilta ja validoi heidän syötteet.
@@ -12,10 +13,13 @@ public class Laivat {
     */
     public static void kysyLaivat() {
         // Haetaan jokaiselta pelaajalta kartta ja alustetaan laivakoordinaatit.
-        for (String pelaaja : Peli.pelaajat) { 
-            
+        for (String pelaaja : Peli.pelaajat) {       
             System.out.println("\n\n");
-            MeriKartta.tulostaKartta(pelaaja, "kartta");
+
+            if(!pelaaja.equals("Tietokone")){
+                MeriKartta.tulostaKartta(pelaaja, "kartta");
+            }
+
             int[][] laivaKoordinaatit = new int[Vakiot.laivaMaara][4];
             String[][] kartta = Peli.pelaajienKartat.get(pelaaja);  
 
@@ -24,11 +28,14 @@ public class Laivat {
 
                 String laiva = Vakiot.laivat[i];
                 int koko = Vakiot.laivaKoot[i];
-                
-                while (true) { // Pyydetään käyttäjiltä koordinaatit laivalle ja asetetaan karttaan.     
-                    System.out.println("\n" + Vakiot.ANSI_BOLD + pelaaja + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "\nAseta oman laivan koordinaatit" + Vakiot.ANSI_RESET);
-                    System.out.print(Vakiot.ANSI_BOLD + "Laiva: " + Vakiot.ANSI_RESET + laiva + Vakiot.ANSI_BOLD + " -> Koko: " + Vakiot.ANSI_RESET + koko + "\n=> ");
-                    
+
+                while (true) { // Pyydetään käyttäjiltä koordinaatit laivalle ja asetetaan karttaan.
+
+                    if(!pelaaja.equals("Tietokone")){
+                        System.out.println("\n" + Vakiot.ANSI_BOLD + pelaaja + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "\nAseta oman laivan koordinaatit" + Vakiot.ANSI_RESET);
+                        System.out.print(Vakiot.ANSI_BOLD + "Laiva: " + Vakiot.ANSI_RESET + laiva + Vakiot.ANSI_BOLD + " -> Koko: " + Vakiot.ANSI_RESET + koko + "\n=> ");
+                    }
+             
                     // Luodaan oma taulukko koordinaateille.
                     String[] koordinaatit = pyydaKoordinaatteja(kartta, koko, pelaaja);
                     Arrays.sort(koordinaatit);
@@ -38,9 +45,15 @@ public class Laivat {
                     
                     // Asetetaan laiva karttaan pelaajan antamiin koordinaatteihin.
                     laivaKoordinaatit[i] = asetaLaivaKoordinaatteihin(koordinaatit, pelaaja, kartta);
+
+                    if(pelaaja.equals("Tietokone")){
+                        System.out.println(Vakiot.ANSI_BOLD + pelaaja + " asetti laivan: " + Vakiot.ANSI_PURPLE + laiva + Vakiot.ANSI_RESET);
+                    }
+
                     break;
                 }
             }
+            tietokoneGeneroiLaivoja = false;
             // Asetetaan pelaajan laivojen koordinaatit sille luotuun hashmappiin
             Peli.pelaajienLaivat.put(pelaaja, laivaKoordinaatit);
         }
@@ -52,6 +65,7 @@ public class Laivat {
     public static String[] pyydaKoordinaatteja(String[][] kartta, int laivanKoko, String pelaaja) {
         // Jos pelimuoto on tietokone vs pelaaja: generoidaan tietokoneelle omat laivat.
         if(pelaaja.equals("Tietokone") && Peli.peliMuoto.equals("tietokone")){
+            tietokoneGeneroiLaivoja = true;
             return LaivanUpotus.AI.TietokoneenLaivat.generoiTietokoneLaivat(kartta, laivanKoko);
         } // Muuten palautetaan käyttäjän input.
         return scanner.nextLine().toUpperCase().split(" ");
@@ -82,45 +96,41 @@ public class Laivat {
                            (j > 0 && taulu[j - 1][k].equals("O"))                   ||  // Ylhäällä
                            (j < taulu.length - 1 && taulu[j + 1][k].equals("O")))       // Alhaalla
                         {
-                            System.out.println(Vakiot.ANSI_RED +"\nEt voi laittaa tähän kohtaan laivaa." + Vakiot.ANSI_RESET);
+                            VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[5]);
                             return false;
                         }   
 
                     } catch (IndexOutOfBoundsException e) { // Käsitellään mahdolliset indeksi probleemat.
-
-                        System.out.println(Vakiot.ANSI_RED + "Koordinaatit ovat rajojen ulkopuolella." + Vakiot.ANSI_RESET);
-                        return false;
-                        
+                        VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[6]);
+                        return false;           
                     }
                 }
             }
             // Muita oleellisia koordinaatti validointeja.
             // Vaara määrä koordinaatteja.
             if (koordinaatit.length != 2) {
-                System.out.println(Vakiot.ANSI_RED + "\nSyötä 2 koordinaattia!" + Vakiot.ANSI_RESET);
+                VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[0]);
                 return false;
             } 
             // Laiva yritetään asettaa viistoon.
             else if (aloitusRivi != lopetusRivi && aloitusSarake != lopetusSarake) {
-                System.out.println(Vakiot.ANSI_RED + "\nEt voi asettaa laivoja viistoon." + Vakiot.ANSI_RESET);
+                VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[1]);
                 return false;
             }  
             // Laivan koko liian suuri.
             else if (lopetusRivi - aloitusRivi + 1 > koko || lopetusSarake - aloitusSarake + 1 > koko) {
-                System.out.println(Vakiot.ANSI_RED + "\nLaivan koko on liian suuri...");
-                System.out.println("Laivan koko on " + koko + ". Syötä koordinaatit uudelleen." + Vakiot.ANSI_RESET);
+                VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[2]);
                 return false;
             } 
             //Laivan koko liian pieni
             else if(lopetusRivi - aloitusRivi + 1 < koko && lopetusSarake - aloitusSarake + 1 < koko){
-                System.out.println(Vakiot.ANSI_RED + "\nLaivan koko on liian pieni...");
-                System.out.println("Laivan koko on " + koko + ". Syötä koordinaatit uudelleen." + Vakiot.ANSI_RESET);
+                VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[3]);
                 return false;
             }
             return true;
 
         } catch (Exception e) { // Käsitellään myös muut mahdolliset poikkeukset.
-            System.out.println(Vakiot.ANSI_RED + "\nVirheellinen koordinaatti. Yritä uudelleen." + Vakiot.ANSI_RESET);
+            VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[4]);
             return false;
         }
         

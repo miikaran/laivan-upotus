@@ -15,6 +15,7 @@ public class Vakiot {
     public static String[] merkit = {"~", "O", "X", "M"};
     public static String[] pelimuodot = {"tietokone", "kaveri", "saannot", "lopeta"};
     public static String tulosTiedostoNimi = "tulokset.txt";
+    public static String[] virheIlmoitukset = {"vaaraMaara", "viistoon", "liianSuuri", "liianPieni", "muutenVirheellinen", "onJoLaiva", "rajojenUlkopuolella", "ongelmaArvauksessa", "yliRajojenArvaus", "ongelmaOsumassa"};
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_YELLOW = "\u001B[33m";

@@ -89,10 +89,7 @@ public class Peli {
                 }
 
             } catch(Exception e){
-                
-                if(!pelaaja.equals("Tietokone")){
-                    System.out.println("Ongelma koordinaatin syötteessä..");
-                }
+                VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[7]);
             }
 
             // Haetaan vastustajan kartta ja laivat.
@@ -140,11 +137,7 @@ public class Peli {
                     }
 
                 } catch (ArrayIndexOutOfBoundsException e){
-                    
-                    if(!pelaaja.equals("Tietokone")){
-                        System.out.println("Et voi muokata yli rajojen meneviä alkioita...");
-                    }
-
+                    VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[8]);
                 }
             }
 
@@ -187,11 +180,7 @@ public class Peli {
             }
 
         } catch (Exception e){
-
-            if(!pelaajat[vuoro].equals("Tietokone")){
-                System.out.println("\nJotain meni pieleen...");
-            }
-            
+           VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[9]);       
         }
         return new int[0];
     }
@@ -242,11 +231,9 @@ public class Peli {
             }
         }
         if(voitto){ // Mikäli voittaja selvillä peli loppuu.
-
             System.out.println(Vakiot.ANSI_BOLD + "\nPeli loppui.\n" + Vakiot.ANSI_RESET + Vakiot.ANSI_GREEN +  "Voittaja on: " + Vakiot.ANSI_BOLD + pelaaja + Vakiot.ANSI_RESET);
             voittaja = pelaaja;
             peliPaalla = false;
-
         }
     }
 
