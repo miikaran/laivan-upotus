@@ -6,13 +6,9 @@
 
 
 # TODO
-- Kun peli loppuu, mahdollisuus aloittaa peli uudelleen.
 - Poista erilliset scannnerit tiedostoista ja hae jokaiseen yhdestä tiedostosta.
 - for luuppien indeksi arvojen muuttaminen esim rivi ja sarake
 - try catchien lisääminen ja custom poikkeuksien luominen
 - käyttäjälle omalle vuorolle toinen kartta näkyviin jossa näkyy osutut laivat yms
 - turhien toistuvuuksie poistaminen. Voisi korvata turhat for luupit esim arrays.stream metodeilla.
 - Custom validointien luominen
-- Tietokone logiikan rakentaminen
-- Kun tietokone arvaa, niin laskee ettei arvaa turhista kohdista. Esim. jos ympärillä on jo Miss, niin tietää että ei oo siinä lähellä.
-- menun inputin validointi
