@@ -10,3 +10,9 @@
 :p:15-04-2024T16:42 :w:Tietokone :n:Pelaaja :n:Tietokone :a:48
 :p:15-04-2024T16:43 :w:Tietokone :n:Pelaaja :n:Tietokone :a:62
 :p:15-04-2024T16:44 :w:Miika :n:Miika :n:Roope :a:19
+:p:15-04-2024T16:48 :w:Tietokone :n:Pelaaja :n:Tietokone :a:54
+:p:15-04-2024T16:50 :w:Tietokone :n:Pelaaja :n:Tietokone :a:74
+:p:15-04-2024T16:53 :w:Pelaaja :n:Pelaaja :n:Tietokone :a:33
+:p:15-04-2024T16:55 :w:Tietokone :n:Pelaaja :n:Tietokone :a:92
+:p:15-04-2024T16:56 :w:Tietokone :n:Pelaaja :n:Tietokone :a:94
+:p:15-04-2024T16:57 :w:Tietokone :n:Pelaaja :n:Tietokone :a:52
