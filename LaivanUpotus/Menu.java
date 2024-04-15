@@ -21,8 +21,9 @@ public class Menu {
       System.out.println("║" + Vakiot.ANSI_RESET + Vakiot.ANSI_BOLD + "           VALITSE PELIMUOTO            " + Vakiot.ANSI_RESET + Vakiot.ANSI_CYAN + "║");
       System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "1 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Yksinpeli" + Vakiot.ANSI_CYAN + "              ║");
       System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "2 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Moninpeli" + Vakiot.ANSI_CYAN + "              ║");
-      System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "3 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Säännöt" + Vakiot.ANSI_CYAN + "                ║");
-      System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "4 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Poistu" + Vakiot.ANSI_CYAN + "                 ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "3 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Tulostaulu" + Vakiot.ANSI_CYAN + "             ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "4 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Säännöt" + Vakiot.ANSI_CYAN + "                ║");
+      System.out.println("║" + Vakiot.ANSI_PURPLE + "            " + Vakiot.ANSI_BOLD + "5 " + Vakiot.ANSI_RESET + Vakiot.ANSI_PURPLE + "=> Poistu" + Vakiot.ANSI_CYAN + "                 ║");
       System.out.println(Vakiot.ANSI_RESET + Vakiot.ANSI_BOLD + "╚════════════════════════════════════════╝" + Vakiot.ANSI_RESET);
       System.out.println("");
 
@@ -44,12 +45,17 @@ public class Menu {
               Peli.peliMuoto = Vakiot.pelimuodot[1];
               Menu.luoPelaajat(Peli.peliMuoto);
               break;
+            
+            case 3: // Tulostaulu
+              TulosTallennus.naytaTulokset("tulosTaulu");
+              naytaMenu();
+              break;
 
-            case 3: // Säännöt
+            case 4: // Säännöt
               naytaSaannot();
               break;
 
-            case 4: // Lopeta
+            case 5: // Lopeta
               System.out.println("Suljetaan ohjelma...");
               System.exit(0);
 

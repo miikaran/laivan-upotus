@@ -58,7 +58,7 @@ public class TulosTallennus {
             lukija.close();
 
         } catch(IOException io){
-            System.out.println("Ongelmia tiedostoon kirjoittamisessa...");
+            System.out.println("Ongelmia tiedoston lukemisessa...");
         }
 
         int tulostenKoko = tulokset.size();  
@@ -72,6 +72,7 @@ public class TulosTallennus {
                 String kierroksenTulos = tulokset.get(tulostenKoko-1);
                 tulokset.clear();
                 tulokset.add(kierroksenTulos);
+            case "tulosTaulu":
                 break;
 
         }
@@ -84,6 +85,10 @@ public class TulosTallennus {
      */
     public static void naytaTulokset(String tyyppi){
         ArrayList<String> tulokset = haeTulokset(tyyppi);
+
+        // Määritetään tuloksien otsikko argumentin mukaan.
+        String tulosOtsikko = tyyppi.equals("kierros") ? " KIERROKSEN TULOKSET " : "TULOKSET";
+        System.out.println(Vakiot.ANSI_BOLD + Vakiot.ANSI_CYAN + "\n══════════════════" + Vakiot.ANSI_GREEN + tulosOtsikko + Vakiot.ANSI_CYAN +  "═════════════════════" + Vakiot.ANSI_RESET);
 
         for(int i = 0; i < tulokset.size(); i++){
 
@@ -115,14 +120,11 @@ public class TulosTallennus {
                 }
             }
 
-            // Määritetään tuloksien otsikko käyttäjän inputin mukaan.
-            String tulosOtsikko = tyyppi.equals("kierros") ? " KIERROKSEN TULOKSET " : "TULOKSET";
-
             // Tulostetaan kaikki haetut tiedot.
-            System.out.println(Vakiot.ANSI_BOLD + Vakiot.ANSI_CYAN + "\n══════════════════" + Vakiot.ANSI_GREEN + tulosOtsikko + Vakiot.ANSI_CYAN +  "═════════════════════\n" + Vakiot.ANSI_RESET);
+            System.out.println();
             System.out.println(Vakiot.ANSI_BOLD + "Aika: " + Vakiot.ANSI_RESET + tulosAika);
             System.out.println(Vakiot.ANSI_BOLD + "Voittaja: " + Vakiot.ANSI_RESET + voittaja);
-            System.out.println(Vakiot.ANSI_BOLD + "Määrä " + Vakiot.ANSI_RESET + arvaukset);
+            System.out.println(Vakiot.ANSI_BOLD + "Arvaukset " + Vakiot.ANSI_RESET + arvaukset);
         }
     }
 
