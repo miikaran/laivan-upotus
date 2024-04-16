@@ -23,7 +23,6 @@ Eli tietokone vastus ei siis esim. hae suoraan vastustajan kartasta laivoja joit
 Tietokone arvaa satunnaisesti kartan kohtia, kunnes se osuu laivaan. Kun se osuu laivaan, se alkaa arvailemaan ympärillä olevia alkioita.
 Kun tietokone on osunut 2 kertaa samaan laivaan, se tietää osittain missä suunnassa laiva on, ja sitä mukaan arvaa eteenpäin/taaksepäin.
 
-<br>
 
 ### Kuvia pelistä
 
