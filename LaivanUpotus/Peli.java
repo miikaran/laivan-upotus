@@ -23,6 +23,7 @@ public class Peli {
     
     /**
      * Tällä funktiolla suoritetaan tarvittavat alkutoimenpiteet ja aloitetaan taistelu.
+     * @param args Argumentit jota käytetään kun suoritetaan koodi komentoriviltä
      */
     public static void main(String[] args) {   
         peliPaalla = true;      // Aloitaan peli
