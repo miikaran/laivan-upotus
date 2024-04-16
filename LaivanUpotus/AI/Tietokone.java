@@ -4,6 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Tämä luokka sisältää metodit ja muuttujat, jota 
+ * käytetään tietokoneen vuorolla arvauksen generoimiseen. 
+ * @author Miika Rantalaiho
+ */
 public class Tietokone {
 
     public static Random random = new Random();                      
@@ -22,6 +27,10 @@ public class Tietokone {
      * Tätä metodia käytetään tietokoneen arvauksen tekemiseen tietokone vs pelaaja pelimuodossa.
      * Tietokoneella on käytössä vain samat tiedot kuin normaalilla pelaajalla, eli tietokone ei tee 
      * arvaustaan esim. hakemalla laivan sijainnin vastustajan kartasta, koska se olisi ns "huijausta".
+     * @param kartta     Tietokoneen muistiinpanokartta jolla arvaus generoidaan
+     * @param pelaaja    Vuoron pelaaja
+     * @param vastustaja Pelaajan vastustaja
+     * @return           Palauttaa tietokoneen generoidun arvauksen.
      */
     public static int[] laskeParasArvaus(String[][] kartta, String pelaaja, String vastustaja){
         int[] arvaus = new int[2];              // Alustetaan tietokoneen arvaus
@@ -72,6 +81,8 @@ public class Tietokone {
 
     /**
      * Tarkistetaan osuiko tietokoneen edellisellä vuorolla tekemä arvaus.
+     * @param kartta Tietokoneen muistiinpanokartta
+     * @return       Palauttaa boolean arvon osuiko edellinen.
      */
     private static boolean osukoEdellinen(String[][] kartta){
         edellinenArvaus = tehdytArvaukset.get(arvaukset-1);
@@ -88,6 +99,7 @@ public class Tietokone {
     
     /**
      * Haetaan tietokoneen muistiinpanokartasta kaikki mahdolliset arvaukset
+     * @param kartta Tietokoneen muistiinpanokartta
      */
     private static void haeJarkevatArvaukset(String[][] kartta){
         mahdollisetArvaukset.clear();
@@ -106,6 +118,7 @@ public class Tietokone {
 
     /**
      * Haetaan arvauksen ympäriltä kohde koordinaatit, jossa osutun laivan loppuosa voisi olla.
+     * @param arvaus Koordinaatit jolle kohdekoordinaatit halutaan laskea
      */
     private static void haeKohdeKoordinaatit(int[] arvaus){
         kohdeKoordinaatit.clear();
@@ -117,6 +130,7 @@ public class Tietokone {
 
     /** 
      * Arvotaan random suunta kohdekoordinaateista, josta lähdetään arvailemaan.
+     * @return Palauttaa koordinaatit josta aletaan arvailemaan
      */
     private static int[] arvoRandomSuunta(){
         int[] arvaus = new int[2];
@@ -146,6 +160,9 @@ public class Tietokone {
     /**
      * Tällä metodilla palautetaan jahtaamisen alkupään vastapäinen suunta, kun samasta sunnasta
      * ei enää löydy laivoja ja laiva ei ole vielä uponnut.
+     * @param koordinaatit Jahtaus kierroksen alkupään kohdekoordinaatit
+     * @param koordinaatti Koordinaatti, josta halutaan ottaa vastakkainen suunta.
+     * @return             Palauttaa vastapään koordinaatit.
      */
     public static int[] palautaVastapainenSuunta(List<int[]> koordinaatit, int[] koordinaatti){
         int[] vastaKoordinaatit = {};

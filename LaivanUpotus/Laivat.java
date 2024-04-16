@@ -2,6 +2,10 @@ package LaivanUpotus;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Tämä luokka sisältää pelaajien laivojen asettamiseen ja validointiin liittyvät metodit.
+ * @author Miika Rantalaiho
+ */
 public class Laivat {
 
     public static final Scanner scanner = new Scanner(System.in);
@@ -61,6 +65,10 @@ public class Laivat {
 
     /**
      * kysytään laivan koordinaatit muodossa => sarake+rivi ja erotellaan ne.
+     * @param kartta     Pelaajan oma kartta
+     * @param laivanKoko Asetettavan laivan koko
+     * @param pelaaja    Vuoron pelaaja
+     * @return           Palauttaa pelaajan antamat laivakoordinaatit
      */
     public static String[] pyydaKoordinaatteja(String[][] kartta, int laivanKoko, String pelaaja) {
         // Jos pelimuoto on tietokone vs pelaaja: generoidaan tietokoneelle omat laivat.
@@ -74,10 +82,14 @@ public class Laivat {
     /**
      * Tarkastetaan pelaajan antamat koordinaatit ja ilmoitetaan
      * mahdollisista virheistä tai säännön vastaisista arvoista.
+     * @param koordinaatit Koordinaatit, jotka halutaan validoida
+     * @param taulu        Kartta, jonka mukaan koordinaatit validoidaan
+     * @param koko         Laivan koko
+     * @param pelaaja      Vuoron pelaaja
+     * @return              Palauttaa boolean arvon joka määrittää onko koordinaatit ok.
      */
     private static boolean validoiKoordinaatit(String[] koordinaatit, String[][] taulu, int koko, String pelaaja) {
         try{
-
             // Haetaan koordinaatit joiden välille laiva rakennetaan.
             int aloitusRivi = Integer.parseInt(koordinaatit[0].substring(1));
             int aloitusSarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatit[0].charAt(0));
@@ -137,7 +149,11 @@ public class Laivat {
     }
 
     /**
-     *  Rakennetaan uusi laiva kartalle annettujen koordinattien mukaan.
+     * Rakennetaan uusi laiva kartalle annettujen koordinattien mukaan.
+     * @param koordinaatit Koordinaatit, johon laivan asetetaan
+     * @param pelaaja      Vuoron pelaaja
+     * @param taulu        Kartta, johon laiva halutaan asettaa
+     * @return             Palauttaa asetetun laivan koordinaatit
      */
     private static int[] asetaLaivaKoordinaatteihin(String[] koordinaatit, String pelaaja, String[][] taulu) {
         // Haetaan koordinaatit joiden välille laiva rakennetaan.

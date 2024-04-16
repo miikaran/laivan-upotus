@@ -2,6 +2,10 @@ package LaivanUpotus.AI;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Tämä luokka sisältää tietokoneen omien laivojen generoimiseen liittyvät metodit.
+ * @author Miika Rantalaiho
+ */
 public class TietokoneenLaivat {
 
     private static final Random random = new Random();
@@ -9,6 +13,9 @@ public class TietokoneenLaivat {
     /**
      * Generoidaan tietokoneen omat laivat tietokone vs pelaaja pelimuodossa.
      * Tietokoneen omien laivojen sijainnit generoidaan satunnaisesti.
+     * @param kartta     Tietokoneen oma kartta
+     * @param laivanKoko Generoitavan laivan koko
+     * @return           Palauttaa generoidun laivan koordinaatit
      */
     public static String[] generoiTietokoneLaivat(String[][] kartta, int laivanKoko) {
         ArrayList<int[]> vapaatKoordinaatit = etsiVapaatKoordinaatit(kartta);
@@ -30,6 +37,8 @@ public class TietokoneenLaivat {
 
     /**
      * Etsitään tietokoneen kartasta vapaat koordinaatit johon laivan voisi rakentaa.
+     * @param kartta Tietokoneen kartta, josta vapaat koordinaatit halutaan etsiä
+     * @return       Palauttaa kartasta etityt vapaat koordinaatit
      */
     private static ArrayList<int[]> etsiVapaatKoordinaatit(String[][] kartta) {
         ArrayList<int[]> vapaatKoordinaatit = new ArrayList<>();
@@ -54,6 +63,8 @@ public class TietokoneenLaivat {
 
     /**
      * Arvotaan tietokoneen laivojen aloitus koordinaatti.
+     * @param vapaatKoordinaatit Kartasta löydetyt vapaat koordinaatit
+     * @return                   Palauttaa arvotun aloituskoordinaatin
      */
     private static int[] arvoAloitusKoordinaatti(ArrayList<int[]> vapaatKoordinaatit){
         int randomKoordinaatti = random.nextInt(vapaatKoordinaatit.size());
@@ -63,6 +74,9 @@ public class TietokoneenLaivat {
     /**
      * Arvotaan tietokoneen laivojen lopetus koordinaatti.
      * Arvotaan myös samalla mihin suuntaan laivaa rakennetaan.
+     * @param aloitusKoordinaatti Arvottu laivan aloituskoordinaatti
+     * @param laivanKoko          Generoitavan laivan koko
+     * @return                    Palauttaa arvotun lopetusKoordinaatin
      */
     private static int[] arvoLopetusKoordinaatti(int[] aloitusKoordinaatti, int laivanKoko) {
         int[] lopetusKoordinaatti = new int[2];
@@ -95,6 +109,8 @@ public class TietokoneenLaivat {
     /**
      * Palauttaa generoidun koordinaatin merkkijonona
      * Esim: 23 => C3
+     * @param koordinaatti Muutettava koordinaatti
+     * @return             Palautetaan muutettu koordinaatti
      */
     private static String koordinaattiMerkkijonoksi(int[] koordinaatti) {
         char kirjain = LaivanUpotus.Vakiot.sarakeKirjaimet.charAt(koordinaatti[0]);

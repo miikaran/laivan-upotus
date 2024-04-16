@@ -1,12 +1,16 @@
 package LaivanUpotus;
 
+/**
+ * Tämä luokka sisältää pelaajien merikarttojen luonti ja tulostus metodeja.
+ * @author Miika Rantalaiho
+ */
 public class MeriKartta {  
 
     /**
      * Luodaan kullekkin pelaajalle oma kartta johon laivat asetetaan.
      * Luodaan myös muistiinpanokartat jokaiselle pelaajalle, johon
      * pelaajan arvaamat osumat ja hudit näkyviin.
-    */
+     */
     public static void luoKartat(){
         for(String pelaaja : Peli.pelaajat){
             String[][] kartta = new String[Vakiot.rivit][Vakiot.sarakkeet];
@@ -34,7 +38,9 @@ public class MeriKartta {
     /**
      * Tulostaa pelaajan koko kartan hienosti consoleen.
      * Lisää tulokseen myös osoittajia kartan riveistä ja sarakkeista.
-    */
+     * @param pelaaja Määrittää kumman pelaajan kartta tulostetaan
+     * @param tyyppi  Kertoo mikä kartta halutaan tulostaa (peruskartta, muistiinpanot, jne)
+     */
     public static void tulostaKartta(String pelaaja, String tyyppi) {
         String[][] kartta;
         if(tyyppi.equals("muistiinpano")){
@@ -78,6 +84,7 @@ public class MeriKartta {
 
     /**
      * Tulostaa yksittäisen rivin karttaan
+     * @param rivi Tulostettavan kartan rivi
      */
     private static void tulostaRivi(String[] rivi) {
         for (int j = 0; j < rivi.length; j++) {

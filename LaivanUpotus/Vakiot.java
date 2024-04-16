@@ -1,11 +1,13 @@
 package LaivanUpotus;
 
+
+/**
+ * Tämä luokka sisältää vakio (constant) muuttujia, eli muuttujia 
+ * joiden arvoja ei tarvitse pelin aikana muuttaa ollenkaan.
+ * @author Miika Rantalaiho
+ */
 public class Vakiot {
 
-    /**
-     * Tämä luokka sisältää vakio (constant) muuttujia, eli muuttujia 
-     * joiden arvoja ei tarvitse pelin aikana muuttaa ollenkaan.
-    */
     public static String sarakeKirjaimet = "ABCDEFGHIJ";
     public static int rivit = 7;
     public static int sarakkeet = 7;
@@ -24,4 +26,5 @@ public class Vakiot {
     public static final String ANSI_RED	 = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_BLUE = "\u001B[34m";
+
 }

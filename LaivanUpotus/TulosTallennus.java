@@ -8,10 +8,18 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class TulosTallennus {
 
+/**
+ * Tämä luokka sisältää pelattujen kierrosten tuloksien tallennus- ja haku metodit.
+ * @author Miika Rantalaiho
+ */
+public class TulosTallennus {
+    
     /**
      * Tällä metodilla tallennetaan pelin tulokset tulokset.txt tiedostoon.
+     * @param pelaajat  Kierroksella pelattujen pelaajien nimet
+     * @param arvaukset Kierroksella tehtyjen arvauksien määrä
+     * @param voittaja  Kierroksen voittajan nimi
      */
     public static void tallennaTulos(String[] pelaajat, int arvaukset, String voittaja){
         try (PrintWriter kirjoittaja = new PrintWriter(new FileWriter(Vakiot.tulosTiedostoNimi, true))){
@@ -44,6 +52,8 @@ public class TulosTallennus {
 
     /**
      * Tällä metodilla haetaan ja palautetaan tulokset tulokset.txt tiedostosta halutulla tavalla.
+     * @param tyyppi Määrittää mitä tietoa halutaan hakea (kaikki, kierros, tulosTaulu)
+     * @return       Palauttaa ArrayListin, jossa tiedostosta haetut rivit         
      */
     public static ArrayList<String> haeTulokset(String tyyppi){
         ArrayList<String> tulokset = new ArrayList<String>();
@@ -72,6 +82,7 @@ public class TulosTallennus {
                 String kierroksenTulos = tulokset.get(tulostenKoko-1);
                 tulokset.clear();
                 tulokset.add(kierroksenTulos);
+
             case "tulosTaulu":
                 break;
 
@@ -82,6 +93,7 @@ public class TulosTallennus {
 
     /**
      * Tällä metodilla haetaan tulokset argumentin mukaan ja näytetään komentorivillä.
+     * @param tyyppi Määrittää mitä tietoa halutaan hakea
      */
     public static void naytaTulokset(String tyyppi){
         ArrayList<String> tulokset = haeTulokset(tyyppi);

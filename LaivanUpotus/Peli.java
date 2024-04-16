@@ -3,12 +3,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+
+/**
+ * Tämä luokka sisältää pelinkulun hallintaan tarvittavat metodit ja muuttujat.
+ * @author Miika Rantalaiho
+ */
 public class Peli {
 
-    /**
-     * Luodaan pelinkulun kannalta tärkeät muuttujat tänne.
-     * Vakio muuttujat löytyvät Vakiot- luokasta.
-     */
+    // Alustetaan pelinkulun kannalta tärkeät muuttujat tänne.
     public static final Scanner scanner = new Scanner(System.in);                                    
     public static String peliMuoto = "";                                                         
     public static boolean peliPaalla = false;
@@ -20,7 +22,7 @@ public class Peli {
     public static String voittaja;
     
     /**
-     * Suoritetaan tarvittavat alkutoimenpiteet ja aloitetaan peli.
+     * Tällä funktiolla suoritetaan tarvittavat alkutoimenpiteet ja aloitetaan taistelu.
      */
     public static void main(String[] args) {   
         peliPaalla = true;      // Aloitaan peli
@@ -61,8 +63,9 @@ public class Peli {
 
     /**
      * Pelaaja arvaa vastustajan laivan sijainteja koordinaateilla.
-     * Mikäli arvaus on oikein, merkitään se vastustajan tauluun ja
-     * ilmoitetaan pelaajalle osuiko/upposiko.
+     * Jos arvaus oikein => merkitään vastustajan tauluun ja ilmoitetaan pelaajalle.
+     * @param vastustaja Pelaajan vastustaja
+     * @param pelaaja    Vuoron pelaaja
      */
     public static void pelaajaHyokkaa(String vastustaja, String pelaaja){
         while(true){
@@ -148,6 +151,12 @@ public class Peli {
     /**
      * Tarkistetaan osusiko arvaus. Mikäli osui, merkitään se vastustajan 
      * karttaan ja palautetaan laiva johon osuttiin.
+     * @param vastustajanKartta Vastustajan merikartta, jolla tarkistetaan arvaukset
+     * @param vastustajanLaivat Sisältää vastustajan omien laivojen sijainnit
+     * @param muistiinPanot     Pelaajan muistiinpanokartta, johon merkataan arvaukset
+     * @param rivi              Kierroksella tehdyn arvauksen rivi numero
+     * @param sarake            Kierroksen tehdyn arvauksen sarake numero
+     * @return                  Palautetaan osutun laivan koordinaatit.
      */
     public static int[] tarkistaOsuma(String[][] vastustajanKartta, int[][] vastustajanLaivat, String[][] muistiinPanot, int rivi, int sarake){
         try{
@@ -188,6 +197,9 @@ public class Peli {
     /**
      * Tarkistetaan upposiko laiva.
      * Mikäli upposi: palautetaan true. Jos ei: false
+     * @param osuttuLaiva       Osutun laivan koordinaatit
+     * @param vastustajanKartta Vastustajan merikartta, jolla tarkistetaan upposiko
+     * @return                  Boolean arvo upposiko laiva arvauksella vai ei
      */
     public static boolean upposko(int[] osuttuLaiva, String[][] vastustajanKartta){
         boolean upposko = false;
@@ -213,6 +225,8 @@ public class Peli {
     /**
      * Tarkistetaan vastustajan kartan tilanne.
      * Voittaja on selvillä jos kartassa ei yhtään laivaa.
+     * @param pelaaja    Vuoron pelaaja
+     * @param vastustaja Pelaajan vastustaja
      */
     public static void tarkistaVoitto(String pelaaja, String vastustaja){
         String[][] vastustajanKartta = pelaajienKartat.get(vastustaja);

@@ -1,7 +1,15 @@
 package LaivanUpotus;
 
+/**
+ * Tämä luokka sisältää virheilmoituksia, joita eri poikkeustilanteissa halutaan käyttäjälle näyttää.
+ * @author Miika Rantalaiho
+ */
 public class VirheIlmoitukset {
 
+    /**
+     * Tällä metodilla näytetään haluttu virheilmoitus tietyssä tilanteissa.
+     * @param tyyppi Määrittää minkälainen ilmoitus halutaan näyttää
+     */
     public static void naytaIlmoitus(String tyyppi){
         String pelaaja = Peli.pelaajat[Peli.vuoro];
 

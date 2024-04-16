@@ -1,6 +1,10 @@
 package LaivanUpotus;
 import java.util.Scanner;
 
+/**
+ * Tämä luokka sisältää päävalikkoon ja pelaajien nimien asettamiseen liittyvät metodit.
+ * @author Miika Rantalaiho
+ */
 public class Menu {
 
     public static final Scanner scanner = new Scanner(System.in);
@@ -81,6 +85,7 @@ public class Menu {
     /**
      * Jos pelataan kaverin kanssa, kysytään pelaajilta alussa heidän nimet.
      * Mikäli pelataan tietokonetta vastaan, asetetaan pelaajille valmiit nimet.
+     * @param pelimuoto Kertoo minkä pelimuodon pelaaja on valinnut
      */
     public static void luoPelaajat(String pelimuoto){
       if(pelimuoto.equals("kaveri")){
