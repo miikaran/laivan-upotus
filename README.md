@@ -35,13 +35,7 @@ Kun tietokone on osunut 2 kertaa samaan laivaan, se tietää osittain missä suu
   <img src="https://github.com/miikaran/laivan-upotus/assets/88707539/a7567950-f66d-4b24-b85c-53a50d54eef8" width="23%">
 </div>
 
+<br>
 
-
-
-
-
-
-
-## Pelinkulku vuokaavio
 <img width=50% src="https://github.com/miikaran/laivan-upotus/assets/88707539/98eca324-80fb-44a1-a2f1-9532d4112f3a">
 
