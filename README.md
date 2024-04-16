@@ -13,7 +13,7 @@ Yleisimpiä sääntöjä on, että omat laivat ei saa olla vinossa tai vierekkä
 
  ### Pelinkulku
 1. Asetetaan omat laivat kartoilleen
-2. Pelaajat arvailevat toistensa laivoja, kunnes jommankumman kaikki laivat o. arvattu.
+2. Pelaajat arvailevat toistensa laivoja, kunnes jommankumman kaikki laivat on arvattu.
 3. Voittaja on se, kumpi arvaa toisen pelaajan kaikki laivat ensimmäisenä.
 4. Peli tallentaa kierroksen tulokset, ja niitä voi käydä katselemassa päävalikon kautta.
 
