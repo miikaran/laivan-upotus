@@ -82,6 +82,7 @@ public class Peli {
                     // Muutetaan koordinaatit kartan riveiksi ja sarakkeiksi.
                     rivi = Integer.parseInt(koordinaatti.substring(1));
                     sarake = Vakiot.sarakeKirjaimet.indexOf(koordinaatti.charAt(0)); 
+                    scanner.nextLine();
 
                 } else {
 
@@ -93,6 +94,7 @@ public class Peli {
 
             } catch(Exception e){
                 VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[7]);
+                continue;
             }
 
             // Haetaan vastustajan kartta ja laivat.
@@ -141,6 +143,7 @@ public class Peli {
 
                 } catch (ArrayIndexOutOfBoundsException e){
                     VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[8]);
+                    continue;
                 }
             }
 

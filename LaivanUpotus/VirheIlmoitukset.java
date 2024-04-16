@@ -45,15 +45,15 @@ public class VirheIlmoitukset {
                     break;
 
                 case "ongelmaArvauksessa":
-                    System.out.println("\nOngelma koordinaatin syötteessä..");
+                    System.out.println(Vakiot.ANSI_RED + "\nOngelma koordinaatin syötteessä..." + Vakiot.ANSI_RESET);
                     break; 
 
                 case "yliRajojenArvaus":
-                    System.out.println("\nEt voi arvata yli rajojen meneviä alkioita...");
+                    System.out.println(Vakiot.ANSI_RED + "\nEt voi arvata yli rajojen meneviä alkioita..." + Vakiot.ANSI_RESET);
                     break;
 
                 case "ongelmaOsumassa":
-                    System.out.println("\nJotain meni pieleen osuman tarkistuksessa...");
+                    System.out.println(Vakiot.ANSI_RED + "\nJotain meni pieleen osuman tarkistuksessa..." + Vakiot.ANSI_RESET);
                     break;
             }
 

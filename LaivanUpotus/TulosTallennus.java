@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  * @author Miika Rantalaiho
  */
 public class TulosTallennus {
-    
+
     /**
      * Tällä metodilla tallennetaan pelin tulokset tulokset.txt tiedostoon.
      * @param pelaajat  Kierroksella pelattujen pelaajien nimet
@@ -134,6 +134,7 @@ public class TulosTallennus {
 
             // Tulostetaan kaikki haetut tiedot.
             System.out.println();
+            System.out.println(Vakiot.ANSI_BOLD + nimet.get(0) + " VS " + nimet.get(1) + Vakiot.ANSI_RESET);
             System.out.println(Vakiot.ANSI_BOLD + "Aika: " + Vakiot.ANSI_RESET + tulosAika);
             System.out.println(Vakiot.ANSI_BOLD + "Voittaja: " + Vakiot.ANSI_RESET + voittaja);
             System.out.println(Vakiot.ANSI_BOLD + "Arvaukset " + Vakiot.ANSI_RESET + arvaukset);
