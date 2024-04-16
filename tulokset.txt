@@ -5,3 +5,5 @@
 :p:16-04-2024T17:30 :w:Mikael :n:Mikael :n:Juuso :a:19
 :p:16-04-2024T17:32 :w:Tietokone :n:Pelaaja :n:Tietokone :a:96
 :p:16-04-2024T17:34 :w:Jade :n:Miika :n:Jade :a:22
+:p:16-04-2024T17:42 :w:Tietokone :n:Pelaaja :n:Tietokone :a:84
+:p:16-04-2024T17:42 :w:Tietokone :n:Pelaaja :n:Tietokone :a:38

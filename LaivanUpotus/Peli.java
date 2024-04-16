@@ -133,8 +133,6 @@ public class Peli {
 
             } else {
 
-                System.out.println(Vakiot.ANSI_BOLD + Vakiot.ANSI_RED + "\nHUTI" + Vakiot.ANSI_RESET);
-
                 try{
 
                     if(!pelaajanMuistiinpanot[rivi][sarake].equals(Vakiot.merkit[3]) && !pelaajanMuistiinpanot[rivi][sarake].equals(Vakiot.merkit[2]) ){
@@ -145,6 +143,8 @@ public class Peli {
                     VirheIlmoitukset.naytaIlmoitus(Vakiot.virheIlmoitukset[8]);
                     continue;
                 }
+
+                System.out.println(Vakiot.ANSI_BOLD + Vakiot.ANSI_RED + "\nHUTI" + Vakiot.ANSI_RESET);
             }
 
             break;  
