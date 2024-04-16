@@ -1,6 +1,6 @@
 # LaivanUpotus + AI
  ### Mikä?
-Javalla toteutettu komentoriviltä pelattava laivanupotus peli, jossa voi pelata tietokonetta tai kaveria vastaan. <br> Suoritin koulun kurssin harjoitustyönä.
+Javalla toteutettu komentoriviltä pelattava laivanupotus peli, jossa voi pelata tietokonetta tai kaveria vastaan.
 
  ### Ohjeet
 Laivanupotus on 2 pelaajan peli, jossa tavoitteena on upottaa vastustajan kaikki laivat arvaamalla
