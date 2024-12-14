@@ -37,5 +37,6 @@ Kun tietokone on osunut 2 kertaa samaan laivaan, se tietää osittain missä suu
 
 <br>
 
+### Abstrakti vuokaavio pelin toiminnasta
 <img width=50% src="https://github.com/miikaran/laivan-upotus/assets/88707539/98eca324-80fb-44a1-a2f1-9532d4112f3a">
 
